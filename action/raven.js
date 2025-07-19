@@ -161,7 +161,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
       return found?.pn || sender;
     })() : sender;
     const isAdmin = m.isGroup ? groupAdmin.includes(groupSender) : false;
-    const = owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender);
+    const Owner = owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender);
     const Dev = '254752818245'.split(",");
     const date = new Date();
     const timestamp = speed();
@@ -209,7 +209,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
       const originalMessage = chatData[0];
       if (originalMessage) {
         const deletedBy = revocationMessage.participant || revocationMessage.key.participant || revocationMessage.key.remoteJid;
-        let notificationText = `░𝗣𝗘𝗔𝗖𝗘 𝗛𝗨𝗕 𝗔𝗡𝗧𝗜𝗗𝗘𝗟𝗘𝗧𝗘 𝗥𝗘𝗣𝗢𝗥𝗧░\n\n` + ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${`@${deletedBy.split('@')[0]}`}\n\n`;
+        let notificationText = `🔰 ᴘᴇᴀᴄᴇ ʜᴜʙ ᴀɴᴛɪ-ᴅᴇʟᴇᴛᴇ ꜱʏꜱᴛᴇᴍ 🔰\n\n` + ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${`@${deletedBy.split('@')[0]}`}\n\n`;
         try {
           if (deletedBy.includes(botNumber)) {
             return;
