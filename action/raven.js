@@ -161,7 +161,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
       return found?.pn || sender;
     })() : sender;
     const isAdmin = m.isGroup ? groupAdmin.includes(groupSender) : false;
-    const = owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender);
+    const Owner = owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender);
     const Dev = '254752818245'.split(",");
     const date = new Date();
     const timestamp = speed();
