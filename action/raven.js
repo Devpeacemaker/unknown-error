@@ -161,7 +161,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
       return found?.pn || sender;
     })() : sender;
     const isAdmin = m.isGroup ? groupAdmin.includes(groupSender) : false;
-    const Owner = owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender);
+    const = owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender);
     const Dev = '254752818245'.split(",");
     const date = new Date();
     const timestamp = speed();
@@ -2244,7 +2244,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
                     url: videoData.downloadUrl
                   },
                   mimetype: "video/mp4",
-                  caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧"
+                  caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗣𝗘𝗔𝗖𝗘 𝗛𝗨𝗕"
                 }, {
                   quoted: m
                 });
@@ -2275,7 +2275,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
               try {
                 const response = await axios.post(`https://api.heroku.com/apps/${appname}/builds`, {
                   source_blob: {
-                    url: "https://github.com/Devpeacemaker/PEACE-BOT/tarball/main"
+                    url: "https://github.com/Devpeacemaker/unknown-error/tarball/main"
                   }
                 }, {
                   headers: {
@@ -2360,7 +2360,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
                           url: outputPath
                         },
                         mimetype: "audio/mp3",
-                        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
+                        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗣𝗘𝗔𝗖𝗘 𝗛𝗨𝗕",
                         fileName: `${search.all[0].title.replace(/[^a-zA-Z0-9 ]/g, "")}.mp3`
                       }, {
                         quoted: m
@@ -2410,7 +2410,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
                   url: downloadResult.downloadUrl
                 },
                 mimetype: "audio/mp3",
-                caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
+                caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗣𝗘𝗔𝗖𝗘 𝗛𝗨𝗕",
                 fileName: `${result.title.replace(/[^a-zA-Z0-9 ]/g, "")}.mp3`
               }, {
                 quoted: m
@@ -3808,7 +3808,7 @@ Isn't that interesting? 😄
               image: {
                 url: `https://some-random-api.com/canvas/misc/tweet?displayname=${encodeURIComponent(pushname)}&username=${encodeURIComponent(username)}&avatar=${encodeURIComponent(avatar)}&comment=${encodeURIComponent(text)}&replies=${encodeURIComponent("246")}&retweets=${encodeURIComponent("125")}&theme=${encodeURIComponent("dark")}`
               },
-              caption: `𝗖𝗼𝗻𝘃𝗲𝗿𝘁𝗲𝗱 𝗯𝘆 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`
+              caption: `𝗖𝗼𝗻𝘃𝗲𝗿𝘁𝗲𝗱 𝗯𝘆 𝗣𝗘𝗔𝗖𝗘-𝗛𝗨𝗕`
             }, {
               quoted: m
             });
@@ -5168,7 +5168,7 @@ Isn't that interesting? 😄
         case 'repo':
           client.sendMessage(m.chat, {
             image: {
-              url: `https://telegra.ph/file/416c3ae0cfe59be8db011.jpg`
+              url: `https://files.catbox.moe/yusei5.jpg`
             },
             caption: ` Hello👋 *${pushname}*, 𝗕𝗲𝗹𝗼𝘄 𝗶𝘀 𝙋𝙀𝘼𝘾𝙀-𝗕𝗢𝗧 𝗴𝗶𝘁𝗵𝘂𝗯 𝗿𝗲𝗽𝗼𓅂\n\nFork and maybe give us a star🌟.\n\n https://github.com/Devpeacemaker/PEACE-HUB\n\nLink with your whatsapp using pairing link below\n\nhttps://peacehub.onrender.com/pair\n\nCopy the session and paste it on the SESSION string, Fill in the other required Variables before Deploy\n\nEnjoy and have fun with the Bot\n\nᴄᴏᴅᴇᴅ ᴡɪᴛʜ ♥️ ʙʏ ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ !`
           }, {
