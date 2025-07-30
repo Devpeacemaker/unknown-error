@@ -1349,7 +1349,7 @@ await client.sendMessage(from, {
                     }
                 );
 
-                await m.reply("⚙️ Upgrade in progress...please keep arms and legs inside the hub.);
+                await m.reply("⚙️ Upgrade in progress...please keep arms and legs inside the hub.");
                 console.log("Build details:", response.data);
             } catch (error) {
                 const errorMessage = error.response?.data || error.message;
