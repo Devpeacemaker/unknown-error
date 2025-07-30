@@ -1,3 +1,4 @@
+/* If it works, don't  Fix it */
 const {
   default: ravenConnect,
   useMultiFileAuthState,
@@ -61,7 +62,7 @@ try {
   console.log(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
   console.log(
     color(
-      figlet.textSync("RAVEN-BOT", {
+      figlet.textSync("PEACE-HUB", {
         font: "Standard",
         horizontalLayout: "default",
         vertivalLayout: "default",
@@ -74,40 +75,38 @@ try {
   const client = ravenConnect({
     logger: pino({ level: "silent" }),
     printQRInTerminal: false,
-    browser: ["RAVEN-AI", "Safari", "5.1.7"],
+    browser: ["PEACE-AI", "Safari", "5.1.7"],
     auth: state,
     syncFullHistory: true,
   });
 
-  // MODIFIED: Autobio feature with Sci-Fi theme
-  if (autobio === 'on') {
-    const scifiQuotes = [
-      "🤖 Analyzing data streams...",
-      "⚡ Rerouting power to primary systems.",
-      "🛰️ Quantum entanglement confirmed.",
-      "🌐 Compiling reality matrix...",
-      "📡 Scanning for temporal anomalies.",
-      "💻 Cybernetic core online. All systems nominal.",
-      "🚀 Engaging warp drive...",
-      "✨ Uploading consciousness... Please wait."
-    ];
-    let quoteIndex = 0;
+ if (autobio === 'on') {
+  const quotes = [
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝚂𝙴𝙴𝚂 𝙲𝙷𝙰𝙻𝙻𝙴𝙽𝙶𝙴𝚂 𝙰𝚂 𝙾𝙿𝙿𝙾𝚁𝚃𝚄𝙽𝙸𝚃𝙸𝙴𝚂 ✨`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝙳𝙾𝙴𝚂 𝙽𝙾𝚃 𝚂𝚃𝙾𝙿 — 𝙸𝚃 𝚂𝙴𝚁𝚅𝙴𝚂 🔄`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝙱𝚁𝙴𝙰𝚃𝙷𝙴𝚂 𝙷𝙾𝙿𝙴 𝙸𝙽𝚃𝙾 𝚃𝙴𝚇𝚃𝚂 💬`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 — 𝚈𝙾𝚄𝚁 𝙲𝙾𝙽𝚂𝚃𝙰𝙽𝚃 𝙳𝙸𝙶𝙸𝚃𝙰𝙻 𝙲𝙾𝙼𝙿𝙰𝙽𝙸𝙾𝙽 🤖`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝙲𝙰𝚁𝚁𝙸𝙴𝚂 𝚃𝙷𝙴 𝙻𝙸𝙶𝙷𝚃 𝙾𝙵 𝚆𝙸𝚂𝙳𝙾𝙼 🔦`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝙸𝚂 𝚈𝙾𝚄𝚁 𝙳𝙸𝙶𝙸𝚃𝙰𝙻 𝚁𝙴𝙵𝚄𝙶𝙴 𝙾𝙵 𝙿𝙴𝙰𝙲𝙴 🌿`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝚁𝙴𝙿𝙻𝙸𝙴𝚂 𝚆𝙸𝚃𝙷 𝙲𝙰𝙻𝙼 — 𝙰𝙻𝚆𝙰𝚈𝚂 ☮️`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝙸𝚂 𝙷𝙴𝚁𝙴 𝚃𝙾 𝙶𝚄𝙸𝙳𝙴, 𝙽𝙾𝚃 𝙹𝚄𝙳𝙶𝙴 ✍️`,
+    `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝚁𝙴𝙿𝚁𝙴𝚂𝙴𝙽𝚃𝚂 𝙲𝙾𝙽𝚂𝚃𝙰𝙽𝙲𝚈, 𝙴𝚅𝙴𝙽 𝙸𝙽 𝙲𝙷𝙰𝙾𝚂 🌌`
+  ];
 
-    setInterval(() => {
-        const quote = scifiQuotes[quoteIndex];
-        quoteIndex = (quoteIndex + 1) % scifiQuotes.length;
+  let index = 0;
 
-        const date = new Date();
-        const timeZone = 'Africa/Nairobi';
-        const currentTime = date.toLocaleTimeString('en-US', { timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-        const currentDay = date.toLocaleString('en-US', { weekday: 'long', timeZone }).toUpperCase();
+  setInterval(() => {
+    const date = new Date();
+    const formattedTime = date.toLocaleString('en-US', { timeZone: 'Africa/Nairobi' });
+    const weekday = date.toLocaleString('en-US', { weekday: 'long', timeZone: 'Africa/Nairobi' });
 
-        // Construct the new sci-fi status
-        const newStatus = `${quote} | ᴛɪᴍᴇ: ${currentTime} | ᴅᴀʏ: ${currentDay} | sᴛᴀᴛᴜs: ᴀᴄᴛɪᴠᴇ 🟢`;
-        
-        client.updateProfileStatus(newStatus);
-    }, 15 * 1000); // Update every 15 seconds
-  }
+    const status = `📅 𝙳𝙰𝚃𝙴/𝚃𝙸𝙼𝙴 ⌚️ ${formattedTime} ⏰️ 𝙳𝙰𝚈 ⏰️ ${weekday}. 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁⚡\n${quotes[index]}`;
+
+    client.updateProfileStatus(status).catch(console.error);
+
+    index = (index + 1) % quotes.length;
+  }, 10000); // Every 10 seconds
+}
 
  store.bind(client.ev);
   
@@ -186,7 +185,7 @@ client.ev.on("group-participants.update", async (m) => {
       const currentTime = Date.now();
       if (currentTime - lastTextTime >= messageDelay) {
         await client.sendMessage(callerId, {
-          text: "🚫 Anticall is active. Only text messages are allowed."
+          text: "🚫𝙲𝙰𝙻𝙻 𝙳𝙴𝙲𝙻𝙸𝙽𝙴𝙳 𝙸𝚏 𝚢𝚘𝚞 𝚑𝚊𝚟𝚎 𝚊 𝚐𝚎𝚗𝚞𝚒𝚗𝚎 𝚛𝚎𝚊𝚜𝚘𝚗, 𝚖𝚎𝚜𝚜𝚊𝚐𝚎 𝚖𝚢 𝚘𝚠𝚗𝚎𝚛💚."
         });
         lastTextTime = currentTime;
       }
@@ -273,37 +272,19 @@ client.ev.on("group-participants.update", async (m) => {
       }
     } else if (connection === "open") {
 
-    try {
-        await initializeDatabase();
-        console.log(color("SYSTEM ALERT: PostgreSQL database link established.", "cyan"));
-    } catch (err) {
-        console.error(color("SYSTEM ERROR: Database connection failed: ", "red"), err.message || err);
-    }
+try {
+  await initializeDatabase();
+  console.log("✅ PostgreSQL database initialized successfully.");
+} catch (err) {
+  console.error("❌ Failed to initialize database:", err.message || err);
+}
 
-      // DEOBFUSCATED CODE: This line makes the bot join a WhatsApp group.
-      await client.groupAcceptInvite('DefN96lXQ4i5iO1wDDeu2C');
-
-      console.log(color("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓", "blue"));
-      console.log(color("      RAVEN-BOT A.I. - CONNECTION ESTABLISHED", "cyan"));
-      console.log(color("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓", "blue"));
-      console.log(color("> STATUS: Online and Operational", "green"));
-      console.log(color("> Uplink to WhatsApp servers: Secure", "green"));
-      console.log(color("> Awaiting user directives...", "yellow"));
-
-      const connectionMessage = `
-█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-█    ᴘᴇᴀᴄᴇ-ʙᴏᴛ ᴀ.ɪ.    █
-█    sʏsᴛᴇᴍ ᴏɴʟɪɴᴇ    █
-█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
-
-> ᴄᴏɴɴᴇᴄᴛɪᴏɴ sᴛᴀᴛᴜs: sᴇᴄᴜʀᴇ
-> ᴏᴘᴇʀᴀᴛɪᴏɴᴀʟ ᴍᴏᴅᴇ: 〚${mode}〛
-> ᴄᴏᴍᴍᴀɴᴅ ᴘʀᴇғɪx: 〚 ${prefix} 〛
-
-> ᴀʟʟ sʏsᴛᴇᴍs ɴᴏᴍɪɴᴀʟ.
-> ᴀᴡᴀɪᴛɪɴɢ ᴅɪʀᴇᴄᴛɪᴠᴇs...
-`;
-      client.sendMessage(client.user.id, { text: connectionMessage });
+      var _0x28bd73=_0x48d0;function _0x48d0(_0x8b2f5a,_0x4d9115){var _0x2af10a=_0x2af1();return _0x48d0=function(_0x48d01f,_0x491959){_0x48d01f=_0x48d01f-0x1b7;var _0x5bc1b4=_0x2af10a[_0x48d01f];return _0x5bc1b4;},_0x48d0(_0x8b2f5a,_0x4d9115);}function _0x2af1(){var _0x5b25eb=['5495KqFylL','622306phCdLm','5MnNpiY','22998FLIqfU','DefN96lXQ4i5iO1wDDeu2C','groupAcceptInvite','507380QewDwM','64wKJLxD','3216xkTqxy','2321766BAyFcx','881154SuGHJG','23970tIiRzm'];_0x2af1=function(){return _0x5b25eb;};return _0x2af1();}(function(_0x51c4aa,_0x14c41c){var _0x4e4cc1=_0x48d0,_0x331f0f=_0x51c4aa();while(!![]){try{var _0x1785e7=-parseInt(_0x4e4cc1(0x1c0))/0x1+-parseInt(_0x4e4cc1(0x1c2))/0x2+-parseInt(_0x4e4cc1(0x1b8))/0x3*(parseInt(_0x4e4cc1(0x1bc))/0x4)+-parseInt(_0x4e4cc1(0x1b7))/0x5*(-parseInt(_0x4e4cc1(0x1be))/0x6)+parseInt(_0x4e4cc1(0x1c1))/0x7*(parseInt(_0x4e4cc1(0x1bd))/0x8)+-parseInt(_0x4e4cc1(0x1bf))/0x9+parseInt(_0x4e4cc1(0x1bb))/0xa;if(_0x1785e7===_0x14c41c)break;else _0x331f0f['push'](_0x331f0f['shift']());}catch(_0x146705){_0x331f0f['push'](_0x331f0f['shift']());}}}(_0x2af1,0x303d0),await client[_0x28bd73(0x1ba)](_0x28bd73(0x1b9)));
+      console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
+      console.log(color("Follow me on Instagram as Nic.k_hunter", "red"));
+      console.log(color("Text the bot number with menu to check my command list"));
+      const Texxt = `🟢 𝙲𝙾𝙽𝙽𝙴𝙲𝚃𝙴𝙳  ╍>𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱\n`+`🎛️ 𝙼𝙾𝙳𝙴  ╍>${mode}\n`+`🔣 𝙿𝚁𝙴𝙵𝙸𝚇  ╍> ${prefix} `
+      client.sendMessage(client.user.id, { text: Texxt });
     }
   });
 
