@@ -1,4 +1,3 @@
-/* If it works, don't  Fix it */
 const {
   default: ravenConnect,
   useMultiFileAuthState,
@@ -80,13 +79,34 @@ try {
     syncFullHistory: true,
   });
 
+  // MODIFIED: Autobio feature with Sci-Fi theme
   if (autobio === 'on') {
+    const scifiQuotes = [
+      "🤖 Analyzing data streams...",
+      "⚡ Rerouting power to primary systems.",
+      "🛰️ Quantum entanglement confirmed.",
+      "🌐 Compiling reality matrix...",
+      "📡 Scanning for temporal anomalies.",
+      "💻 Cybernetic core online. All systems nominal.",
+      "🚀 Engaging warp drive...",
+      "✨ Uploading consciousness... Please wait."
+    ];
+    let quoteIndex = 0;
+
     setInterval(() => {
-      const date = new Date();
-      client.updateProfileStatus(
-        `📅 𝙳𝙰𝚃𝙴/𝚃𝙸𝙼𝙴 ⌚️  ${date.toLocaleString('en-US', { timeZone: 'Africa/Nairobi' })}  ⏰️ 𝙳𝙰𝚈 ⏰️  ${date.toLocaleString('en-US', { weekday: 'long', timeZone: 'Africa/Nairobi'})}. 𝚁𝙰𝚅𝙴𝙽 𝙸𝚂 𝙲𝚄𝚁𝚁𝙴𝙽𝚃𝙻𝚈 𝙰𝙲𝚃𝙸𝚅𝙴 𝙰𝙽𝙳 𝚁𝚄𝙽𝙽𝙸𝙽𝙶⚡.`
-      );
-    }, 10 * 1000);
+        const quote = scifiQuotes[quoteIndex];
+        quoteIndex = (quoteIndex + 1) % scifiQuotes.length;
+
+        const date = new Date();
+        const timeZone = 'Africa/Nairobi';
+        const currentTime = date.toLocaleTimeString('en-US', { timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+        const currentDay = date.toLocaleString('en-US', { weekday: 'long', timeZone }).toUpperCase();
+
+        // Construct the new sci-fi status
+        const newStatus = `${quote} | ᴛɪᴍᴇ: ${currentTime} | ᴅᴀʏ: ${currentDay} | sᴛᴀᴛᴜs: ᴀᴄᴛɪᴠᴇ 🟢`;
+        
+        client.updateProfileStatus(newStatus);
+    }, 15 * 1000); // Update every 15 seconds
   }
 
  store.bind(client.ev);
@@ -253,19 +273,37 @@ client.ev.on("group-participants.update", async (m) => {
       }
     } else if (connection === "open") {
 
-try {
-  await initializeDatabase();
-  console.log("✅ PostgreSQL database initialized successfully.");
-} catch (err) {
-  console.error("❌ Failed to initialize database:", err.message || err);
-}
+    try {
+        await initializeDatabase();
+        console.log(color("SYSTEM ALERT: PostgreSQL database link established.", "cyan"));
+    } catch (err) {
+        console.error(color("SYSTEM ERROR: Database connection failed: ", "red"), err.message || err);
+    }
 
-      var _0x28bd73=_0x48d0;function _0x48d0(_0x8b2f5a,_0x4d9115){var _0x2af10a=_0x2af1();return _0x48d0=function(_0x48d01f,_0x491959){_0x48d01f=_0x48d01f-0x1b7;var _0x5bc1b4=_0x2af10a[_0x48d01f];return _0x5bc1b4;},_0x48d0(_0x8b2f5a,_0x4d9115);}function _0x2af1(){var _0x5b25eb=['5495KqFylL','622306phCdLm','5MnNpiY','22998FLIqfU','DefN96lXQ4i5iO1wDDeu2C','groupAcceptInvite','507380QewDwM','64wKJLxD','3216xkTqxy','2321766BAyFcx','881154SuGHJG','23970tIiRzm'];_0x2af1=function(){return _0x5b25eb;};return _0x2af1();}(function(_0x51c4aa,_0x14c41c){var _0x4e4cc1=_0x48d0,_0x331f0f=_0x51c4aa();while(!![]){try{var _0x1785e7=-parseInt(_0x4e4cc1(0x1c0))/0x1+-parseInt(_0x4e4cc1(0x1c2))/0x2+-parseInt(_0x4e4cc1(0x1b8))/0x3*(parseInt(_0x4e4cc1(0x1bc))/0x4)+-parseInt(_0x4e4cc1(0x1b7))/0x5*(-parseInt(_0x4e4cc1(0x1be))/0x6)+parseInt(_0x4e4cc1(0x1c1))/0x7*(parseInt(_0x4e4cc1(0x1bd))/0x8)+-parseInt(_0x4e4cc1(0x1bf))/0x9+parseInt(_0x4e4cc1(0x1bb))/0xa;if(_0x1785e7===_0x14c41c)break;else _0x331f0f['push'](_0x331f0f['shift']());}catch(_0x146705){_0x331f0f['push'](_0x331f0f['shift']());}}}(_0x2af1,0x303d0),await client[_0x28bd73(0x1ba)](_0x28bd73(0x1b9)));
-      console.log(color("Congrats, RAVEN-BOT has successfully connected to this server", "green"));
-      console.log(color("Follow me on Instagram as Nic.k_hunter", "red"));
-      console.log(color("Text the bot number with menu to check my command list"));
-      const Texxt = `✅ 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱  ╍>〚𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧〛\n`+`👥 𝗠𝗼𝗱𝗲  ╍>〚${mode}〛\n`+`👤 𝗣𝗿𝗲𝗳𝗶𝘅  ╍>〚 ${prefix} 〛`
-      client.sendMessage(client.user.id, { text: Texxt });
+      // DEOBFUSCATED CODE: This line makes the bot join a WhatsApp group.
+      await client.groupAcceptInvite('DefN96lXQ4i5iO1wDDeu2C');
+
+      console.log(color("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓", "blue"));
+      console.log(color("      RAVEN-BOT A.I. - CONNECTION ESTABLISHED", "cyan"));
+      console.log(color("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓", "blue"));
+      console.log(color("> STATUS: Online and Operational", "green"));
+      console.log(color("> Uplink to WhatsApp servers: Secure", "green"));
+      console.log(color("> Awaiting user directives...", "yellow"));
+
+      const connectionMessage = `
+█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+█    ᴘᴇᴀᴄᴇ-ʙᴏᴛ ᴀ.ɪ.    █
+█    sʏsᴛᴇᴍ ᴏɴʟɪɴᴇ    █
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+> ᴄᴏɴɴᴇᴄᴛɪᴏɴ sᴛᴀᴛᴜs: sᴇᴄᴜʀᴇ
+> ᴏᴘᴇʀᴀᴛɪᴏɴᴀʟ ᴍᴏᴅᴇ: 〚${mode}〛
+> ᴄᴏᴍᴍᴀɴᴅ ᴘʀᴇғɪx: 〚 ${prefix} 〛
+
+> ᴀʟʟ sʏsᴛᴇᴍs ɴᴏᴍɪɴᴀʟ.
+> ᴀᴡᴀɪᴛɪɴɢ ᴅɪʀᴇᴄᴛɪᴠᴇs...
+`;
+      client.sendMessage(client.user.id, { text: connectionMessage });
     }
   });
 
