@@ -1,10 +1,10 @@
 {
-  "name": "RAVEN-BOT",
+  "name": "PEACE HUB",
   "description": "A simple yet complicated WhatsApp bot, ♤Enjoy♡",
   "keywords": [
     "bot",
     "whatsapp",
-    "raven",
+    "peace",
     "whatsapp-stickers",
     "anime",
     "whatsapp-bot",
@@ -14,13 +14,13 @@
     "baileys-md",
     "md-bot"
   ],
-  "website": "https://github.com/HunterNick2/RAVEN-BOT#readme",
-  "repository": "https://github.com/HunterNick2/RAVEN-BOT.git",
-  "logo": "https://files.catbox.moe/duv8ac.jpg",
+  "website": "https://github.com/Devpeacemaker/PEACE-HUB #readme",
+  "repository": "https://github.com/Devpeacemaker/PEACE-HUB.git",
+  "logo": "https://files.catbox.moe/yusei5.jpg",
   "success_url": "/",
   "env": {
     "DEV": {
-      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254114660061,27849061633",
+      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254752818245,923208206484",
       "required": true
     },
     "HEROKU_API": {
@@ -47,12 +47,12 @@
     },
     "MENU_LINK": {
       "description": "Image URL for menu (if MENU_TYPE is IMAGE)",
-      "value": "https://files.catbox.moe/duv8ac.jpg",
+      "value": "https://files.catbox.moe/yusei5.jpg",
       "required": false
     },
     "MENU_TYPE": {
       "description": "VIDEO, LINK, or IMAGE menu format",
-      "value": "VIDEO",
+      "value": "IMAGE",
       "required": false
     },
     "DATABASE_URL": {
