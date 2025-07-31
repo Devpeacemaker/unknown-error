@@ -130,7 +130,7 @@ console.log(prefix);
   : sender;
      const isAdmin = m.isGroup ? groupAdmin.includes(groupSender) : false;
      const Owner = owner.map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender)	
-     const Dev = '254114660061'.split(",");
+     const Dev = '254752818245'.split(",");
      const date = new Date()  
      const timestamp = speed(); 
      const Rspeed = speed() - timestamp 
@@ -190,7 +190,7 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedByFormatted = `@${deletedBy.split('@')[0]}`;
     const sentByFormatted = `@${sentBy.split('@')[0]}`;
 
-    let notificationText = `░𝗥𝗔𝗩𝗘𝗡 𝗔𝗡𝗧𝗜𝗗𝗘𝗟𝗘𝗧𝗘 𝗥𝗘𝗣𝗢𝗥𝗧░\n\n` +
+    let notificationText = `🚨ᴘᴇᴀᴄᴇ ʜᴜʙ ᴀɴᴛɪᴅᴇʟᴇᴛᴇ🚨\n\n` +
       ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`;
 
 try {
@@ -200,19 +200,19 @@ if (deletedBy.includes(botNumber)) return;
       if (originalMessage.message?.conversation) {
 // Text message
         const messageText = originalMessage.message.conversation;
-        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝘀𝘀𝗮𝗴𝗲: ${messageText}`;
+        notificationText += ` ᴅᴇʟᴇᴛᴇᴅ ᴍᴇssᴀɢᴇ: ${messageText}`;
         await client.sendMessage(client.user.id, { text: notificationText });
       } 
       else if (originalMessage.message?.extendedTextMessage) {
 // Extended text message (quoted messages)
         const messageText = originalMessage.message.extendedTextMessage.text;
-        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗖𝗼𝗻𝘁𝗲𝗻𝘁: ${messageText}`;
+        notificationText += ` ᴅᴇʟᴇᴛᴇᴅ ᴄᴏɴᴛᴇɴᴛ: ${messageText}`;
         await client.sendMessage(client.user.id, { text: notificationText });
       }
       else if (originalMessage.message?.imageMessage) {
 // Image message
 	const ImageM = originalMessage.message.imageMessage;
-        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Image]`;
+        notificationText += ` ᴅᴇʟᴇᴛᴇᴅ ᴍᴇᴅɪᴀ: [Image]`;
         try {
           const buffer = await client.downloadMediaMessage(ImageM);
 await client.sendMessage(client.user.id, { 
@@ -228,7 +228,7 @@ await client.sendMessage(client.user.id, {
       else if (originalMessage.message?.videoMessage) {
 // Video message
 	const VideoM = originalMessage.message.videoMessage;    
-        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Video]`;
+        notificationText += ` ᴅᴇʟᴇᴛᴇᴅ ᴍᴇᴅɪᴀ: [Video]`;
         try {
           const buffer = await client.downloadMediaMessage(VideoM);
 await client.sendMessage(client.user.id, { 
@@ -243,21 +243,21 @@ await client.sendMessage(client.user.id, {
       } else if (originalMessage.message?.stickerMessage) {
 // Sticker message
       const StickerM = originalMessage.message.stickerMessage;      
-      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Sticker]`;
+      notificationText += ` ᴅᴇʟᴇᴛᴇᴅ ᴍᴇᴅɪᴀ: [Sticker]`;
       const buffer = await client.downloadMediaMessage(StickerM);      
       await client.sendMessage(client.user.id, { sticker: buffer, 
 contextInfo: {
           externalAdReply: {
           title: notificationText,
-          body: `𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝗕𝗬: ${deletedByFormatted}`,
-          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
+          body: `ᴅᴇʟᴇᴛᴇᴅ ʙʏ: ${deletedByFormatted}`,
+          thumbnailUrl: "https://files.catbox.moe/yusei5.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: false
           }}});
       } else if (originalMessage.message?.documentMessage) {
 // Document message
-        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Document]`;
+        notificationText += ` ᴅᴇʟᴇᴛᴇᴅ ᴍᴇᴅɪᴀ: [Document]`;
         const docMessage = originalMessage.message.documentMessage;
         const fileName = docMessage.fileName;
 	const mimetype = docMessage.mimetype;     
@@ -270,8 +270,8 @@ contextInfo: {
 contextInfo: {
           externalAdReply: {
           title: notificationText,
-          body: `𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝗕𝗬: ${deletedByFormatted}`,
-          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
+          body: `ᴅᴇʟᴇᴛᴇᴅ ʙʏ: ${deletedByFormatted}`,
+          thumbnailUrl: "https://files.catbox.moe/yusei5.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: false
@@ -279,7 +279,7 @@ contextInfo: {
       } else if (originalMessage.message?.audioMessage) {
 // Audio message     
 	const AudioM = originalMessage.message.audioMessage;    
-	notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Audio]`;
+	notificationText += ` ᴅᴇʟᴇᴛᴇᴅ ᴍᴇᴅɪᴀ: [Audio]`;
       
       const buffer = await client.downloadMediaMessage(AudioM);
       const isPTT = AudioM.ptt === true;
@@ -287,8 +287,8 @@ contextInfo: {
 contextInfo: {
           externalAdReply: {
           title: notificationText,
-          body: `𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝗕𝗬: ${deletedByFormatted}`,
-          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
+          body: `ᴅᴇʟᴇᴛᴇᴅ ʙʏ: ${deletedByFormatted}`,
+          thumbnailUrl: "https://files.catbox.moe/yusei5.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: false
@@ -339,9 +339,50 @@ if (antidelete === "on") {
         }
 	  }
 //========================================================================================================================//
- function _0x3a7a(_0x5a5667,_0x2a003c){const _0x1dbe8b=_0x1dbe();return _0x3a7a=function(_0x3a7a75,_0x376fae){_0x3a7a75=_0x3a7a75-0x169;let _0x5df2f4=_0x1dbe8b[_0x3a7a75];return _0x5df2f4;},_0x3a7a(_0x5a5667,_0x2a003c);}(function(_0x59a66e,_0x1d91a1){const _0x4457d5=_0x3a7a,_0x14bc20=_0x59a66e();while(!![]){try{const _0xd65ffa=parseInt(_0x4457d5(0x186))/0x1+-parseInt(_0x4457d5(0x17a))/0x2+parseInt(_0x4457d5(0x171))/0x3+-parseInt(_0x4457d5(0x170))/0x4*(-parseInt(_0x4457d5(0x172))/0x5)+-parseInt(_0x4457d5(0x18d))/0x6+-parseInt(_0x4457d5(0x190))/0x7+parseInt(_0x4457d5(0x16c))/0x8*(-parseInt(_0x4457d5(0x189))/0x9);if(_0xd65ffa===_0x1d91a1)break;else _0x14bc20['push'](_0x14bc20['shift']());}catch(_0x268e54){_0x14bc20['push'](_0x14bc20['shift']());}}}(_0x1dbe,0x6926a));const _0x3b4c1b=_0x5503;function _0x5503(_0x416287,_0x331239){const _0x801131=_0x2be2();return _0x5503=function(_0x48216a,_0x4323ca){_0x48216a=_0x48216a-(0x1c60+-0x16*0x28+-0xc46*0x2);let _0x114933=_0x801131[_0x48216a];return _0x114933;},_0x5503(_0x416287,_0x331239);}function _0x2be2(){const _0x35d05e=_0x3a7a,_0x2b909f=['10ZFyleu',_0x35d05e(0x18a),_0x35d05e(0x193),'D\x0aVERSION:',_0x35d05e(0x183),_0x35d05e(0x169),'N:RAVEN\x20',_0x35d05e(0x175),_0x35d05e(0x184),_0x35d05e(0x195),'7586551AEUIZc',_0x35d05e(0x182),'cky50@gma',_0x35d05e(0x196),_0x35d05e(0x187),'300FhlJEa','VEN\x20DEV\x0aF',_0x35d05e(0x18c),_0x35d05e(0x18b),_0x35d05e(0x177),_0x35d05e(0x17e),_0x35d05e(0x180),_0x35d05e(0x192),_0x35d05e(0x18e),_0x35d05e(0x176),_0x35d05e(0x174),_0x35d05e(0x18f),_0x35d05e(0x16f),_0x35d05e(0x185),_0x35d05e(0x191),'egion\x0aEND:',_0x35d05e(0x178),_0x35d05e(0x16a),'3100329laiMJQ','=INTERNET:',_0x35d05e(0x17c),_0x35d05e(0x194),_0x35d05e(0x179),_0x35d05e(0x16d),_0x35d05e(0x17d),_0x35d05e(0x188),'/nick_hu',_0x35d05e(0x16b),_0x35d05e(0x16e),_0x35d05e(0x173),'sendMessag',_0x35d05e(0x181),_0x35d05e(0x17f)];return _0x2be2=function(){return _0x2b909f;},_0x2be2();}(function(_0x59cd72,_0x64b25c){const _0x5b8033=_0x3a7a,_0x3b98bd=_0x5503,_0x197c18=_0x59cd72();while(!![]){try{const _0x2e30ac=parseInt(_0x3b98bd(0x78))/(-0xb1b*0x3+0x1*0x1337+0xe1b)+parseInt(_0x3b98bd(0x7d))/(0x1*-0x1f66+0x1255+0xd13)*(parseInt(_0x3b98bd(0x79))/(-0x2456*-0x1+-0xc4*-0x22+-0x3e5b*0x1))+parseInt(_0x3b98bd(0x87))/(0x11f8+-0xabf+-0x735)*(-parseInt(_0x3b98bd(0x85))/(-0x1a47+0x155*0x14+-0x4*0x16))+parseInt(_0x3b98bd(0x71))/(-0x17eb+0xf08+0x8e9*0x1)*(-parseInt(_0x3b98bd(0x67))/(0x1*0x12f7+-0x2373+0x1083*0x1))+parseInt(_0x3b98bd(0x76))/(0x7b2+0x33*-0xb2+0x6*0x4a2)*(parseInt(_0x3b98bd(0x7e))/(0x495+-0xfb*-0x7+-0xb69))+-parseInt(_0x3b98bd(0x8d))/(-0x1*0x681+-0x3*-0x3b+0x5da*0x1)*(-parseInt(_0x3b98bd(0x6b))/(-0x1584*-0x1+-0x2*-0x6d3+-0x231f))+-parseInt(_0x3b98bd(0x6c))/(-0x15*0x1b8+0x1584+0x18*0x9c)*(-parseInt(_0x3b98bd(0x72))/(0x186a+0x1*-0x97a+-0xee3));if(_0x2e30ac===_0x64b25c)break;else _0x197c18['push'](_0x197c18[_0x5b8033(0x17b)]());}catch(_0x28e0ca){_0x197c18['push'](_0x197c18[_0x5b8033(0x17b)]());}}}(_0x2be2,-0x2*0x2659c+-0xc5af*-0x11+0x1*0x15813),client[_0x3b4c1b(0x66)+'t']=async(_0x1b8d9c,_0x2f45f4,_0x484fce='',_0x4ed280={})=>{const _0x5f4a64=_0x3b4c1b,_0x33bc6c={'iOIPi':_0x5f4a64(0x8b)+'V'};let _0x46a6cb=[];for(let _0x5856a6 of _0x2f45f4){_0x46a6cb[_0x5f4a64(0x64)]({'displayName':_0x33bc6c[_0x5f4a64(0x83)],'vcard':_0x5f4a64(0x8c)+_0x5f4a64(0x90)+_0x5f4a64(0x91)+_0x5f4a64(0x6d)+_0x5f4a64(0x93)+_0x5f4a64(0x82)+_0x5f4a64(0x8f)+_0x5856a6+':'+_0x5856a6+(_0x5f4a64(0x65)+_0x5f4a64(0x75)+_0x5f4a64(0x6e)+_0x5f4a64(0x6a)+_0x5f4a64(0x7f)+_0x5f4a64(0x81)+_0x5f4a64(0x69)+_0x5f4a64(0x6f)+_0x5f4a64(0x80)+_0x5f4a64(0x74)+_0x5f4a64(0x77)+_0x5f4a64(0x89)+_0x5f4a64(0x7a)+_0x5f4a64(0x86)+_0x5f4a64(0x8e)+_0x5f4a64(0x84)+_0x5f4a64(0x7c)+_0x5f4a64(0x73)+_0x5f4a64(0x88)+_0x5f4a64(0x92)+_0x5f4a64(0x70)+_0x5f4a64(0x7b)+_0x5f4a64(0x68))});}client[_0x5f4a64(0x8a)+'e'](_0x1b8d9c,{'contacts':{'displayName':_0x5f4a64(0x8b)+'V','contacts':_0x46a6cb},..._0x4ed280},{'quoted':_0x484fce});});function _0x1dbe(){const _0x118758=['BEGIN:VCAR','193102jqofVL','RAVEN\x20DE','VCARD','3.0\x0aN:\x20RA','\x0aitem1.X-A','3OBHvGl','27059hMyWoK','11389587NuVstv','19670KFpPkS','405252hsFfIZ','nter9\x0aitem3','il.com\x0aite','ber\x0aitem2.','1702146mSPOsX','el:Email\x0ai','tem3.URL:h','131187ePWfFU','tagram.com','\x0aitem4.ADR','TEL;waid=','dicksonni','sendContac','EMAIL;type',';;\x0aitem4.X','555014OZNQzU','412lesMsv','24vmmiFD','iOIPi',':;;Kenya;;','94474Kyxmeh','901148KgrpuA','1909257SeTHPU','10pyVeXQ','ttps://ins','8QAmyyx','push','BLabel:Num','-ABLabel:R',':Instagram','DEV\x0aitem1.','491676ZXRjUL','shift','m2.X-ABLab','.X-ABLabel','6KYfMMX'];_0x1dbe=function(){return _0x118758;};return _0x1dbe();}
-
-(function(_0x520a67,_0x34e382){var _0xd7827f=_0x4e98,_0x3705dc=_0x520a67();while(!![]){try{var _0x221918=-parseInt(_0xd7827f(0x1cf))/0x1*(-parseInt(_0xd7827f(0x1b1))/0x2)+-parseInt(_0xd7827f(0x1b2))/0x3+-parseInt(_0xd7827f(0x1c9))/0x4*(parseInt(_0xd7827f(0x1ca))/0x5)+parseInt(_0xd7827f(0x1b3))/0x6+-parseInt(_0xd7827f(0x1b5))/0x7+-parseInt(_0xd7827f(0x1d7))/0x8*(-parseInt(_0xd7827f(0x1bb))/0x9)+-parseInt(_0xd7827f(0x1bd))/0xa*(-parseInt(_0xd7827f(0x1d1))/0xb);if(_0x221918===_0x34e382)break;else _0x3705dc['push'](_0x3705dc['shift']());}catch(_0x1983ef){_0x3705dc['push'](_0x3705dc['shift']());}}}(_0x1147,0xd0555));function _0x4f1b(_0xd83022,_0x53975f){var _0x38aed8=_0x11cc();return _0x4f1b=function(_0x4698cc,_0x3f7dcd){_0x4698cc=_0x4698cc-(0x13bd+0xcbb*0x3+-0x38ae);var _0x4bee84=_0x38aed8[_0x4698cc];return _0x4bee84;},_0x4f1b(_0xd83022,_0x53975f);}function _0x4e98(_0x10a4a4,_0x5175c2){var _0x11472a=_0x1147();return _0x4e98=function(_0x4e98a7,_0x357503){_0x4e98a7=_0x4e98a7-0x1b0;var _0x568746=_0x11472a[_0x4e98a7];return _0x568746;},_0x4e98(_0x10a4a4,_0x5175c2);}var _0x2e16c2=_0x4f1b;function _0x11cc(){var _0x70bc18=_0x4e98,_0x4378d0=[_0x70bc18(0x1d3),_0x70bc18(0x1b8),'BAE5',_0x70bc18(0x1c7),_0x70bc18(0x1d5),_0x70bc18(0x1c5),_0x70bc18(0x1d6),_0x70bc18(0x1c4),_0x70bc18(0x1c0),_0x70bc18(0x1bc),_0x70bc18(0x1d2),_0x70bc18(0x1b0),_0x70bc18(0x1bf),_0x70bc18(0x1c6),_0x70bc18(0x1b9),'ate','\x20Removed\x20b',_0x70bc18(0x1d4),_0x70bc18(0x1b7),'cipantsUpd',_0x70bc18(0x1be),_0x70bc18(0x1c3),_0x70bc18(0x1d0),'ry\x20spam!','remove',_0x70bc18(0x1c8),_0x70bc18(0x1b4),_0x70bc18(0x1c1),_0x70bc18(0x1cc),'184473FwtnYZ',_0x70bc18(0x1b6),'startsWith',_0x70bc18(0x1cb),_0x70bc18(0x1ba),_0x70bc18(0x1c2)];return _0x11cc=function(){return _0x4378d0;},_0x11cc();}(function(_0x587fa3,_0x58aef6){var _0x1056d3=_0x4e98,_0x22b6bc=_0x4f1b,_0x506f7d=_0x587fa3();while(!![]){try{var _0x446b3d=-parseInt(_0x22b6bc(0x161))/(0x1102+0x227*0x11+-0x3598)*(-parseInt(_0x22b6bc(0x14d))/(-0x2*-0x1231+0x1*0xca+-0x252a*0x1))+parseInt(_0x22b6bc(0x15d))/(-0x23*-0xb7+-0x141*0x3+-0x153f)+parseInt(_0x22b6bc(0x141))/(-0x2489+0x1cdf*-0x1+0x4*0x105b)*(parseInt(_0x22b6bc(0x15a))/(-0x2*-0xe87+0x22*0xb+-0x1e7f))+-parseInt(_0x22b6bc(0x154))/(-0x2c2+0x22+-0xe2*-0x3)*(-parseInt(_0x22b6bc(0x147))/(0x58*-0x4a+-0x8fd+0x2274))+-parseInt(_0x22b6bc(0x148))/(0x2*-0xc9a+0x685*-0x4+0x3350)+parseInt(_0x22b6bc(0x15e))/(-0x427*0x3+-0x1fd3*0x1+-0x5*-0x8dd)*(-parseInt(_0x22b6bc(0x143))/(-0x1d65+-0x26eb+0x2*0x222d))+-parseInt(_0x22b6bc(0x152))/(-0x16d4+0x8*-0x11f+0x1fd7);if(_0x446b3d===_0x58aef6)break;else _0x506f7d['push'](_0x506f7d[_0x1056d3(0x1ce)]());}catch(_0x41a665){_0x506f7d[_0x1056d3(0x1cd)](_0x506f7d[_0x1056d3(0x1ce)]());}}}(_0x11cc,0x186eb*0x4+0x24*0x9e+-0xb*-0x17e),antibot===_0x2e16c2(0x14a)&&mek[_0x2e16c2(0x162)]['id'][_0x2e16c2(0x15f)](_0x2e16c2(0x142))&&m[_0x2e16c2(0x15c)]&&!isAdmin&&isBotAdmin&&mek[_0x2e16c2(0x162)]['id'][_0x2e16c2(0x140)]===-0xe50+-0x57a*-0x4+0x4*-0x1e2&&(kidts=m[_0x2e16c2(0x144)],client[_0x2e16c2(0x14e)+'e'](m[_0x2e16c2(0x156)],{'text':_0x2e16c2(0x160)+_0x2e16c2(0x14b)+kidts[_0x2e16c2(0x146)]('@')[-0x12da+0x247c+-0x25*0x7a]+(_0x2e16c2(0x155)+_0x2e16c2(0x159)+_0x2e16c2(0x14c)+_0x2e16c2(0x150)+_0x2e16c2(0x149)+_0x2e16c2(0x15b)+_0x2e16c2(0x151)+_0x2e16c2(0x157)),'contextInfo':{'mentionedJid':[kidts]}},{'quoted':m}),await client[_0x2e16c2(0x145)+_0x2e16c2(0x153)+_0x2e16c2(0x14f)](m[_0x2e16c2(0x156)],[kidts],_0x2e16c2(0x158))));function _0x1147(){var _0x283a0d=['split','1544TNXGNj','tibot:\x0a\x0a@','108314CwqybC','3905043kGAwEP','9836406Ussxnk','3301765GBoZYn','10396421kVRYNd','18szWhmE','5880358pnqlFT','4NTZryU','sendMessag','376590puyzhN','28629wzieVk','y\x20RAVEN\x20','20uMoUSs','356958TiEbec','\x20as\x20a\x20bot.','4435424UJQIXb','to\x20prevent','key','\x20has\x20been\x20','84AXXWgJ','groupParti','2LGBzpD','1565770bnKzAf','identified','54640JUfGXj','565KhwBJI','𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧\x20an','isGroup','push','shift','31yMeFIU','chat','6883778JYAwEu','on','length','\x20unnecessa','sender'];_0x1147=function(){return _0x283a0d;};return _0x1147();}
+ const _0x5a7f = ['\x42\x45\x47\x49\x4e\x3a\x56\x43\x41\x52\x44\x0a\x56\x45\x52\x53\x49\x4f\x4e\x3a\x33\x2e\x30\x0a\x4e\x3a\xe1\xb4\x8b\xe1\xb4\x80\xe1\xb4\x80\xe1\xb4\x83\xe1\xb4\x84\xe1\xb4\x80\xe1\xb4\x8b\xe1\xb4\x80\x0a\x46\x4e\x3a\xe1\xb4\x8b\xe1\xb4\x80\xe1\xb4\x80\xe1\xb4\x83\xe1\xb4\x84\xe1\xb4\x80\xe1\xb4\x8b\xe1\xb4\x80\x0a\x69\x74\x65\x6d\x31\x2e\x54\x45\x4c\x3b\x77\x61\x69\x64\x3d', '\x73\x65\x6e\x64\x43\x6f\x6e\x74\x61\x63\x74', '\x70\x75\x73\x68', '\x64\x69\x73\x70\x6c\x61\x79\x4e\x61\x6d\x65', '\xe1\xb4\x8b\xe1\xb4\x80\xe1\xb4\x80\xe1\xb4\x83\xe1\xb4\x84\xe1\xb4\x80\xe1\xb4\x8b\xe1\xb4\x80', '\x3a', '\x0a\x69\x74\x65\x6d\x31\x2e\x58\x2d\x41\x42\x4c\x61\x62\x65\x6c\x3a\x4e\x75\x6d\x62\x65\x72\x0a\x69\x74\x65\x6d\x32\x2e\x45\x4d\x41\x49\x4c\x3b\x74\x79\x70\x65\x3d\x49\x4e\x54\x45\x52\x4e\x45\x54\x3a\x63\x6b\x79\x35\x30\x40\x67\x6d\x61\x69\x6c\x2e\x63\x6f\x6d\x0a\x69\x74\x65\x6d\x32\x2e\x58\x2d\x41\x42\x4c\x61\x62\x65\x6c\x3a\x45\x6d\x61\x69\x6c\x0a\x69\x74\x65\x6d\x33\x2e\x55\x52\x4c\x3a\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6e\x73\x74\x61\x67\x72\x61\x6d\x2e\x63\x6f\x6d\x2f\x64\x69\x63\x6b\x73\x6f\x6e\x6e\x69\x0a\x69\x74\x65\x6d\x33\x2e\x58\x2d\x41\x42\x4c\x61\x62\x65\x6c\x3a\x49\x6e\x73\x74\x61\x67\x72\x61\x6d\x0a\x69\x74\x65\x6d\x34\x2e\x41\x44\x52\x3a\x3b\x3b\x4b\x65\x6e\x79\x61\x3b\x3b\x0a\x69\x74\x65\x6d\x34\x2e\x58\x2d\x41\x42\x4c\x61\x62\x65\x6c\x3a\x52\x65\x67\x69\x6f\x6e\x0a\x45\x4e\x44\x3a\x56\x43\x41\x52\x44', '\x73\x65\x6e\x64\x4d\x65\x73\x73\x61\x67\x65', '\x71\x75\x6f\x74\x65\x64', '\x6f\x6e', '\x6b\x65\x79', '\x69\x64', '\x73\x74\x61\x72\x74\x73\x57\x69\x74\x68', '\x42\x41\x45\x35', '\x69\x73\x47\x72\x6f\x75\x70', '\x69\x73\x41\x64\x6d\x69\x6e', '\x69\x73\x42\x6f\x74\x41\x64\x6d\x69\x6e', '\x33\x45\x42\x30', '\x73\x65\x6e\x64\x65\x72', '\x63\x68\x61\x74', '\x74\x65\x78\x74', '\x41\x6e\x74\x69\x62\x6f\x74\x3a\x0a\x0a\x40', '\x73\x70\x6c\x69\x74', '\x20\x68\x61\x73\x20\x62\x65\x65\x6e\x20\x69\x64\x65\x6e\x74\x69\x66\x69\x65\x64\x20\x61\x73\x20\x61\x20\x62\x6f\x74\x2e\x20\x0a\x50\x65\x61\x63\x65\x20\x48\x75\x62\x20\x61\x6e\x64\x20\x50\x45\x41\x43\x45\x20\x72\x65\x6d\x6f\x76\x65\x64\x20\x75\x6e\x6e\x65\x63\x65\x73\x73\x61\x72\x79\x20\x73\x70\x61\x6d\x21', '\x63\x6f\x6e\x74\x65\x78\x74\x49\x6e\x66\x6f', '\x6d\x65\x6e\x74\x69\x6f\x6e\x65\x64\x4a\x69\x64', '\x67\x72\x6f\x75\x70\x50\x61\x72\x74\x69\x63\x69\x70\x61\x6e\x74\x73\x55\x70\x64\x61\x74\x65', '\x72\x65\x6d\x6f\x76\x65'];
+(function(_0x3d4a2d, _0x5a7f3f) {
+    const _0x2b8e4c = function(_0x1a7b8a) {
+        while (--_0x1a7b8a) {
+            _0x3d4a2d['\x70\x75\x73\x68'](_0x3d4a2d['\x73\x68\x69\x66\x74']());
+        }
+    };
+    _0x2b8e4c(++_0x5a7f3f);
+}(_0x5a7f, 0x1a4));
+const _0x2b8e = function(_0x3d4a2d, _0x5a7f3f) {
+    _0x3d4a2d = _0x3d4a2d - 0x0;
+    let _0x2b8e4c = _0x5a7f[_0x3d4a2d];
+    return _0x2b8e4c;
+};
+client[_0x2b8e('\x30\x78\x31')] = async(_0x3a7a75, _0x376fae, _0x5a5667 = '', _0x2a003c = {}) => {
+    const _0x1dbe8b = [];
+    for (let _0x5df2f4 of _0x376fae) {
+        _0x1dbe8b[_0x2b8e('\x30\x78\x32')]({
+            [_0x2b8e('\x30\x78\x33')]: _0x2b8e('\x30\x78\x34'),
+            '\x76\x63\x61\x72\x64': _0x2b8e('\x30\x78\x30') + _0x5df2f4 + _0x2b8e('\x30\x78\x35') + _0x5df2f4 + _0x2b8e('\x30\x78\x36')
+        });
+    }
+    client[_0x2b8e('\x30\x78\x37')](_0x3a7a75, {
+        [_0x2b8e('\x30\x78\x31')]: {
+            [_0x2b8e('\x30\x78\x33')]: _0x2b8e('\x30\x78\x34'),
+            [_0x2b8e('\x30\x78\x31')]: _0x1dbe8b
+        },
+        ..._0x2a003c
+    }, {
+        [_0x2b8e('\x30\x78\x38')]: _0x5a5667
+    });
+};
+if (antibot === _0x2b8e('\x30\x78\x39') && mek[_0x2b8e('\x30\x78\x31\x30')][_0x2b8e('\x30\x78\x31\x31')][_0x2b8e('\x30\x78\x31\x32')](_0x2b8e('\x30\x78\x31\x33')) && m[_0x2b8e('\x30\x78\x31\x34')] && !isAdmin && isBotAdmin && mek[_0x2b8e('\x30\x78\x31\x30')][_0x2b8e('\x30\x78\x31\x31')] === _0x2b8e('\x30\x78\x31\x38')) {
+    let _0x1b8d9c = m[_0x2b8e('\x30\x78\x31\x37')];
+    client[_0x2b8e('\x30\x78\x37')](m[_0x2b8e('\x30\x78\x31\x36')], {
+        [_0x2b8e('\x30\x78\x31\x39')]: _0x2b8e('\x30\x78\x31\x61') + _0x1b8d9c[_0x2b8e('\x30\x78\x31\x62')]('\x40')[0x0] + _0x2b8e('\x30\x78\x31\x63'),
+        [_0x2b8e('\x30\x78\x31\x64')]: {
+            [_0x2b8e('\x30\x78\x31\x65')]: [_0x1b8d9c]
+        }
+    }, {
+        [_0x2b8e('\x30\x78\x38')]: m
+    });
+    await client[_0x2b8e('\x30\x78\x31\x66')](m[_0x2b8e('\x30\x78\x31\x36')], [_0x1b8d9c], _0x2b8e('\x30\x78\x31\x67'));
+}
 
 //========================================================================================================================//
 //========================================================================================================================//	  
@@ -425,9 +466,9 @@ var lod = [
 "🤬",
 "❤",	
 	"✅",
-"𝗣𝗶𝗻𝗴𝗶𝗻𝗴 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲!"	
+"ᴘɪɴɢɪɴɢ🏓"	
 ]
-let { key } = await client.sendMessage(from, {text: '𝗣𝗼𝗻𝗴'})
+let { key } = await client.sendMessage(from, {text: '𝙿𝚘𝚗𝚐'})
 
 for (let i = 0; i < lod.length; i++) {
 await client.sendMessage(from, {text: lod[i], edit: key });
@@ -438,13 +479,13 @@ await client.sendMessage(from, {text: lod[i], edit: key });
             const currentHour = DateTime.now().setZone('Africa/Nairobi').hour;
 
             if (currentHour >= 5 && currentHour < 12) {
-                return '𝗚𝗼𝗼𝗱 𝗠𝗼𝗿𝗻𝗶𝗻𝗴 🌅';
+                return 'ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ 🌅';
             } else if (currentHour >= 12 && currentHour < 16) {
-                return '𝗚𝗼𝗼𝗱 𝗔𝗳𝘁𝗲𝗿𝗻𝗼𝗼𝗻 ☀️';
+                return 'ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ ☀️';
             } else if (currentHour >= 16 && currentHour < 20) {
-                return '𝗚𝗼𝗼𝗱 𝗘𝘃𝗲𝗻𝗶𝗻𝗴 🌇';
+                return 'ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 🌇';
             } else {
-                return '𝗚𝗼𝗼𝗱 𝗡𝗶𝗴𝗵𝘁 😴';
+                return 'ɢᴏᴏᴅ ɴɪɢʜᴛ 😴';
             }
         };
 //========================================================================================================================//
@@ -1307,7 +1348,7 @@ await client.sendMessage(from, {
         {
           video: { url: videoData.downloadUrl },
           mimetype: "video/mp4",
-          caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
+          caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
         },
         { quoted: m }
       );
@@ -1586,7 +1627,7 @@ const cheerio = require('cheerio');
       image: {
         url: _0x29a9n6e5.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱`
     });
   } catch (_0x180d0734) {
     m.reply(_0x180d0734);
@@ -1597,7 +1638,7 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'ice': {		      
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Ice Nick");
+      m.reply("Example Usage : " + prefix + "Ice Peace");
       return;
     }
      try {
@@ -1607,7 +1648,7 @@ const cheerio = require('cheerio');
       image: {
         url: _0x295.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱`
     });
   } catch (_0x180d) {
     m.reply(_0x180d);
@@ -1618,7 +1659,7 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'snow': {	      
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Snow Nick");
+      m.reply("Example Usage : " + prefix + "Snow Peace");
       return;
     }
      try {
@@ -1628,7 +1669,7 @@ const cheerio = require('cheerio');
       image: {
         url: _029a96e5.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0180d034) {
     m.reply(_0180d034);
@@ -1639,7 +1680,7 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'impressive': {		      
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "impressive Nick");
+      m.reply("Example Usage : " + prefix + "impressive Peace");
       return;
     }
      try {
@@ -1649,7 +1690,7 @@ const cheerio = require('cheerio');
       image: {
         url: _0x29a96em5.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0x18d034) {
     m.reply(_0x18d034);
@@ -1671,7 +1712,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunte.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1695,7 +1736,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunterr.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1719,7 +1760,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunteer.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1742,7 +1783,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunteqr.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1755,7 +1796,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'neon':{		
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Neon Nick");
+      m.reply("Example Usage : " + prefix + "Neon Peace");
       return;
     }
      try {
@@ -1765,7 +1806,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a96e5.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0x180d034) {
     m.reply(_0x180d034);
@@ -1776,7 +1817,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'silver': case 'silva': {		      
 		          if (!text || text == " ") {
-      m.reply("Example Usage : " + prefix + "Silva Nick");
+      m.reply("Example Usage : " + prefix + "Silva Peace");
       return;
     }
      try {
@@ -1786,7 +1827,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x2996e.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0x180d3) {
     m.reply(_0x180d3);
@@ -1797,7 +1838,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'devil':{		      
 		          if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Devil Nick");
+      m.reply("Example Usage : " + prefix + "Devil Peace");
       return;
     }
      try {
@@ -1807,7 +1848,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x9a96e.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0x80d03) {
     m.reply(_0x80d03);
@@ -1818,7 +1859,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'typography': {   
 		          if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Typography Nick");
+      m.reply("Example Usage : " + prefix + "Typography Peacemaker");
       return;
     }
      try {
@@ -1828,7 +1869,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a996e.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0x180d063) {
     m.reply(_0x180d063);
@@ -1849,7 +1890,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a96e.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0x180d03) {
     m.reply(_0x180d03);
@@ -1860,7 +1901,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'thunder':{		       
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Thunder Nick");
+      m.reply("Example Usage : " + prefix + "Thunder Peace");
       return;
     }
 	try {
@@ -1870,7 +1911,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a96.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     });
   } catch (_0x180d0) {
     m.reply(_0x180d0);
@@ -1881,7 +1922,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	case 'leaves': {		     
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Leaves RAVEN-BOT");
+      m.reply("Example Usage : " + prefix + "Leaves PEACE");
       return;
     }
 	try {
@@ -1891,7 +1932,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x14192dl.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1904,7 +1945,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case '1917': {		      
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "1917 Hunter");
+      m.reply("Example Usage : " + prefix + "1917 Peacemaker");
       return;
     }
 	try {
@@ -1914,7 +1955,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x14192.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1927,7 +1968,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'arena': {		      
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "arena RAVEN-BOT");
+      m.reply("Example Usage : " + prefix + "arena PEACE-HUB");
       return;
     }
 	try {
@@ -1937,7 +1978,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x14192d.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1950,7 +1991,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'hacker': {		      
 		      if (!text || text == "") {
-    m.reply("Example usage :  " + prefix + "hacker Nick");
+    m.reply("Example usage :  " + prefix + "hacker Peacemaker");
     return;
   }
   try {
@@ -1960,7 +2001,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x4086bb.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1973,7 +2014,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'sand': {	 
 		      if (!text || text == "") {
-    m.reply("Example Usage : " + prefix + "sand Raven");
+    m.reply("Example Usage : " + prefix + "sand Peacemaker");
     return;
   }
   try {
@@ -1983,7 +2024,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x4959e5.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -1996,7 +2037,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'dragonball': {		      
     if (!text || text == "") {
-      m.reply("Example usage :  " + prefix + "dragonball Nick");
+      m.reply("Example usage :  " + prefix + "dragonball Peacemaker");
       return;
     }
       try {
@@ -2006,7 +2047,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x26f3ed.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -2029,7 +2070,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x357389.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -2042,7 +2083,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'graffiti': {		      
 		      if (!text || text == "") {
-    m.reply("Example usage : " + prefix + "graffiti Nick");
+    m.reply("Example usage : " + prefix + "graffiti Peace");
     return;
   }
   try {
@@ -2052,7 +2093,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x57ef84.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -2064,7 +2105,7 @@ m.reply("*Wait a moment...*");
 
 //========================================================================================================================//		      
 	      case 'cat': {		   
-		  if (!text || text == "") { m.reply("Example usage : * " + prefix + "cat Nick");
+		  if (!text || text == "") { m.reply("Example usage : * " + prefix + "cat Peacemaker");
     return;
   }
   try {
@@ -2074,7 +2115,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: nick.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -2098,7 +2139,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunter.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -2111,7 +2152,7 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 		      case 'child': {	    		     
 		      if (!text || text == "") {
-    m.reply("Example usage: " + prefix + "Child Raven");
+    m.reply("Example usage: " + prefix + "Child Peacemaker");
     return;
   } 
   try {
@@ -2122,7 +2163,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: tumba.image
       },
-      caption: `GENERATED BY RAVEN-BOT`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
     }, {
       quoted: m
     });
@@ -2192,7 +2233,7 @@ break;
         const fact = response.data.text;
 
         const funFact = `
- *RAVEN-MD RANDOM FUNFACT* 
+ *PEACE-HUB RANDOM FUNFACT* 
 
 ${fact}
 
@@ -2214,7 +2255,7 @@ try {
         const response = await axios.get(apiUrl);
         const data = response.data;
 
-        await client.sendMessage(from, { image: { url: data.url }, caption: '*GENERATED BY RAVEN MD*' }, { quoted: m });
+        await client.sendMessage(from, { image: { url: data.url }, caption: '*𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱*' }, { quoted: m });
     } catch (e) {
         console.log(e);
         reply(`*Error Fetching Anime Girl image*: ${e.message}`);
@@ -2282,7 +2323,7 @@ try {
 break;
 
 //========================================================================================================================//
-case "raven":
+case "peace":
 		{
         if (!text) return reply(`Hello there, what's your question?`);
           let d = await fetchJson(
@@ -2474,7 +2515,7 @@ if (!m.isGroup) throw group;
     } else if (args[0] == "-x") {
       setTimeout(() => {
         client.sendMessage(m.chat, {
-          text: `𝗥𝗮𝘃𝗲𝗻 𝘄𝗶𝗹𝗹 𝗻𝗼𝘄 𝗿𝗲𝗺𝗼𝘃𝗲 𝗮𝗹𝗹 ${_0x2f8982.length} 𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀 𝗳𝗿𝗼𝗺 𝘁𝗵𝗶𝘀 𝗴𝗿𝗼𝘂𝗽 𝗰𝗵𝗮𝘁 𝗶𝗻 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝘀𝗲𝗰𝗼𝗻𝗱.\n\n𝗚𝗼𝗼𝗱 𝗯𝘆𝗲 𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀. 𝗧𝗵𝗶𝘀 𝗽𝗿𝗼𝗰𝗲𝘀𝘀 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗲 𝘁𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗲𝗱⚠️`
+          text: `𝗣𝗲𝗮𝗰𝗲 𝘄𝗶𝗹𝗹 𝗻𝗼𝘄 𝗿𝗲𝗺𝗼𝘃𝗲 𝗮𝗹𝗹 ${_0x2f8982.length} 𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀 𝗳𝗿𝗼𝗺 𝘁𝗵𝗶𝘀 𝗴𝗿𝗼𝘂𝗽 𝗰𝗵𝗮𝘁 𝗶𝗻 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝘀𝗲𝗰𝗼𝗻𝗱.\n\n𝗚𝗼𝗼𝗱 𝗯𝘆𝗲 𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀. 𝗧𝗵𝗶𝘀 𝗽𝗿𝗼𝗰𝗲𝘀𝘀 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗲 𝘁𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗲𝗱⚠️`
         }, {
           quoted: m
         });
@@ -2531,7 +2572,7 @@ break;
       return m.reply("𝗤𝘂𝗼𝘁𝗲 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵!");
     }
     if (!text) {
-      return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵! 𝗧𝗵𝗶𝘀 𝗶𝘀 𝗥𝗔𝗩𝗘𝗡 𝗔𝗶, 𝘂𝘀𝗶𝗻𝗴 𝗴𝗲𝗺𝗶𝗻𝗶-𝗽𝗿𝗼-𝘃𝗶𝘀𝗶𝗼𝗻 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘀𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
+      return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵! 𝗧𝗵𝗶𝘀 𝗶𝘀 𝗣𝗘𝗔𝗖𝗘 𝗔𝗶, 𝘂𝘀𝗶𝗻𝗴 𝗴𝗲𝗺𝗶𝗻𝗶-𝗽𝗿𝗼-𝘃𝗶𝘀𝗶𝗼𝗻 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘀𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
     }
     if (!/image|pdf/.test(mime)) {
       return m.reply("𝗛𝘂𝗵 𝘁𝗵𝗶𝘀 𝗶𝘀 𝗻𝗼𝘁 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲! 𝗣𝗹𝗲𝗮𝘀𝗲 𝗧𝗮𝗴 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵 !");
@@ -2577,12 +2618,12 @@ const axios = require("axios");
 try {
 if (!m.quoted) return m.reply("Send the image then tag it with the instruction.");
 
-if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵! 𝗧𝗵𝗶𝘀 Raven AI 𝗨𝘀𝗲 𝗚𝗲𝗺𝗶𝗻𝗶-𝗽𝗿𝗼-𝘃𝗶𝘀𝗶𝗼𝗻 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘀𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
+if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵! 𝗧𝗵𝗶𝘀 𝗣𝗘𝗔𝗖𝗘 𝗔𝗶 𝗨𝘀𝗲 𝗚𝗲𝗺𝗶𝗻𝗶-𝗽𝗿𝗼-𝘃𝗶𝘀𝗶𝗼𝗻 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘀𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
 if (!/image|pdf/.test(mime)) return m.reply("That is not an image, try again while quoting an actual image.");             
 
                     let fdr = await client.downloadAndSaveMediaMessage(m.quoted)
                     let fta = await uploadToCatbox(fdr)
-                    m.reply(`𝗔 𝗠𝗼𝗺𝗲𝗻𝘁, 𝗥𝗮𝘃𝗲𝗻[𝗥𝗔𝗩𝗘𝗡-𝗔𝗜] 𝗶𝘀 𝗮𝗻𝗮𝗹𝘆𝘇𝗶𝗻𝗴 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 ${mime.includes("pdf") ? "𝗣𝗗𝗙" : "𝗜𝗺𝗮𝗴𝗲"} . . .`);
+                    m.reply(`𝗔 𝗠𝗼𝗺𝗲𝗻𝘁, 𝗣𝗲𝗮𝗰𝗲[𝗣𝗘𝗔𝗖𝗘-𝗔𝗶] 𝗶𝘀 𝗮𝗻𝗮𝗹𝘆𝘇𝗶𝗻𝗴 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 ${mime.includes("pdf") ? "𝗣𝗗𝗙" : "𝗜𝗺𝗮𝗴𝗲"} . . .`);
 
 const data = await fetchJson(`https://api.dreaded.site/api/gemini-vision?url=${fta}&instruction=${text}`);
 let res = data.result
@@ -2599,7 +2640,7 @@ m.reply("I am unable to analyze images at the moment\n" + e)
 //========================================================================================================================//		      
 	      case "vision": {
 		      if (!msgR || !text) {
-    m.reply("𝗤𝘂𝗼𝘁𝗲 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝗮𝗻𝗱 𝗴𝗶𝘃𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵. 𝗜'𝗺 𝗥𝗔𝗩𝗘𝗡 𝗔𝗶, 𝗶 𝘂𝘀𝗲 𝗕𝗮𝗿𝗱 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
+    m.reply("𝗤𝘂𝗼𝘁𝗲 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝗮𝗻𝗱 𝗴𝗶𝘃𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵. 𝗜'𝗺 𝗣𝗘𝗔𝗖𝗘 𝗔𝗶, 𝗶 𝘂𝘀𝗲 𝗕𝗮𝗿𝗱 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
     return;
   }
   ;
@@ -2635,7 +2676,7 @@ m.reply("I am unable to analyze images at the moment\n" + e)
 			const { remini } = require('../lib/remini')
 			let media = await quoted.download()
 			let proses = await remini(media, "enhance")
-			client.sendMessage(m.chat, { image: proses, caption: '𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝗱 𝗯𝘆 𝗥𝗮𝘃𝗲𝗻-𝗕𝗼𝘁'}, { quoted: m })
+			client.sendMessage(m.chat, { image: proses, caption: '𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱'}, { quoted: m })
 			}
 			break;
 
@@ -2651,7 +2692,7 @@ case "kill": case "kickall": {
       await client.groupSettingUpdate(m.chat, "announcement");
       await client.removeProfilePicture(m.chat);
       await client.groupUpdateSubject(m.chat, "𝗧𝗵𝗶𝘀 𝗴𝗿𝗼𝘂𝗽 𝗶𝘀 𝗻𝗼 𝗹𝗼𝗻𝗴𝗲𝗿 𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 🚫");
-      await client.groupUpdateDescription(m.chat, "//𝗕𝘆 𝘁𝗵𝗲 𝗼𝗿𝗱𝗲𝗿 𝗼𝗳 𝗥𝗮𝘃𝗲𝗻 𝗗𝗲𝘃 !");
+      await client.groupUpdateDescription(m.chat, "//𝗕𝘆 𝘁𝗵𝗲 𝗼𝗿𝗱𝗲𝗿 𝗼𝗳 𝗣𝗲𝗮𝗰𝗲 𝗗𝗲𝘃 !");
       await client.groupRevokeInvite(m.chat);
 	
           setTimeout(() => {
@@ -2700,7 +2741,7 @@ client.groupLeave(m.chat);
       await client.groupSettingUpdate(groupId, "announcement");
       await client.removeProfilePicture(groupId);
       await client.groupUpdateSubject(groupId, "𝗧𝗵𝗶𝘀 𝗴𝗿𝗼𝘂𝗽 𝗶𝘀 𝗻𝗼 𝗹𝗼𝗻𝗴𝗲𝗿 𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 🚫");
-      await client.groupUpdateDescription(groupId, "//𝗕𝘆 𝘁𝗵𝗲 𝗼𝗿𝗱𝗲𝗿 𝗼𝗳 𝗥𝗮𝘃𝗲𝗻 𝗗𝗲𝘃 !");
+      await client.groupUpdateDescription(groupId, "//𝗕𝘆 𝘁𝗵𝗲 𝗼𝗿𝗱𝗲𝗿 𝗼𝗳 𝗣𝗲𝗮𝗰𝗲 𝗗𝗲𝘃 !");
       await client.groupRevokeInvite(groupId);
 
       await client.sendMessage(
@@ -2729,7 +2770,7 @@ client.groupLeave(m.chat);
 		      case 'carbon': {
 		      const fetch = require('node-fetch');
 
-  let cap = `𝗖𝗢𝗡𝗩𝗘𝗥𝗧𝗘𝗗 𝗕𝗬 ${botname}`;
+  let cap = `ᴄᴏɴᴠᴇʀᴛᴇᴅ ʙʏ ${botname}`;
 
   if (m.quoted && m.quoted.text) {
     const forq = m.quoted.text;
@@ -3050,14 +3091,14 @@ m.reply("An error occured.")
         mimetype: 'audio/mp4',
         ptt: true,
         waveform:  [100, 0, 100, 0, 100, 0, 100],
-        fileName: "𝗥𝗮𝘃𝗲𝗻",
+        fileName: "𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
 
         contextInfo: {
           mentionedJid: [m.sender],
           externalAdReply: {
-          title: "𝗛𝗶 𝗛𝘂𝗺𝗮𝗻👋, 𝗜 𝗮𝗺 𝗔𝗹𝗶𝘃𝗲 𝗻𝗼𝘄",
-          body: "𝗥𝗔𝗩𝗘𝗡 𝗕𝗢𝗧",
-          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
+          title: "👋 ʜᴇʟʟᴏ, ᴍᴏʀᴛᴀʟ! ⚡ ᴘᴇᴀᴄᴇ ʜᴜʙ ɪs ᴀʟɪᴠᴇ ʀᴇᴀᴅʏ ᴛᴏ ᴄᴏᴍғᴏʀᴛ ʏᴏᴜ",
+          body: "𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
+          thumbnailUrl: "https://files.catbox.moe/yusei5.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: true
@@ -3071,13 +3112,13 @@ m.reply("An error occured.")
 	case "removebg": {
 try {
 
-const cap = "𝗘𝗱𝗶𝘁𝗲𝗱 𝗯𝘆 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧";
+const cap = "ᴇᴅɪᴛᴇᴅ ʙʏ ᴘᴇᴀᴄᴇ ʜᴜʙ";
 if (!m.quoted) return m.reply("Send the image then tag it with the command.");
 if (!/image/.test(mime)) return m.reply("That is not an image, try again while quoting an actual image.");             
 
 let fdr = await client.downloadAndSaveMediaMessage(m.quoted)
 let fta = await uploadToCatbox(fdr)
-                    m.reply("𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗥𝗮𝘃𝗲𝗻 𝗶𝘀 𝗲𝗿𝗮𝘀𝗶𝗻𝗴 𝘁𝗵𝗲 𝗯𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱. . .");
+                    m.reply("𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗣𝗲𝗮𝗰𝗲 𝗶𝘀 𝗲𝗿𝗮𝘀𝗶𝗻𝗴 𝘁𝗵𝗲 𝗯𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱. . .");
 
 const image = `https://api.dreaded.site/api/removebg?imageurl=${fta}`
 await client.sendMessage(m.chat, { image: { url: image }, caption: cap}, {quoted: m });
@@ -3218,7 +3259,7 @@ const rel = await quote(xf, pushname, pppuser)
                 
                 client.sendImageAsSticker(m.chat, rel.result, m, {
                     packname: pushname,
-                    author: `RavenBot`
+                    author: `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
                 })
 
 } catch (errr) { 
@@ -3417,7 +3458,7 @@ if (!text) throw 'Provide a valid Bot Baileys Function to evaluate'
     if (!isBotAdmin) throw botAdmin;
     if (!isAdmin) throw admin;
     if (!m.isGroup) throw group;		      
-if (!q || isNaN(q)) return m.reply("provide number to be added in this format.\n\nadd 254114660061");
+if (!q || isNaN(q)) return m.reply("provide number to be added in this format.\n\nadd 254752818245");
 try {
         const userToAdd = `${q}@s.whatsapp.net`;  // Format the phone number
         // Add the user to the group
@@ -3434,7 +3475,7 @@ break;
 //========================================================================================================================//		      
   case "system": 
   
-              client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/duv8ac.jpg' }, caption:`*𝐁𝐎𝐓 𝐍𝐀𝐌𝐄: 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧*\n\n*𝐒𝐏𝐄𝐄𝐃: ${Rspeed.toFixed(4)} 𝐌𝐒*\n\n*𝐑𝐔𝐍𝐓𝐈𝐌𝐄: ${runtime(process.uptime())}*\n\n*𝐏𝐋𝐀𝐓𝐅𝐎𝐑𝐌: 𝗛𝗲𝗿𝗼𝗸𝘂*\n\n*𝐇𝐎𝐒𝐓𝐍𝐀𝐌𝐄: 𝗥𝗮𝘃𝗲𝗻*\n\n*𝐋𝐈𝐁𝐑𝐀𝐑𝐘: Baileys*\n\n𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑: 𝗡𝗶𝗰𝗸༆`}); 
+              client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/yusei5.jpg' }, caption:`*𝙱𝙾𝚃 𝙽𝙰𝙼𝙴: 𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱*\n\n*𝚂𝙿𝙴𝙴𝙳: ${Rspeed.toFixed(4)} 𝙼𝚜*\n\n*𝚁𝚄𝙽𝚃𝙸𝙼𝙴: ${runtime(process.uptime())}*\n\n*𝙿𝙻𝙰𝚃𝙵𝙾𝚁𝙼: 𝙷𝚎𝚛𝚘𝚔𝚞*\n\n*𝙷𝙾𝚂𝚃𝙽𝙰𝙼𝙴: 𝙿𝚎𝚊𝚌𝚎*\n\n*𝙻𝙸𝙱𝚁𝙰𝚁𝚈: Baileys*\n\n𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁: 𝙿𝚎𝚊𝚌𝚎𝚖𝚊𝚔𝚎𝚛`}); 
  break;
 
 //========================================================================================================================//		      
@@ -3454,7 +3495,7 @@ for (let a of gcdata.participants) {
 
 let cont = './contacts.vcf'
 
-await m.reply('𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗥𝗮𝘃𝗲𝗻 𝗶𝘀 𝗖𝗼𝗺𝗽𝗶𝗹𝗶𝗻𝗴 '+gcdata.participants.length+' 𝗖𝗼𝗻𝘁𝗮𝗰𝘁𝘀 𝗶𝗻𝘁𝗼 𝗮 𝗩𝗰𝗳...');
+await m.reply('𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗣𝗲𝗮𝗰𝗲 𝗶𝘀 𝗖𝗼𝗺𝗽𝗶𝗹𝗶𝗻𝗴 '+gcdata.participants.length+' 𝗖𝗼𝗻𝘁𝗮𝗰𝘁𝘀 𝗶𝗻𝘁𝗼 𝗮 𝗩𝗰𝗳...');
 await fs.writeFileSync(cont, vcard.trim())
 await client.sendMessage(m.chat, {
     document: fs.readFileSync(cont), mimetype: 'text/vcard', fileName: 'Group contacts.vcf', caption: 'VCF for '+gcdata.subject+'\n'+gcdata.participants.length+' contacts'
@@ -3532,7 +3573,7 @@ const fta = await uploadToCatbox(fdr);
 
 const imagelink = `https://aemt.me/hacker2?link=${fta}`;
 
-await client.sendMessage(m.chat, { image: { url: imagelink}, caption: "Converted by Raven! 🦄"}, { quoted: m});
+await client.sendMessage(m.chat, { image: { url: imagelink}, caption: "Converted by PeaceHub! 🦄"}, { quoted: m});
 
 }
   break;
@@ -3680,7 +3721,7 @@ m.reply("𝗣𝗲𝗻𝗱𝗶𝗻𝗴 𝗣𝗮𝗿𝘁𝗶𝗰𝗶𝗽𝗮𝗻�
      });  
      let baseUR = "/apps/" + appname;  
      let h9 = await heroku.get(baseUR + '/config-vars');  
-     let stoy = '*𝗕𝗲𝗹𝗼𝘄 𝗔𝗿𝗲 𝗛𝗲𝗿𝗼𝗸𝘂 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀 𝗙𝗼𝗿 𝗥𝗔𝗩𝗘𝗡-𝗠𝗗:*\n\n';  
+     let stoy = '*𝗕𝗲𝗹𝗼𝘄 𝗔𝗿𝗲 𝗛𝗲𝗿𝗼𝗸𝘂 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀 𝗙𝗼𝗿 𝗣𝗘𝗔𝗖𝗘-𝗠𝗗:*\n\n';  
      for ( vrt in h9) { // Added 'const' to declare 'vr' 
          stoy += vrt + '=' + h9[vrt] + '\n\n'; // Fixed variable name 'str' to 'sto' 
      }  
@@ -3708,7 +3749,7 @@ case "remove": case "kick": {
         let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : null;
         const parts = users.split('@')[0];
 
-if (users == "254114660061@s.whatsapp.net") return m.reply("It's an Owner Number! 😡");
+if (users == "254752818245@s.whatsapp.net") return m.reply("It's an Owner Number! 😡");
 
 	  if (users  == client.decodeJid(client.user.id)) throw 'I cannot remove Myself 😡';
 
@@ -3754,7 +3795,7 @@ await client.sendMessage(m.chat, {
       await client.sendMessage(m.chat, {
         video: { url: videoUrl },
         mimetype: "video/mp4",
-        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧"
+        caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱"
       },{ quoted: m });
     }
   } catch (error) {
@@ -3788,7 +3829,7 @@ try {
 
 	await client.sendMessage(m.chat, {
               video: { url: video_hd },
-              caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧"
+              caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱"
             }, { quoted: m });
 
 	} catch (error) {
@@ -3829,7 +3870,7 @@ await client.sendMessage(m.chat, {
             m.chat,
             {
                 video: { url: fbvid },
-                caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
+                caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
                 gifPlayback: false,
             },
             { quoted: m }
@@ -3872,7 +3913,7 @@ await client.sendMessage(m.chat, {
 
       await client.sendMessage(m.chat, {
         video: { url: videoUrl },
-        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
+        caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
         gifPlayback: false
       }, { quoted: m });
 
@@ -3907,7 +3948,7 @@ try {
         }
 
         const media = response.data.BK9;
-        const capp = `𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`;
+        const capp = `𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`;
 
 if (media.length > 0) {
             const videoUrl = media.find(item => item.url.includes('.mp4'))?.url;
@@ -4072,7 +4113,7 @@ break;
 //========================================================================================================================//		      
  case 'sc': case 'script': case 'repo':
 
- client.sendMessage(m.chat, { image: { url: `https://files.catbox.moe/5m0i6t.jpg` }, caption: ` Hello👋 *${pushname}*, 𝗕𝗲𝗹𝗼𝘄 𝗜𝘀 𝗣𝗲𝗮𝗰𝗲-𝗛𝘂𝗯 𝗚𝗶𝘁𝗵𝘂𝗯 𝗥𝗲𝗽𝗼𓅂\n\nFork and maybe give us a star🌟.\n\n https://github.com/HunterNick2/RAVEN-BOT\n\nLink with your whatsapp using pairing link below\n\nhttps://pairing-raven.onrender.com\n\nCopy the session and paste it on the SESSION string, Fill in the other required Variables before Deploy\n\nEnjoy and have fun with the Bot\n\n𝙲𝙾𝙳𝙴𝙳 𝙱𝚈 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁 !`},{quoted : m });
+ client.sendMessage(m.chat, { image: { url: `https://files.catbox.moe/5m0i6t.jpg` }, caption: ` Hello👋 *${pushname}*, 𝗕𝗲𝗹𝗼𝘄 𝗜𝘀 𝗣𝗲𝗮𝗰𝗲-𝗛𝘂𝗯 𝗚𝗶𝘁𝗵𝘂𝗯 𝗥𝗲𝗽𝗼𓅂\n\nFork and maybe give us a star🌟.\n\n https://github.com/Devpeacemaker/PEACE-HUB\n\nLink with your whatsapp using pairing link below\n\nhttps://peace-hub-mcbo.onrender.com\n\nCopy the session and paste it on the SESSION string, Fill in the other required Variables before Deploy\n\nEnjoy and have fun with the Bot\n\n𝙲𝙾𝙳𝙴𝙳 𝙱𝚈 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁 !`},{quoted : m });
 
    break;
                                                   
@@ -4268,7 +4309,7 @@ if (!m.isGroup) throw group;
           case "leave": { 
                  if (!Owner) throw NotOwner;
 		 if (!m.isGroup) throw group;
- await client.sendMessage(m.chat, { text : '𝗚𝗼𝗼𝗱𝗯𝘆𝗲 𝗲𝘃𝗲𝗿𝘆𝗼𝗻𝗲👋. 𝗥𝗮𝘃𝗲𝗻-𝗔𝗶 𝗶𝘀 𝗟𝗲𝗮𝘃𝗶𝗻𝗴 𝘁𝗵𝗲 𝗚𝗿𝗼𝘂𝗽 𝗻𝗼𝘄...' , mentions: participants.map(a => a.id)}, { quoted : m }); 
+ await client.sendMessage(m.chat, { text : '𝗚𝗼𝗼𝗱𝗯𝘆𝗲 𝗲𝘃𝗲𝗿𝘆𝗼𝗻𝗲👋. 𝗣𝗘𝗔𝗖𝗘-𝗔𝗶 𝗶𝘀 𝗟𝗲𝗮𝘃𝗶𝗻𝗴 𝘁𝗵𝗲 𝗚𝗿𝗼𝘂𝗽 𝗻𝗼𝘄...' , mentions: participants.map(a => a.id)}, { quoted : m }); 
                  await client.groupLeave(m.chat); 
   
              } 
@@ -4428,13 +4469,13 @@ if (!m.quoted) return m.reply("quote a viewonce message eh")
     if (quotedMessage.imageMessage) {
       let imageCaption = quotedMessage.imageMessage.caption;
       let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
-      client.sendMessage(m.chat, { image: { url: imageUrl }, caption: `Retrieved by Raven!\n${imageCaption}`}, { quoted: m });
+      client.sendMessage(m.chat, { image: { url: imageUrl }, caption: `🕶️ 𝚅𝚒𝚎𝚠 𝙾𝚗𝚌𝚎— 𝙽𝚘𝚝 𝚘𝚗 𝚖𝚢 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱😎!\n${imageCaption}`}, { quoted: m });
     }
 
     if (quotedMessage.videoMessage) {
       let videoCaption = quotedMessage.videoMessage.caption;
       let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
-      client.sendMessage(m.chat, { video: { url: videoUrl }, caption: `Retrieved by Raven!\n${videoCaption}`}, { quoted: m });
+      client.sendMessage(m.chat, { video: { url: videoUrl }, caption: `🕶️ 𝚅𝚒𝚎𝚠 𝙾𝚗𝚌𝚎— 𝙽𝚘𝚝 𝚘𝚗 𝚖𝚢 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱😎!\n${videoCaption}`}, { quoted: m });
     }
       }
 	break;
@@ -4449,13 +4490,13 @@ if (!m.quoted) return m.reply("Hurrahhh")
     if (quotedMessage.imageMessage) {
       let imageCaption = quotedMessage.imageMessage.caption;
       let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
-      client.sendMessage(client.user.id, { image: { url: imageUrl }, caption: `Retrieved by Raven!\n${imageCaption}`}, { quoted: m });
+      client.sendMessage(client.user.id, { image: { url: imageUrl }, caption: `🕶️ 𝚅𝚒𝚎𝚠 𝙾𝚗𝚌𝚎— 𝙽𝚘𝚝 𝚘𝚗 𝚖𝚢 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱😎!\n${imageCaption}`}, { quoted: m });
     }
 
     if (quotedMessage.videoMessage) {
       let videoCaption = quotedMessage.videoMessage.caption;
       let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
-      client.sendMessage(client.user.id, { video: { url: videoUrl }, caption: `Retrieved by Raven!\n${videoCaption}`}, { quoted: m });
+      client.sendMessage(client.user.id, { video: { url: videoUrl }, caption: `🕶️ 𝚅𝚒𝚎𝚠 𝙾𝚗𝚌𝚎— 𝙽𝚘𝚝 𝚘𝚗 𝚖𝚢 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱😎!\n${videoCaption}`}, { quoted: m });
     }
       }
 	break;
@@ -4573,7 +4614,7 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶�
                 {
                   document: { url: outputPath },
                   mimetype: "audio/mp3",
-		  caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
+		  caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
                   fileName: outputFileName,
                 },
                 { quoted: m }
@@ -4636,7 +4677,7 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶�
         {
           video: { url: videoData.downloadUrl },
           mimetype: "video/mp4",
-          caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
+          caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
         },
         { quoted: m }
       );
@@ -4675,10 +4716,10 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶�
                     contextInfo: {
                         externalAdReply: {
                             showAdAttribution: true,
-                            title: '𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧',
-                            body: 'https://github.com/HunterNick2/RAVEN-BOT',
-                            thumbnailUrl: 'https://files.catbox.moe/duv8ac.jpg',
-                            sourceUrl: 'https://github.com/HunterNick2/RAVEN-BOT',
+                            title: '𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱',
+                            body: 'https://github.com/Devpeacemaker/PEACE-HUB',
+                            thumbnailUrl: 'https://files.catbox.moe/yusei5.jpg',
+                            sourceUrl: 'https://github.com/Devpeacemaker/unknown-error',
                             mediaType: 1,
                             renderLargerThumbnail: true
                         }
@@ -4702,7 +4743,7 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶�
                 mimetype: "application/vnd.android.package-archive",
                 contextInfo: {
         externalAdReply: {
-          title: `RAVEN-BOT`,
+          title: `𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱`,
           body: `${tylor.BK9.name}`,
           thumbnailUrl: `${tylor.BK9.icon}`,
           sourceUrl: `${tylor.BK9.dllink}`,
@@ -4815,7 +4856,7 @@ if (!text) return m.reply("No emojis provided ? ")
    fs.unlinkSync(media); 
    if (err) throw err 
    let buffer = fs.readFileSync(mokaya); 
-   client.sendMessage(m.chat, { image: buffer, caption: `𝗖𝗼𝗻𝘃𝗲𝗿𝘁𝗲𝗱 𝗯𝘆 𝗥𝗮𝘃𝗲𝗻-𝗕𝗼𝘁`}, { quoted: m }) 
+   client.sendMessage(m.chat, { image: buffer, caption: `ᴄᴏɴᴠᴇʀᴛᴇᴅ ʙʏ ᴘᴇᴀᴄᴇ ʜᴜʙ`}, { quoted: m }) 
    fs.unlinkSync(mokaya); 
     }); 
     } 
@@ -4891,7 +4932,7 @@ if (!text) return m.reply("No emojis provided ? ")
          let res = groups.map(v => v.id) 
          reply(` Broadcasting in ${res.length} Group Chat, in ${res.length * 1.5} seconds`) 
          for (let i of res) { 
-             let txt = `𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧 𝗕𝗥𝗢𝗔𝗗𝗖𝗔𝗦𝗧\n\n🀄 Message: ${text}\n\nAuthor: ${pushname}` 
+             let txt = `𝗣𝗘𝗔𝗖𝗘-𝗔𝗶 𝗕𝗥𝗢𝗔𝗗𝗖𝗔𝗦𝗧\n\n🀄 Message: ${text}\n\nAuthor: ${pushname}` 
              await client.sendMessage(i, { 
                  image: { 
                      url: menulink
@@ -4906,7 +4947,7 @@ if (!text) return m.reply("No emojis provided ? ")
 //========================================================================================================================//		      
  case "gemini": {
     try {
-        if (!text) return m.reply("This is Raven, an AI using Gemini APIs to process text, provide yr query");
+        if (!text) return m.reply("This is Peace, an AI using Gemini APIs to process text, provide yr query");
     
         const { default: Gemini } = await import('gemini-ai');
 
@@ -4953,7 +4994,7 @@ case "block": {
  if (!Owner) throw NotOwner; 
  if (!m.quoted) throw `𝗧𝗮𝗴 𝘀𝗼𝗺𝗲𝗼𝗻𝗲!`  
  let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-	 if (users == "254114660061@s.whatsapp.net") return m.reply("𝗜 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗹𝗼𝗰𝗸 𝗺𝘆 𝗢𝘄𝗻𝗲𝗿 😡");
+	 if (users == "254752818245@s.whatsapp.net") return m.reply("𝗜 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗹𝗼𝗰𝗸 𝗺𝘆 𝗢𝘄𝗻𝗲𝗿 😡");
 		  if (users  == client.decodeJid(client.user.id)) throw '𝗜 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗹𝗼𝗰𝗸 𝗺𝘆𝘀𝗲𝗹𝗳 𝗶𝗱𝗶𝗼𝘁 😡';
  await client.updateBlockStatus(users, 'block'); 
  m.reply (`𝗕𝗹𝗼𝗰𝗸𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆!`); 
