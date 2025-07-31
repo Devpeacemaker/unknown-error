@@ -8,7 +8,7 @@ const pool = new Pool({
 const defaultSettings = {
   antilink: 'on',
   antilinkall: 'off',
-  autobio: 'off',
+  autobio: 'on',
   antidelete: 'on',
   antitag: 'on',
   antibot: 'off',
