@@ -264,7 +264,7 @@ try {
       console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
       console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
       console.log(color("Text the bot number with menu to check my command list"));
-      cconst Texxt = `🟢 𝙲𝙾𝙽𝙽𝙴𝙲𝚃𝙴𝙳  ╍>〚𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱〛\n`+`🎛️ 𝙼𝙾𝙳𝙴  ╍>〚${mode}〛\n`+`🔣 𝙿𝚁𝙴𝙵𝙸𝚇  ╍>〚 ${prefix} 〛`
+      const Text = `🟢 𝙲𝙾𝙽𝙽𝙴𝙲𝚃𝙴𝙳  ╍>〚𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱〛\n`+`🎛️ 𝙼𝙾𝙳𝙴  ╍>〚${mode}〛\n`+`🔣 𝙿𝚁𝙴𝙵𝙸𝚇  ╍>〚 ${prefix} 〛`
       client.sendMessage(client.user.id, { text: Texxt });
     }
   });
