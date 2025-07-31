@@ -191,7 +191,7 @@ async function handleMessageRevocation(client, revocationMessage) {
     const sentByFormatted = `@${sentBy.split('@')[0]}`;
 
     let notificationText = `🚨ᴘᴇᴀᴄᴇ ʜᴜʙ ᴀɴᴛɪᴅᴇʟᴇᴛᴇ🚨\n\n` +
-      ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`;
+      ` ᴅᴇʟᴇᴛᴇᴅ ʙʏ: ${deletedByFormatted}\n\n`;
 
 try {
 	    
