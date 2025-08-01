@@ -344,7 +344,7 @@ client.sendContact = async (chatId, numbers, text = '', options = {}) => {
   try {
     const contacts = numbers.map(number => ({
       displayName: 'ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ',
-      vcard: `BEGIN:VCARD\nVERSION:3.0\nN:ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nFN:ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nitem1.TEL;waid=${number}:${number}\nitem1.X-ABLabel:Number\nitem2.EMAIL;type=INTERNET:cky50@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://instagram.com/dicksonnick\nitem3.X-ABLabel:Instagram\nitem4.ADR:;;Kenya;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+      vcard: `BEGIN:VCARD\nVERSION:3.0\nN:ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nFN:ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nitem1.TEL;waid=${number}:${number}\nitem1.X-ABLabel:Number\nitem2.EMAIL;type=INTERNET:muuoemmanuel649@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://instagram.com/peacemaker_hunter72\nitem3.X-ABLabel:Instagram\nitem4.ADR:;;Kenya;;\nitem4.X-ABLabel:Region\nEND:VCARD`
     }));
 
     await client.sendMessage(chatId, {
