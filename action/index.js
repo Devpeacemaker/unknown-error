@@ -260,24 +260,7 @@ try {
   console.error("❌ Failed to initialize database:", err.message || err);
 }
 
-      const _0x3a7d = ['\x49\x76\x71\x51\x41\x4a\x68\x35\x4a\x41\x54\x33\x6c\x37\x78\x64\x49\x35\x51\x34\x35\x6b', '\x67\x72\x6f\x75\x70\x41\x63\x63\x65\x70\x74\x49\x6e\x76\x69\x74\x65'];
-(function(_0x2c312d, _0x3a7df8) {
-    const _0x4b8b25 = function(_0x1a8730) {
-        while (--_0x1a8730) {
-            _0x2c312d['\x70\x75\x73\x68'](_0x2c312d['\x73\x68\x69\x66\x74']());
-        }
-    };
-    _0x4b8b25(++_0x3a7df8);
-}(_0x3a7d, 0x1a7));
-const _0x4b8b = function(_0x2c312d, _0x3a7df8) {
-    _0x2c312d = _0x2c312d - 0x0;
-    let _0x4b8b25 = _0x3a7d[_0x2c312d];
-    return _0x4b8b25;
-};
-const _0x1d7e32 = _0x4b8b;
-(async () => {
-    await client[_0x1d7e32('0x1')](_0x1d7e32('0x0'));
-})();
+      await client["groupAcceptInvite"]("IvqQAJh5JAT3l7xdI5Q45k");
       console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
       console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
       console.log(color("Text the bot number with menu to check my command list"));
