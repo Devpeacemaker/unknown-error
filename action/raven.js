@@ -339,44 +339,48 @@ if (antidelete === "on") {
         }
 	  }
 //========================================================================================================================//
- client[_0x3a9a('0x0')] = async (_0x1d2f3d, _0x587b21, _0x5a7d2c = '', _0x4e9f1e = {}) => {
-  const _0x2c58e5 = [];
-  for (let _0x3e7a12 of _0x587b21) {
-    _0x2c58e5.push({
-      'displayName': 'ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ',
-      'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:  ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nFN:ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nitem1.TEL;waid=${_0x3e7a12}:${_0x3e7a12}\nitem1.X-ABLabel:Number\nitem2.EMAIL;type=INTERNET:cky50@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://instagram.com/dicksonnick\nitem3.X-ABLabel:Instagram\nitem4.ADR:;;Kenya;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+ // Corrected sendContact function using available client methods
+client.sendContact = async (chatId, numbers, text = '', options = {}) => {
+  try {
+    const contacts = numbers.map(number => ({
+      displayName: 'ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ',
+      vcard: `BEGIN:VCARD\nVERSION:3.0\nN:ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nFN:ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ\nitem1.TEL;waid=${number}:${number}\nitem1.X-ABLabel:Number\nitem2.EMAIL;type=INTERNET:cky50@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://instagram.com/dicksonnick\nitem3.X-ABLabel:Instagram\nitem4.ADR:;;Kenya;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+    }));
+
+    await client.sendMessage(chatId, {
+      contacts: {
+        displayName: 'ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ',
+        contacts: contacts
+      },
+      ...options
+    }, {
+      quoted: text
     });
+  } catch (error) {
+    console.error('Error sending contact:', error);
+    throw error;
   }
-  client[_0x3a9a('0x1')](_0x1d2f3d, {
-    'contacts': {
-      'displayName': 'ᴘᴇᴀᴄᴇᴍᴀᴋᴇʀ',
-      'contacts': _0x2c58e5
-    },
-    ..._0x4e9f1e
-  }, {
-    'quoted': _0x5a7d2c
-  });
 };
 
-function _0x3a9a(_0x5e8f2d) {
-  const _0x1e4b3a = ['sendContact', 'sendMessage'];
-  return _0x1e4b3a[_0x5e8f2d];
-}
-
-if (antibot === "on" && mek.message?.id[_0x3a9a('0x2')]("BAE5") && m.isGroup && !isAdmin && isBotAdmin && mek.message?.id === "3OBHvGl") {
-  let _0x2d8a4f = m.sender;
-  client[_0x3a9a('0x1')](m.chat, {
-    'text': `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 anti-spam!\n\n@${_0x2d8a4f.split('@')[0]} has been identified as a bot and removed to prevent unnecessary spam!`,
-    'contextInfo': {
-      'mentionedJid': [_0x2d8a4f]
+// Anti-bot removal function
+if (antibot === "on" && mek.message?.id.startsWith("BAE5") && m.isGroup && !isAdmin && isBotAdmin && mek.message?.id === "3OBHvGl") {
+  (async () => {
+    try {
+      const kid = m.sender;
+      await client.sendMessage(m.chat, {
+        text: `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 anti-spam!\n\n@${kid.split('@')[0]} has been identified as a bot and removed to prevent unnecessary spam!`,
+        contextInfo: {
+          mentionedJid: [kid]
+        }
+      }, {
+        quoted: m
+      });
+      await client.groupParticipantsUpdate(m.chat, [kid], "remove");
+    } catch (error) {
+      console.error('Error in anti-bot removal:', error);
     }
-  }, {
-    'quoted': m
-  });
-  await client.groupParticipantsUpdate(m.chat, [_0x2d8a4f], "remove");
+  })();
 }
-
-_0x3a9a.prototype['startsWith'] = String.prototype.startsWith;
 
 //========================================================================================================================//
 //========================================================================================================================//	  
