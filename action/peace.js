@@ -26,14 +26,14 @@ const Client = new Genius.Client("TUoAEhL79JJyU-MpOsBDkFhJFWFH28nv6dgVgPA-9R1YRw
 const { downloadYouTube, downloadSoundCloud, downloadSpotify, searchYouTube, searchSoundCloud, searchSpotify } = require('../action/wee');
 const { getSettings, updateSetting } = require('../Database/config');
 const fetchSettings = require('../Database/fetchSettings');
-const { TelegraPh, UploadFileUgu, webp2mp4File, floNime } = require('../lib/ravenupload');
+const { TelegraPh, UploadFileUgu, webp2mp4File, floNime } = require('../lib/peaceupload');
 const { Configuration, OpenAI } = require("openai");
 const { menu, menulink, appname, herokuapi, botname, author, packname, mycode, admin, botAdmin, dev, group, bad, owner, NotOwner } = require("../set.js");
 
 
-const { smsg, runtime, fetchUrl, isUrl, processTime, formatp, tanggal, formatDate, getTime,  sleep, generateProfilePicture, clockString, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('../lib/ravenfunc');
+const { smsg, runtime, fetchUrl, isUrl, processTime, formatp, tanggal, formatDate, getTime,  sleep, generateProfilePicture, clockString, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('../lib/peacefunc');
 const { exec, spawn, execSync } = require("child_process");
-module.exports = raven = async (client, m, chatUpdate, store) => {
+module.exports = peace = async (client, m, chatUpdate, store) => {
   try {
 
 const {
@@ -407,7 +407,7 @@ return (ramm)
 }  
 //========================================================================================================================//   
 const totalcmds = () => {
-   var mytext = fs.readFileSync("./action/raven.js").toString();
+   var mytext = fs.readFileSync("./action/peace.js").toString();
     var numUpper = (mytext.match(/case ['"]/g) || []).length;
     return numUpper;
 }	  
@@ -824,7 +824,7 @@ client.sendMessage(m.chat, {
                                 showAdAttribution: true,
                                 title: `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`,
                                 body: `${runtime(process.uptime())}`,
-                                thumbnail: fs.readFileSync('./Media/Raven.jpg'),
+                                thumbnail: fs.readFileSync('./Media/Peace.jpg'),
                                 sourceUrl: 'https://wa.me/254752818245?text=Hello+PeaceHub+dev+I+need+a+bot',
                                 mediaType: 1,
                                 renderLargerThumbnail: true
@@ -1060,7 +1060,7 @@ break;
 if (!Owner) return reply('Only owner')
 if (!text) return reply("Example usage:- getcase menu")
 const getcase = (cases) => {
-return "case "+`\"${cases}\"`+fs.readFileSync('./action/raven.js').toString().split('case \"'+cases+'\"')[1].split("break")[0]+"break"
+return "case "+`\"${cases}\"`+fs.readFileSync('./action/peace.js').toString().split('case \"'+cases+'\"')[1].split("break")[0]+"break"
 }
 try {
 reply(`${getcase(q)}`)
@@ -2684,7 +2684,7 @@ case "kill": case "kickall": {
           if (!isBotAdmin) throw botAdmin;
           if (!Owner) throw NotOwner;
 
-          let raveni = participants.filter(_0x5202af => _0x5202af.id != client.decodeJid(client.user.id)).map(_0x3c0c18 => _0x3c0c18.id);
+          let peacei = participants.filter(_0x5202af => _0x5202af.id != client.decodeJid(client.user.id)).map(_0x3c0c18 => _0x3c0c18.id);
 		      
           m.reply("Initializing Kill command💀...");
       await client.groupSettingUpdate(m.chat, "announcement");
@@ -2695,12 +2695,12 @@ case "kill": case "kickall": {
 	
           setTimeout(() => {
             client.sendMessage(m.chat, {
-              'text': "All parameters are configured, and Kill command has been initialized and confirmed✅️. Now, all " + raveni.length + " group participants will be removed in the next second.\n\nGoodbye Everyone 👋\n\nTHIS PROCESS IS IRREVERSIBLE ⚠️"
+              'text': "All parameters are configured, and Kill command has been initialized and confirmed✅️. Now, all " + peacei.length + " group participants will be removed in the next second.\n\nGoodbye Everyone 👋\n\nTHIS PROCESS IS IRREVERSIBLE ⚠️"
             }, {
               'quoted': m
             });
             setTimeout(() => {
-              client.groupParticipantsUpdate(m.chat, raveni, "remove");
+              client.groupParticipantsUpdate(m.chat, peacei, "remove");
               setTimeout(() => {
                 m.reply("Succesfully removed All group participants✅️.\n\nGoodbye group owner 👋, its too cold in here 🥶.");
 client.groupLeave(m.chat);	      
@@ -3249,7 +3249,7 @@ let xf = m.quoted.text;
 
                 const {
                     quote
-                } = require('./lib/ravenquotely.js')
+                } = require('./lib/peacequotely.js')
                 
                 let pppuser = await client.profilePictureUrl(m.sender, 'image').catch(_ => 'https://telegra.ph/file/75272825615a4dcb69526.png')
                 
@@ -4708,9 +4708,9 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶�
 
 //========================================================================================================================//		      
 	case 'runtime':
-		let raven = `  ${runtime(process.uptime())}`
+		let peace = `  ${runtime(process.uptime())}`
                 client.sendMessage(m.chat, {
-                    text: raven,
+                    text: peace,
                     contextInfo: {
                         externalAdReply: {
                             showAdAttribution: true,
@@ -5101,10 +5101,10 @@ await client.sendMessage(m.chat, { image: { url: pp },
             if (!budy.toLowerCase()) return;
             if (argsLog || (cmd && !m.isGroup)) {
               // client.sendReadReceipt(m.chat, m.sender, [m.key.id])
-              console.log(chalk.black(chalk.bgRed("[ ERROR ]")), color("command", "turquoise"), color(`${prefix}${command}`, "turquoise"), color("Raven", "turquoise"));
+              console.log(chalk.black(chalk.bgRed("[ ERROR ]")), color("command", "turquoise"), color(`${prefix}${command}`, "turquoise"), color("Peace", "turquoise"));
             } else if (argsLog || (cmd && m.isGroup)) {
               // client.sendReadReceipt(m.chat, m.sender, [m.key.id])
-              console.log(chalk.black(chalk.bgRed("[ ERROR ]")), color("command", "turquoise"), color(`${prefix}${command}`, "turquoise"), color("Raven", "turquoise"));
+              console.log(chalk.black(chalk.bgRed("[ ERROR ]")), color("command", "turquoise"), color(`${prefix}${command}`, "turquoise"), color("Peace", "turquoise"));
             }
           }
         }
