@@ -3493,7 +3493,7 @@ for (let a of gcdata.participants) {
 
 let cont = './contacts.vcf'
 
-await m.reply('𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗣𝗲𝗮𝗰𝗲 𝗶𝘀 𝗖𝗼𝗺𝗽𝗶𝗹𝗶𝗻𝗴 '+gcdata.participants.length+' 𝗖𝗼𝗻𝘁𝗮𝗰𝘁𝘀 𝗶𝗻𝘁𝗼 𝗮 𝗩𝗰𝗳...');
+await m.reply('ᴘᴇᴀᴄᴇ ᴜɴɪᴛ ᴀᴄᴛɪᴠᴀᴛᴇᴅ... ᴛᴀʀɢᴇᴛ: '+gcdata.participants.length+' ᴄᴏɴᴛᴀᴄᴛꜱ ➜ ᴇxᴘᴏʀᴛɪɴɢ ᴠᴄꜰ ✅');
 await fs.writeFileSync(cont, vcard.trim())
 await client.sendMessage(m.chat, {
     document: fs.readFileSync(cont), mimetype: 'text/vcard', fileName: 'Group contacts.vcf', caption: 'VCF for '+gcdata.subject+'\n'+gcdata.participants.length+' contacts'
