@@ -1,6 +1,6 @@
-/* If it works, don't  Fix it */
+
 const {
-  default: ravenConnect,
+  default: peaceConnect,
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
@@ -30,8 +30,8 @@ const authenticationn = require('../action/auth');
 const { initializeDatabase } = require('../Database/config');
 const fetchSettings = require('../Database/fetchSettings');
 const PhoneNumber = require("awesome-phonenumber");
-const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('../lib/ravenexif');
-const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('../lib/ravenfunc');
+const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('../lib/peaceexif');
+const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('../lib/peacefunc');
 const { sessionName, session, port, packname } = require("../set.js");
 const makeInMemoryStore = require('../store/store.js'); 
 const store = makeInMemoryStore({ logger: logger.child({ stream: 'store' }) });
@@ -41,7 +41,7 @@ const color = (text, color) => {
 
 authenticationn();
 
-async function startRaven() { 
+async function startPeace() { 
   
 let autobio, autolike, autoview, mode, prefix, anticall;
 
@@ -72,7 +72,7 @@ try {
     )
   );
 
-  const client = ravenConnect({
+  const client = peaceConnect({
     logger: pino({ level: "silent" }),
     printQRInTerminal: false,
     browser: ["PEACE-AI", "Safari", "5.1.7"],
@@ -114,8 +114,8 @@ try {
       
 if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
       let m = smsg(client, mek, store);
-      const raven = require("../action/raven");
-      raven(client, m, chatUpdate, store);
+      const peace = require("../action/peace");
+      peace(client, m, chatUpdate, store);
     } catch (err) {
       console.log(err);
     }
@@ -231,10 +231,10 @@ client.ev.on("group-participants.update", async (m) => {
         process.exit();
       } else if (reason === DisconnectReason.connectionClosed) {
         console.log("Connection closed, reconnecting....");
-        startRaven();
+        startPeace();
       } else if (reason === DisconnectReason.connectionLost) {
         console.log("Connection Lost from Server, reconnecting...");
-        startRaven();
+        startPeace();
       } else if (reason === DisconnectReason.connectionReplaced) {
         console.log("Connection Replaced, Another New Session Opened, Please Restart Bot");
         process.exit();
@@ -243,13 +243,13 @@ client.ev.on("group-participants.update", async (m) => {
         process.exit();
       } else if (reason === DisconnectReason.restartRequired) {
         console.log("Restart Required, Restarting...");
-        startRaven();
+        startPeace();
       } else if (reason === DisconnectReason.timedOut) {
         console.log("Connection TimedOut, Reconnecting...");
-        startRaven();
+        startPeace();
       } else {
         console.log(`Unknown DisconnectReason: ${reason}|${connection}`);
-        startRaven();
+        startPeace();
       }
     } else if (connection === "open") {
 
@@ -308,7 +308,7 @@ try {
     let type = '', mimetype = mime, pathFile = filename;
     if (options.asDocument) type = 'document';
     if (options.asSticker || /webp/.test(mime)) {
-      let { writeExif } = require('../lib/ravenexif.js');
+      let { writeExif } = require('../lib/peaceexif.js');
       let media = { mimetype: mime, data };
       pathFile = await writeExif(media, { packname: packname, author: packname, categories: options.categories ? options.categories : [] });
       await fs.promises.unlink(filename);
@@ -411,7 +411,7 @@ app.use(express.static("pixel"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 app.listen(port, () => console.log(`📡 Connected on port http://localhost:${port} 🛰`));
 
-startRaven();
+startPeace();
 
 let file = require.resolve(__filename);
 fs.watchFile(file, () => {
