@@ -264,10 +264,7 @@ try {
       console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
       console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
       console.log(color("Text the bot number with menu to check my command list"));
-      const Texxt =
-  '\uD83D\uDFE9 \u{1D63F}\u{1D622}\u{1D62D}\u{1D630} \u{1D63C}\u{1D633}\u{1D62F}\u{1D634}\u{1D632} ╍>\u300E\u{1D62F}\u{1D622}\u{1D622}\u{1D628}-\u{1D627}\u{1D632}\u{1D62D}\u300F\n' +
-  '\uD83C\uDF9A\uFE0F \u{1D63C}\u{1D633}\u{1D62F}\u{1D622}\u{1D622}\u{1D62D}\u{1D630} \u{1D62C}\u{1D62E}\u{1D633}\u{1D62E} ╍>\u300E' + mode + '\u300F\n' +
-  '\uD83D\uDD39 \u{1D63C}\u{1D630}\u{1D62E}\u{1D62E}\u{1D622}\u{1D62D} \u{1D63C}\u{1D633}\u{1D631}\u{1D62D}\u{1D634} ╍>\u300E' + prefix + '\u300F';
+      const _0x3a7d=["\uD83D\uDFE9 \uD835\uDDFB\uD835\uDDFE\uD835\uDE03\uD835\uDDFC \uD835\uDDF8\uD835\uDE00\uD835\uDDFE\uD835\uDE01\uD835\uDE02\uD835\uDE00\uD835\uDE02 \u2550\u254D\u003E\u3008\uD835\uDF3F\uD835\uDF34\uD835\uDF30\uD835\uDF32\uD835\uDF34\u002D\uD835\uDF3D\uD835\uDF3E\uD835\uDF31\u3009","\uD83C\uDF9A\uFE0F \uD835\uDF3E\uD835\uDF3F\uD835\uDF34\uD835\uDF3D\uD835\uDF30\uD835\uDF3D\uD835\uDF38\uD835\uDF33 \uD835\uDF3C\uD835\uDF3E\uD835\uDF33\uD835\uDF34 \u2550\u254D\u003E\u3008","\uD83C\uDD7F\uFE0F \uD835\uDF38\uD835\uDF3E\uD835\uDF3C\uD835\uDF3C\uD835\uDF30\uD835\uDF37\uD835\uDF33 \uD835\uDF3F\uD835\uDF3D\uD835\uDF34\uD835\uDF32\uD835\uDF38\uD835\uDF35 \u2550\u254D\u003E\u3008"];const Texxt=`${_0x3a7d[0]}\n${_0x3a7d[1]}${mode}』\n${_0x3a7d[2]}${prefix}』`;
       client.sendMessage(client.user.id, { text: Texxt });
     }
   });
