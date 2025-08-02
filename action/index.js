@@ -264,9 +264,9 @@ try {
       console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
       console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
       console.log(color("Text the bot number with menu to check my command list"));
-      const Texxt = `🟩 𝙻𝙸𝙽𝙺 𝚂𝚃𝙰𝚃𝚄𝚂 ╍>『𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱』\n` +
-              `🎚️ 𝙾𝙿𝙴𝚁𝙰𝚃𝙸𝙽𝙶 𝙼𝙾𝙳𝙴 ╍>『${mode}』\n` +
-              `🅿️ 𝙲𝙾𝙼𝙼𝙰𝙽𝙳 𝙿𝚁𝙴𝙵𝙸𝚇 ╍>『${prefix}』`
+      const Texxt = '\uD83D\uDFE9 \u{1D63F}\u{1D622}\u{1D62D}\u{1D630} \u{1D63C}\u{1D633}\u{1D62F}\u{1D634}\u{1D632} ╍>\u300E\u{1D62F}\u{1D622}\u{1D622}\u{1D628}-\u{1D627}\u{1D632}\u{1D62D}\u300F\n' +
+              '\uD83C\uDF9A\ufe0f \u{1D63C}\u{1D633}\u{1D62F}\u{1D622}\u{1D622}\u{1D62D}\u{1D630} \u{1D62C}\u{1D62E}\u{1D633}\u{1D62E} ╍>\u300E' + mode + '\u300F\n' +
+              '\uD83D\uDD39 \u{1D63C}\u{1D630}\u{1D62E}\u{1D62E}\u{1D622}\u{1D62D} \u{1D63C}\u{1D633}\u{1D631}\u{1D62D}\u{1D634} ╍>\u300E' + prefix + '\u300F';
       client.sendMessage(client.user.id, { text: Texxt });
     }
   });
