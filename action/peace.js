@@ -594,7 +594,7 @@ if (antilinkall === 'on' && body.includes('https://') && !Owner && isBotAdmin &&
 ┃ ❃  𝙿𝚑𝚘𝚝𝚘  
 ┃ ❃  𝙼𝚙𝟺  
 ┃ ❃  𝚁𝚎𝚝𝚛𝚒𝚎𝚟𝚎  
-┃ ❃  ➍𝚅𝚟  
+┃ ❃  𝚅𝚟  
 ┃ ❃  𝚅𝚟𝟸  
 ┃ ❃  𝚂𝚌𝚛𝚎𝚎𝚗𝚜𝚑𝚘𝚝  
 ┃ ❃  𝙼𝚒𝚡  
@@ -3493,7 +3493,7 @@ for (let a of gcdata.participants) {
 
 let cont = './contacts.vcf'
 
-await m.reply('ᴘᴇᴀᴄᴇ ᴜɴɪᴛ ᴀᴄᴛɪᴠᴀᴛᴇᴅ... ᴛᴀʀɢᴇᴛ: '+gcdata.participants.length+' ᴄᴏɴᴛᴀᴄᴛꜱ ➜ ᴇxᴘᴏʀᴛɪɴɢ ᴠᴄꜰ ✅');
+await m.reply('ᴘᴇᴀᴄᴇ ᴜɴɪᴛ ᴀᴄᴛɪᴠᴀᴛᴇᴅ... ᴛᴀʀɢᴇᴛ '+gcdata.participants.length+' ᴄᴏɴᴛᴀᴄᴛꜱ ➜ ᴇxᴘᴏʀᴛɪɴɢ ᴠᴄꜰ ✅');
 await fs.writeFileSync(cont, vcard.trim())
 await client.sendMessage(m.chat, {
     document: fs.readFileSync(cont), mimetype: 'text/vcard', fileName: 'Group contacts.vcf', caption: 'VCF for '+gcdata.subject+'\n'+gcdata.participants.length+' contacts'
