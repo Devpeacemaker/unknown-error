@@ -4115,20 +4115,24 @@ case 'repo': {
   const res = await fetch('https://api.github.com/repos/Devpeacemaker/PEACE-HUB');
   const data = await res.json();
 
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const currentTime = `${hours}:${minutes}`;
+
   const caption = `
-🔷 *Peace‑Hub GitHub Repo*  
-${data.description || 'No description'}
+🔷 *ᴘᴇᴀᴄᴇ‑ʜᴜʙ ɢɪᴛʜᴜʙ ʀᴇᴘᴏ*  
+${data.description || '_No description provided_'}
 
-⭐ *Stars:* ${data.stargazers_count}     |     🌱 *Forks:* ${data.forks_count}
+🔶  *Stars:* ${data.stargazers_count}  
+🔶  *Forks:* ${data.forks_count}
 
-𝙲𝙾𝙳𝙴𝙳 𝙱𝚈 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁 !
+🕒 *Time:* ${currentTime} (UTC)
+
+🚀 𝙲𝙾𝙳𝙴𝙳 𝙱𝚈 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁
   `.trim();
 
-  await client.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/5m0i6t.jpg' },
-    caption
-  }, { quoted: m });
-
+  await client.sendMessage(m.chat, { text: caption }, { quoted: m });
   break;
 }
                                                   
