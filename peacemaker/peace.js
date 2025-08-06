@@ -4127,6 +4127,9 @@ case 'repo': {
 🔷 *ᴘᴇᴀᴄᴇ‑ʜᴜʙ ɢɪᴛʜᴜʙ ʀᴇᴘᴏ*  
 ${data.description || '_No description provided_'}
 
+📦 *ᴅᴇᴘʟᴏʏ ʜᴇʀᴇ:*  
+https://github.com/Devpeacemaker/PEACE-HUB
+
 🔶  *Stars:* ${data.stargazers_count}  
 🔶  *Forks:* ${data.forks_count}
 
