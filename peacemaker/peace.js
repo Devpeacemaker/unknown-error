@@ -4696,7 +4696,7 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶�
     case "ping":
 case "speed": {
     await loading();
-    m.reply(`Peacehub Speed🔶${Rspeed}ms`);
+    m.reply(`Peacehub Speed🔶${Rspeed.toFixed(3)}`);
 }
 break; 
 
