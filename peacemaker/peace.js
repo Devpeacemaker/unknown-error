@@ -4109,11 +4109,12 @@ break;
 break;		      
 		      
 //========================================================================================================================//		      
- const fetch = require('node-fetch');
-
-case 'sc': case 'script': case 'repo': {
+ case 'sc':
+case 'script':
+case 'repo': {
   const res = await fetch('https://api.github.com/repos/Devpeacemaker/PEACE-HUB');
   const data = await res.json();
+
   const caption = `
 🔷 *Peace‑Hub GitHub Repo*  
 ${data.description || 'No description'}
@@ -4127,6 +4128,7 @@ ${data.description || 'No description'}
     image: { url: 'https://files.catbox.moe/5m0i6t.jpg' },
     caption
   }, { quoted: m });
+
   break;
 }
                                                   
