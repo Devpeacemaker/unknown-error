@@ -4109,11 +4109,26 @@ break;
 break;		      
 		      
 //========================================================================================================================//		      
- case 'sc': case 'script': case 'repo':
+ const fetch = require('node-fetch');
 
- client.sendMessage(m.chat, { image: { url: `https://files.catbox.moe/5m0i6t.jpg` }, caption: ` Hello👋 *${pushname}*, 𝗕𝗲𝗹𝗼𝘄 𝗜𝘀 𝗣𝗲𝗮𝗰𝗲-𝗛𝘂𝗯 𝗚𝗶𝘁𝗵𝘂𝗯 𝗥𝗲𝗽𝗼𓅂\n\nFork and maybe give us a star🌟.\n\n https://github.com/Devpeacemaker/PEACE-HUB\n\nLink with your whatsapp using pairing link below\n\nhttps://peace-hub-mcbo.onrender.com\n\nCopy the session and paste it on the SESSION string, Fill in the other required Variables before Deploy\n\nEnjoy and have fun with the Bot\n\n𝙲𝙾𝙳𝙴𝙳 𝙱𝚈 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁 !`},{quoted : m });
+case 'sc': case 'script': case 'repo': {
+  const res = await fetch('https://api.github.com/repos/Devpeacemaker/PEACE-HUB');
+  const data = await res.json();
+  const caption = `
+🔷 *Peace‑Hub GitHub Repo*  
+${data.description || 'No description'}
 
-   break;
+⭐ *Stars:* ${data.stargazers_count}     |     🌱 *Forks:* ${data.forks_count}
+
+𝙲𝙾𝙳𝙴𝙳 𝙱𝚈 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁 !
+  `.trim();
+
+  await client.sendMessage(m.chat, {
+    image: { url: 'https://files.catbox.moe/5m0i6t.jpg' },
+    caption
+  }, { quoted: m });
+  break;
+}
                                                   
 //========================================================================================================================//
 		      case 'closetime':
