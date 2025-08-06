@@ -4115,9 +4115,12 @@ case 'repo': {
   const res = await fetch('https://api.github.com/repos/Devpeacemaker/PEACE-HUB');
   const data = await res.json();
 
+  // Adjust time to Kenya timezone (UTC+3)
   const now = new Date();
-  const hours = now.getHours().toString().padStart(2, '0');
-  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const kenyaTime = new Date(now.getTime() + 3 * 60 * 60 * 1000); // UTC + 3
+
+  const hours = kenyaTime.getHours().toString().padStart(2, '0');
+  const minutes = kenyaTime.getMinutes().toString().padStart(2, '0');
   const currentTime = `${hours}:${minutes}`;
 
   const caption = `
@@ -4127,7 +4130,7 @@ ${data.description || '_No description provided_'}
 🔶  *Stars:* ${data.stargazers_count}  
 🔶  *Forks:* ${data.forks_count}
 
-🕒 *Time:* ${currentTime} (UTC)
+🕒 *Time:* ${currentTime} 
 
 🚀 𝙲𝙾𝙳𝙴𝙳 𝙱𝚈 𝙿𝙴𝙰𝙲𝙴𝙼𝙰𝙺𝙴𝚁
   `.trim();
