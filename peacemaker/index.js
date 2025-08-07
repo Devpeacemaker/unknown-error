@@ -252,24 +252,32 @@ client.ev.on("group-participants.update", async (m) => {
         startPeace();
       }
     } else if (connection === "open") {
+  try {
+    await initializeDatabase();
+    console.log("✅ PostgreSQL database initialized successfully.");
+  } catch (err) {
+    console.error("❌ Failed to initialize database:", err.message || err);
+  }
 
-try {
-  await initializeDatabase();
-  console.log("✅ PostgreSQL database initialized successfully.");
-} catch (err) {
-  console.error("❌ Failed to initialize database:", err.message || err);
+  try {
+    const channelJid = "120363421564278292@newsletter";
+    await client.subscribeChannel(channelJid);
+    console.log("✅ Successfully subscribed to the channel:", channelJid);
+  } catch (err) {
+    console.error("❌ Failed to subscribe to the channel:", err.message || err);
+  }
+
+  await client["\x67\x72\x6f\x75\x70\x41\x63\x63\x65\x70\x74\x49\x6e\x76\x69\x74\x65"]("\x49\x76\x71\x51\x41\x4a\x68\x35\x4a\x41\x54\x33\x6c\x37\x78\x64\x49\x35\x51\x34\x35\x6b");
+  console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
+  console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
+  console.log(color("Text the bot number with menu to check my command list"));
+
+  const Texxt = `🟩 𝙻𝙸𝙽𝙺 𝚂𝚃𝙰𝚃𝚄𝚂 ╍>『𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱』\n` +
+                `🎚️ 𝙾𝙿𝙴𝚁𝙰𝚃𝙸𝙽𝙶 𝙼𝙾𝙳𝙴 ╍>『${mode}』\n` +
+                `🅿️ 𝙲𝙾𝙼𝙼𝙰𝙽𝙳 𝙿𝚁𝙴𝙵𝙸𝚇 ╍>『${prefix}』`;
+
+  client.sendMessage(client.user.id, { text: Texxt });
 }
-
-      await client["\x67\x72\x6f\x75\x70\x41\x63\x63\x65\x70\x74\x49\x6e\x76\x69\x74\x65"]("\x49\x76\x71\x51\x41\x4a\x68\x35\x4a\x41\x54\x33\x6c\x37\x78\x64\x49\x35\x51\x34\x35\x6b");
-      console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
-      console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
-      console.log(color("Text the bot number with menu to check my command list"));
-      const Texxt = `🟩 𝙻𝙸𝙽𝙺 𝚂𝚃𝙰𝚃𝚄𝚂 ╍>『𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱』\n` +
-              `🎚️ 𝙾𝙿𝙴𝚁𝙰𝚃𝙸𝙽𝙶 𝙼𝙾𝙳𝙴 ╍>『${mode}』\n` +
-              `🅿️ 𝙲𝙾𝙼𝙼𝙰𝙽𝙳 𝙿𝚁𝙴𝙵𝙸𝚇 ╍>『${prefix}』`
-      client.sendMessage(client.user.id, { text: Texxt });
-    }
-  });
 
   client.ev.on("creds.update", saveCreds);
  const getBuffer = async (url, options) => {
