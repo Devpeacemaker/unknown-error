@@ -889,6 +889,24 @@ case 'antiedit': {
                     `Usage: ${prefix}antiedit [off/private/chat]\n` +
                     `Example: ${prefix}antiedit chat`);
 	}
+
+	  const db = require('../Database/config');
+    const success = await db.updateSetting('antiedit', newMode);
+
+    if (success) {
+      // Refresh settings in memory
+      client.settings = await db.getSettings();
+      m.reply(`✅ Antiedit mode set to *${newMode}*`);
+      console.log(`[SETTINGS] Antiedit updated to ${newMode} by ${m.sender.split('@')[0]}`);
+    } else {
+      m.reply('❌ Failed to update. Check bot logs.');
+    }
+  } catch (err) {
+    console.error('[ANTIEDIT COMMAND ERROR]', err);
+    m.reply('❌ Error updating setting. Please try again.');
+  }
+  break;
+}
 		      
 case "gptdm": {
 	if(!Owner) throw NotOwner;
