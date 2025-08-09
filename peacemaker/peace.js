@@ -875,6 +875,19 @@ case "antidelete": {
   reply(`✅ Antidelete has been turned *${text.toUpperCase()}*`);
 }
 break;	
+			  
+case 'antiedit': {
+  try {
+    const validModes = ['off', 'private', 'chat'];
+    const newMode = args[0]?.toLowerCase().trim();
+
+    if (!newMode || !validModes.includes(newMode)) {
+      const currentMode = client.settings?.antiedit || 'private';
+      return m.reply(`📝 *Antiedit Settings*\n\n` +
+                    `Current: ${currentMode}\n` +
+                    `Usage: ${prefix}antiedit [off/private/chat]\n` +
+                    `Example: ${prefix}antiedit chat`);
+	}
 		      
 case "gptdm": {
 	if(!Owner) throw NotOwner;
