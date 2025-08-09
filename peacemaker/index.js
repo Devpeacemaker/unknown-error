@@ -1,4 +1,3 @@
-
 const {
   default: peaceConnect,
   useMultiFileAuthState,
@@ -43,14 +42,14 @@ authenticationn();
 
 async function startPeace() { 
   
-let autobio, autolike, autoview, mode, prefix, anticall;
+let autobio, autolike, autoview, mode, prefix, anticall, antiedit;
 
 try {
   const settings = await fetchSettings();
   console.log("😴 settings object:", settings);
 
   
-  ({ autobio, autolike, autoview, mode, prefix, anticall } = settings);
+  ({ autobio, autolike, autoview, mode, prefix, anticall, antiedit } = settings);
 
   console.log("✅ Settings loaded successfully.... indexfile");
 } catch (error) {
@@ -120,6 +119,99 @@ if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
       console.log(err);
     }
   });
+
+// Add at top with other declarations
+const processedEdits = new Set();
+const EDIT_COOLDOWN = 5000; // 5 seconds cooldown
+
+client.ev.on('messages.update', async (messageUpdates) => {
+  try {
+    const { antiedit: currentAntiedit } = await fetchSettings();
+    if (currentAntiedit === 'off') return;
+
+    const now = Date.now();
+    
+    for (const update of messageUpdates) {
+      const { key, update: { message } } = update;
+      if (!key?.id || !message) continue;
+
+      const editId = `${key.id}-${key.remoteJid}`;
+      
+      // Skip if recently processed
+      if (processedEdits.has(editId)) {
+        const [timestamp] = processedEdits.get(editId);
+        if (now - timestamp < EDIT_COOLDOWN) continue;
+      }
+
+      const chat = key.remoteJid;
+      const isGroup = chat.endsWith('@g.us');
+      const editedMsg = message.editedMessage?.message || message.editedMessage;
+      if (!editedMsg) continue;
+
+      // Get both messages properly
+      const originalMsg = await store.loadMessage(chat, key.id) || {};
+      const sender = key.participant || key.remoteJid;
+      const senderName = await client.getName(sender);
+
+      // Enhanced content extractor
+      const getContent = (msg) => {
+        if (!msg) return '[Deleted]';
+        const type = Object.keys(msg)[0];
+        const content = msg[type];
+        
+        switch(type) {
+          case 'conversation': 
+            return content;
+          case 'extendedTextMessage': 
+            return content.text + 
+                  (content.contextInfo?.quotedMessage ? ' (with quoted message)' : '');
+          case 'imageMessage': 
+            return `🖼️ ${content.caption || 'Image'}`;
+          case 'videoMessage': 
+            return `🎥 ${content.caption || 'Video'}`;
+          case 'documentMessage': 
+            return `📄 ${content.fileName || 'Document'}`;
+          default: 
+            return `[${type.replace('Message', '')}]`;
+        }
+      };
+
+      const originalContent = getContent(originalMsg.message);
+      const editedContent = getContent(editedMsg);
+
+      // Only proceed if content actually changed
+      if (originalContent === editedContent) {
+        console.log(chalk.yellow(`[ANTIEDIT] No content change detected for ${editId}`));
+        continue;
+      }
+
+      const notificationMessage = `*⚠️📌 ᴘᴇᴀᴄᴇ ʜᴜʙ ᴀɴᴛɪᴇᴅɪᴛ 📌⚠️*\n\n` +
+                               `👤 *sᴇɴᴅᴇʀ:* @${sender.split('@')[0]}\n` +
+                               `📄 *ᴏʀɪɢɪɴᴀʟ ᴍᴇssᴀɢᴇ:* ${originalContent}\n` +
+                               `✏️ *ᴇᴅɪᴛᴇᴅ ᴍᴇssᴀɢᴇ:* ${editedContent}\n` +
+                               `🧾 *ᴄʜᴀᴛ ᴛʏᴘᴇ:* ${isGroup ? 'Group' : 'DM'}`;
+
+      const sendTo = currentAntiedit === 'private' ? client.user.id : chat;
+      await client.sendMessage(sendTo, { 
+        text: notificationMessage,
+        mentions: [sender]
+      });
+
+      // Update tracking with timestamp
+      processedEdits.set(editId, [now, originalContent, editedContent]);
+      console.log(chalk.green(`[ANTIEDIT] Reported edit from ${senderName}`));
+    }
+
+    // Cleanup old entries
+    for (const [id, data] of processedEdits) {
+      if (now - data[0] > 60000) { // 1 minute retention
+        processedEdits.delete(id);
+      }
+    }
+  } catch (err) {
+    console.error(chalk.red('[ANTIEDIT ERROR]', err.stack));
+  }
+});
 
   // Handle error
   const unhandledRejections = new Map();
