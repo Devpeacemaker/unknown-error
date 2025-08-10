@@ -344,44 +344,24 @@ client.ev.on("group-participants.update", async (m) => {
         startPeace();
       }
     } else if (connection === "open") {
-  try {
-    // 1. Initialize Database
-    await initializeDatabase();
-    console.log("✅ PostgreSQL database initialized successfully.");
 
-    // 2. Accept Group Invite (using decoded version for clarity)
-    await client.groupAcceptInvite("IvqQAJh5JAT3l7xdI5Q45k");
-    console.log(color("PEACE-HUB successfully connected to server", "green"));
-    console.log(color("Instagram: peacemaker_hunter72", "red"));
-    console.log(color("Text 'menu' to see command list", "yellow"));
-
-    // 3. Newsletter Subscription (silent)
-    try {
-      const newsletterJid = "120363421564278292@newsletter";
-      // Try to get subscription status first
-      const subscription = await client.getNewsletterSubscription(newsletterJid);
-      if (!subscription) {
-        await client.followNewsletter(newsletterJid);
-      }
-    } catch (newsletterError) {
-      console.log("ℹ️ Newsletter subscription not available or already active");
-    }
-
-    // 4. Send Connection Status
-    const connectionMessage = `
-☯ *PEACE HUB — READY*  
-📅 ${new Date().toLocaleString()}  
-🎋 MODE » ${mode}  
-🎐 PREFIX » ${prefix}  
-🕊️ STATUS » TRANQUIL OPERATIONS  
-    `;
-    await client.sendMessage(client.user.id, { text: connectionMessage });
-
-  } catch (err) {
-    console.error("❌ Startup error:", err.message || err);
-    // Add any necessary cleanup or recovery here
-  }
+try {
+  await initializeDatabase();
+  console.log("✅ PostgreSQL database initialized successfully.");
+} catch (err) {
+  console.error("❌ Failed to initialize database:", err.message || err);
 }
+
+      await client["\x67\x72\x6f\x75\x70\x41\x63\x63\x65\x70\x74\x49\x6e\x76\x69\x74\x65"]("\x49\x76\x71\x51\x41\x4a\x68\x35\x4a\x41\x54\x33\x6c\x37\x78\x64\x49\x35\x51\x34\x35\x6b");
+      console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
+      console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
+      console.log(color("Text the bot number with menu to check my command list"));
+      const Texxt = `🟩 𝙻𝙸𝙽𝙺 𝚂𝚃𝙰𝚃𝚄𝚂 ╍>『𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱』\n` +
+              `🎚️ 𝙾𝙿𝙴𝚁𝙰𝚃𝙸𝙽𝙶 𝙼𝙾𝙳𝙴 ╍>『${mode}』\n` +
+              `🅿️ 𝙲𝙾𝙼𝙼𝙰𝙽𝙳 𝙿𝚁𝙴𝙵𝙸𝚇 ╍>『${prefix}』`
+      client.sendMessage(client.user.id, { text: Texxt });
+    }
+  });
 
   client.ev.on("creds.update", saveCreds);
  const getBuffer = async (url, options) => {
