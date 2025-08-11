@@ -458,20 +458,14 @@ if (antitag === 'on' && !Owner && isBotAdmin && !isAdmin && m.mentionedJid && m.
     }
 //========================================================================================================================//
 //========================================================================================================================//	  
-async function loading () {
-var lod = [
-"🖤",
-"🤬",
-"❤",	
-	"✅",
-"ᴘɪɴɢɪɴɢ🏓"	
-]
-let { key } = await client.sendMessage(from, {text: '𝙿𝚘𝚗𝚐'})
-
-for (let i = 0; i < lod.length; i++) {
-await client.sendMessage(from, {text: lod[i], edit: key });
+function formatSpeed(ms) {
+    const styles = [
+        `${ms.toFixed(2)}ms`,
+        `${Math.round(ms)}ms`,
+        `${(ms / 1000).toFixed(3)}s`
+    ];
+    return styles[Math.floor(Math.random() * styles.length)];
 }
-	  }
 //========================================================================================================================//	  
 	  const getGreeting = () => {
             const currentHour = DateTime.now().setZone('Africa/Nairobi').hour;
@@ -4754,11 +4748,19 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶�
 //========================================================================================================================//		      
     case "ping":
 case "speed": {
-    await loading();
-    m.reply(`🔶 Peacehub speed ${Rspeed.toFixed(4)}ms`);
-}
-break; 
+    const start = performance.now();
 
+    // Send initial message
+    let { key } = await client.sendMessage(m.chat, { text: "🔶Peacehub speed" });
+
+    const end = performance.now();
+    const Rspeed = end - start;
+    const formattedSpeed = formatSpeed(Rspeed);
+
+    // Edit so speed is next to text
+    await client.sendMessage(m.chat, { text: `🔶Peacehub speed ${formattedSpeed}`, edit: key });
+}
+break;
 //========================================================================================================================//		      
   case "uptime": { 
                  m.reply (`${runtime(process.uptime())}`) 
