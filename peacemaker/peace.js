@@ -5079,8 +5079,7 @@ if (!text) return m.reply("No emojis provided ? ")
 
         const command = body.slice(prefix.length).trim().split(/ +/).shift().toLowerCase();
 
-        case "dlt":
-case "dil": {
+        if (command === "dlt" || command === "dil") {
     if (!m.quoted) throw "No message quoted for deletion";
 
     const { id: quotedId, sender: quotedSender, isBaileys } = m.quoted;
@@ -5108,7 +5107,6 @@ case "dil": {
         }
     });
 }
-break;
 //========================================================================================================================//
 case "block": { 
  if (!Owner) throw NotOwner; 
