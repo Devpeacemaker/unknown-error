@@ -331,13 +331,29 @@ if (autoread === 'on' && !m.isGroup) {
     }
       if (itsMe && mek.key.id.startsWith("BAE5") && mek.key.id.length === 16 && !m.isGroup) return;
 //========================================================================================================================//
-if (antidelete === "on") {
-        if (mek.message?.protocolMessage?.key) {
-          await handleMessageRevocation(client, mek);
-        } else {
-          handleIncomingMessage(mek);
+//========================================================================================================================//
+// Detect deleted messages instantly
+client.ev.on('messages.upsert', async ({ messages, type }) => {
+    if (type !== 'notify') return;
+
+    for (const msg of messages) {
+        // Detect a deleted message
+        if (msg.message?.protocolMessage?.type === 0) {
+            const remoteJid = msg.key.remoteJid;
+            const messageId = msg.message.protocolMessage.key.id;
+
+            // Load original deleted message
+            const originalMessage = await client.loadMessage(remoteJid, messageId);
+            if (!originalMessage) return;
+
+            await handleMessageRevocation(client, {
+                key: originalMessage.key,
+                message: originalMessage.message,
+                participant: msg.key.participant || msg.participant || remoteJid
+            });
         }
-	  }
+    }
+});
 //========================================================================================================================//
  // Corrected sendContact function using available client methods
 client.sendContact = async (chatId, numbers, text = '', options = {}) => {
