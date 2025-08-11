@@ -5041,12 +5041,31 @@ if (!text) return m.reply("No emojis provided ? ")
 		      
 //========================================================================================================================//	
  case "dlt": case "dil": { 
- if (!m.quoted) throw `No message quoted for deletion`; 
- let { chat, fromMe, id, isBaileys } = m.quoted; 
- if (isBaileys) throw `I cannot delete. Quoted message is my message or another bot message.`; 
- client.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } }); 
- } 
- break;
+  if (!m.quoted) throw `No message quoted for deletion`; 
+  let { chat, fromMe, id, isBaileys } = m.quoted; 
+  if (isBaileys) throw `I cannot delete. Quoted message is my message or another bot message.`; 
+  
+  // Delete the quoted message
+  await client.sendMessage(m.chat, { 
+    delete: { 
+      remoteJid: m.chat, 
+      fromMe: true, 
+      id: m.quoted.id, 
+      participant: m.quoted.sender 
+    } 
+  }); 
+  
+  // Delete the command message
+  await client.sendMessage(m.chat, {
+    delete: {
+      remoteJid: m.chat,
+      fromMe: true,
+      id: m.id,
+      participant: m.sender
+    }
+  });
+} 
+break;
  
 //========================================================================================================================//
 case "block": { 
