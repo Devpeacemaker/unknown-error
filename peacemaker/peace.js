@@ -5064,47 +5064,37 @@ if (!text) return m.reply("No emojis provided ? ")
         const command = body.slice(prefix.length).trim().split(/ +/).shift().toLowerCase();
 
         // --- DELETE COMMAND ---
-        if (command === "dlt" || command === "dil") {
-            if (!m.message?.extendedTextMessage?.contextInfo?.quotedMessage) {
-                await client.sendMessage(from, { text: "No message quoted for deletion" }, { quoted: m });
-                return;
-            }
+        case "dlt":
+case "dil": {
+    if (!m.quoted) throw "No message quoted for deletion";
 
-            let quoted = m.message.extendedTextMessage.contextInfo;
-            let quotedId = quoted.stanzaId;
-            let quotedSender = quoted.participant;
-
-            // Prevent deleting bot/other bot messages
-            if (quoted.participant?.includes(client.user.id.split(":")[0])) {
-                await client.sendMessage(from, { text: "I cannot delete my own or another bot's message." }, { quoted: m });
-                return;
-            }
-
-            // Delete quoted message
-            await client.sendMessage(from, {
-                delete: {
-                    remoteJid: from,
-                    fromMe: false,
-                    id: quotedId,
-                    participant: quotedSender
-                }
-            });
-
-            // Delete the command message itself
-            await client.sendMessage(from, {
-                delete: {
-                    remoteJid: from,
-                    fromMe: true,
-                    id: m.key.id,
-                    participant: m.key.participant || m.sender
-                }
-            });
-        }
-
-    } catch (err) {
-        console.error("❌ Handler Error:", err);
+    const { id: quotedId, sender: quotedSender, isBaileys } = m.quoted;
+    if (isBaileys && quotedSender.split('@')[0] === client.user.id.split('@')[0]) {
+        throw "I cannot delete my own message.";
     }
-});
+
+    // Delete quoted message
+    await client.sendMessage(m.chat, {
+        delete: {
+            remoteJid: m.chat,
+            fromMe: false,
+            id: quotedId,
+            participant: quotedSender
+        }
+    });
+
+    // Delete the command message itself
+    await client.sendMessage(m.chat, {
+        delete: {
+            remoteJid: m.chat,
+            fromMe: true,
+            id: m.key.id,
+            participant: m.key.participant || m.sender
+        }
+    });
+}
+break;
+
  
 //========================================================================================================================//
 case "block": { 
