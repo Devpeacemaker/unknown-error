@@ -2501,7 +2501,7 @@ case "img": case "ai-img": case "image": case "images":{
             // Send the images
             const messages = imageUrls.map(url => ({
                 image: { url },
-                caption: `Downloaded by ${botname}`
+                caption: `ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ ʙʏ ${botname}`
             }));
 
             for (const message of messages) {
