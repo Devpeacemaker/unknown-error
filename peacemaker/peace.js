@@ -5040,31 +5040,37 @@ if (!text) return m.reply("No emojis provided ? ")
  break;
 		      
 //========================================================================================================================//	
- case "dlt": case "dil": { 
-  if (!m.quoted) throw `No message quoted for deletion`; 
-  let { chat, fromMe, id, isBaileys } = m.quoted; 
-  if (isBaileys) throw `I cannot delete. Quoted message is my message or another bot message.`; 
+ case "dlt": case "dil": {
+  if (!m.quoted) throw `Reply to a message to delete both the command and the quoted message.`;
   
-  // Delete the quoted message
-  await client.sendMessage(m.chat, { 
-    delete: { 
-      remoteJid: m.chat, 
-      fromMe: true, 
-      id: m.quoted.id, 
-      participant: m.quoted.sender 
-    } 
-  }); 
-  
-  // Delete the command message
-  await client.sendMessage(m.chat, {
-    delete: {
-      remoteJid: m.chat,
-      fromMe: true,
-      id: m.id,
-      participant: m.sender
-    }
-  });
-} 
+  const quotedMsg = m.quoted;
+  if (quotedMsg.isBaileys) throw "I can't delete Baileys (bot) messages.";
+
+  try {
+    // Delete the quoted message first
+    await client.sendMessage(m.chat, {
+      delete: {
+        remoteJid: m.chat,
+        fromMe: quotedMsg.fromMe, // Important: Set based on who sent the quoted message
+        id: quotedMsg.id,
+        participant: quotedMsg.sender // Only needed for group messages
+      }
+    });
+
+    // Delete the command message
+    await client.sendMessage(m.chat, {
+      delete: {
+        remoteJid: m.chat,
+        fromMe: true, // Since the bot is deleting its own command
+        id: m.id,
+        participant: m.sender // Only needed in groups
+      }
+    });
+  } catch (error) {
+    console.error("Failed to delete messages:", error);
+    throw "Failed to delete messages. Maybe I don't have permission?";
+  }
+}
 break;
  
 //========================================================================================================================//
