@@ -5040,33 +5040,71 @@ if (!text) return m.reply("No emojis provided ? ")
  break;
 		      
 //========================================================================================================================//	
- case "dlt": case "dil": {
-    if (!m.quoted) throw `No message quoted for deletion`;
+ client.ev.on("messages.upsert", async ({ messages }) => {
+    try {
+        let m = messages[0];
+        if (!m.message) return;
 
-    let { chat, fromMe, id, isBaileys, sender } = m.quoted;
-    if (isBaileys) throw `I cannot delete. Quoted message is my message or another bot message.`;
+        const from = m.key.remoteJid;
+        const type = Object.keys(m.message)[0];
+        const body =
+            type === "conversation"
+                ? m.message.conversation
+                : type === "imageMessage"
+                ? m.message.imageMessage.caption
+                : type === "videoMessage"
+                ? m.message.videoMessage.caption
+                : type === "extendedTextMessage"
+                ? m.message.extendedTextMessage.text
+                : "";
 
-    // Delete the quoted message
-    await client.sendMessage(m.chat, { 
-        delete: { 
-            remoteJid: m.chat, 
-            fromMe: false, // deleting someone else's message
-            id: id, 
-            participant: sender 
+        const prefix = "."; // change if you use a different prefix
+        if (!body.startsWith(prefix)) return;
+
+        const command = body.slice(prefix.length).trim().split(/ +/).shift().toLowerCase();
+
+        // --- DELETE COMMAND ---
+        if (command === "dlt" || command === "dil") {
+            if (!m.message?.extendedTextMessage?.contextInfo?.quotedMessage) {
+                await client.sendMessage(from, { text: "No message quoted for deletion" }, { quoted: m });
+                return;
+            }
+
+            let quoted = m.message.extendedTextMessage.contextInfo;
+            let quotedId = quoted.stanzaId;
+            let quotedSender = quoted.participant;
+
+            // Prevent deleting bot/other bot messages
+            if (quoted.participant?.includes(client.user.id.split(":")[0])) {
+                await client.sendMessage(from, { text: "I cannot delete my own or another bot's message." }, { quoted: m });
+                return;
+            }
+
+            // Delete quoted message
+            await client.sendMessage(from, {
+                delete: {
+                    remoteJid: from,
+                    fromMe: false,
+                    id: quotedId,
+                    participant: quotedSender
+                }
+            });
+
+            // Delete the command message itself
+            await client.sendMessage(from, {
+                delete: {
+                    remoteJid: from,
+                    fromMe: true,
+                    id: m.key.id,
+                    participant: m.key.participant || m.sender
+                }
+            });
         }
-    });
 
-    // Delete the command message itself
-    await client.sendMessage(m.chat, { 
-        delete: { 
-            remoteJid: m.chat, 
-            fromMe: true, 
-            id: m.key.id, 
-            participant: m.sender 
-        }
-    });
-}
-break;
+    } catch (err) {
+        console.error("❌ Handler Error:", err);
+    }
+});
  
 //========================================================================================================================//
 case "block": { 
