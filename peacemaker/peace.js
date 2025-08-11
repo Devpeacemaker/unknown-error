@@ -5064,36 +5064,13 @@ if (!text) return m.reply("No emojis provided ? ")
         const command = body.slice(prefix.length).trim().split(/ +/).shift().toLowerCase();
 
         // --- DELETE COMMAND ---
-        case "dlt":
-case "dil": {
-    if (!m.quoted) throw "No message quoted for deletion";
-
-    const { id: quotedId, sender: quotedSender, isBaileys } = m.quoted;
-    if (isBaileys && quotedSender.split('@')[0] === client.user.id.split('@')[0]) {
-        throw "I cannot delete my own message.";
-    }
-
-    // Delete quoted message
-    await client.sendMessage(m.chat, {
-        delete: {
-            remoteJid: m.chat,
-            fromMe: false,
-            id: quotedId,
-            participant: quotedSender
-        }
-    });
-
-    // Delete the command message itself
-    await client.sendMessage(m.chat, {
-        delete: {
-            remoteJid: m.chat,
-            fromMe: true,
-            id: m.key.id,
-            participant: m.key.participant || m.sender
-        }
-    });
-}
-break;
+         case "dlt": case "dil": { 
+ if (!m.quoted) throw `No message quoted for deletion`; 
+ let { chat, fromMe, id, isBaileys } = m.quoted; 
+ if (isBaileys) throw `I cannot delete. Quoted message is my message or another bot message.`; 
+ client.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } }); 
+ } 
+ break;
 
  
 //========================================================================================================================//
