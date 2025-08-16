@@ -736,7 +736,7 @@ if (antilinkall === 'on' && body.includes('https://') && !Owner && isBotAdmin &&
 ┃ □  𝙺𝚒𝚕𝚕  
 ┃ □  𝙺𝚒𝚕𝚕2  
 ┃ □  𝚂𝚊𝚟𝚎  
-┃ □  >
+┃ □  𝙱𝚕𝚘𝚌𝚔𝚕𝚒𝚜𝚝 
 ┗━─────────━━┛
 > 𝙿𝚁𝙰𝙽𝙺𝚂 𝙲𝙼𝙳𝚂
 ┏━──────────━┓
@@ -5116,27 +5116,60 @@ case "dil": {
 break;
  
 //========================================================================================================================//
-case "block": { 
- if (!Owner) throw NotOwner; 
- if (!m.quoted) throw `𝗧𝗮𝗴 𝘀𝗼𝗺𝗲𝗼𝗻𝗲!`  
- let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-	 if (users == "254752818245@s.whatsapp.net") return m.reply("𝗜 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗹𝗼𝗰𝗸 𝗺𝘆 𝗢𝘄𝗻𝗲𝗿 😡");
-		  if (users  == client.decodeJid(client.user.id)) throw '𝗜 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗹𝗼𝗰𝗸 𝗺𝘆𝘀𝗲𝗹𝗳 𝗶𝗱𝗶𝗼𝘁 😡';
- await client.updateBlockStatus(users, 'block'); 
- m.reply (`𝗕𝗹𝗼𝗰𝗸𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆!`); 
- } 
- break; 
+case "block": {
+    if (!Owner) throw NotOwner;
+    if (!m.quoted && !m.mentionedJid[0] && !text) throw "*🔖 Please tag someone or enter a phone number!*";
+    
+    let users = m.mentionedJid[0] 
+        ? m.mentionedJid[0] 
+        : m.quoted 
+            ? m.quoted.sender 
+            : text.replace(/[^0-9]/g, '') + '@s.whatsapp.net';
+    
+    if (users == "254752818245@s.whatsapp.net") return m.reply("*😠 I cannot block my Owner!*");
+    if (users == client.decodeJid(client.user.id)) return m.reply("*🤦 I cannot block myself!*");
+    
+    await client.updateBlockStatus(users, 'block');
+    m.reply("*✅ Blocked successfully!*");
+}
+break;
 
 //========================================================================================================================//		      
- case "unblock": { 
- if (!Owner) throw NotOwner; 
- if (!m.quoted) throw `𝗧𝗮𝗴 𝘀𝗼𝗺𝗲𝗼𝗻𝗲!`; 
- let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'; 
- await client.updateBlockStatus(users, 'unblock'); 
- m.reply (`𝗨𝗻𝗯𝗹𝗼𝗰𝗸𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆✅!`); 
- } 
- break;
+ case "unblock": {
+    if (!Owner) throw NotOwner;
+    if (!m.quoted && !m.mentionedJid[0] && !text) throw "*🔖 Please tag someone or enter a phone number!*";
+    
+    let users = m.mentionedJid[0] 
+        ? m.mentionedJid[0] 
+        : m.quoted 
+            ? m.quoted.sender 
+            : text.replace(/[^0-9]/g, '') + '@s.whatsapp.net';
+    
+    await client.updateBlockStatus(users, 'unblock');
+    m.reply("*✅ Unblocked successfully!*");
+}
+break;
 
+case "blocklist": {
+    if (!Owner) throw NotOwner;
+    
+    const blockedContacts = await client.fetchBlocklist();
+    
+    if (!blockedContacts || blockedContacts.length === 0) {
+        return m.reply("*📭 The block list is currently empty!*");
+    }
+
+    let blockedList = "*📋 Blocked Contacts List:*\n\n";
+    blockedContacts.forEach((contact, index) => {
+        const number = contact.split('@')[0];
+        blockedList += `*${index + 1}.* ${number}\n`;
+    });
+
+    blockedList += `\n*✅ Total: ${blockedContacts.length} contact(s)*`;
+    
+    m.reply(blockedList);
+}
+break;
 //========================================================================================================================//		      
           case 'join': { 
                  if (!Owner) throw NotOwner
