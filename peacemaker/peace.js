@@ -1450,26 +1450,33 @@ case "redeploy": {
 //========================================================================================================================//		      
 		      case "credits": {
     const creatorInfo = {
-        image: { url: 'https://files.catbox.moe/uykxm4.jpg' },
-        caption: `
-╔════════════════════╗
-       *PEACE-HUB CREATOR*  
-╚════════════════════╝
+        text: `
+╭─────────────────╮
+   *PEACE-HUB OFFICIAL*  
+╰─────────────────╯
 
-✦ *Founder*: Peacemaker  (Kenya)  
-✦ *Role*: Bot Architecture & Core Development  
-✦ *GitHub*: https://github.com/Devpeacemaker/PEACE-HUB 
+🔐 *Verified Developer Credentials*
 
-╔════════════════════╗
-        *BOT DNA*  
-╚════════════════════╝
-▸ *Version*: Peace-Hub v3.0  
-▸ *Specialization*: WhatsApp Automation  
-▸ *Philosophy*: "Code with Purpose"  
+🛠️ *Core Development*
+┌─────────────────────
+│ ✦ Founder: Peacemaker (Kenya)
+│ ✦ GitHub: Https://github.com/Devpeacemaker/PEACE-HUB 
+│ ✦ Version: Peace-Hub v3.0
+└─────────────────────
 
-*"This bot was crafted with precision to revolutionize your messaging experience."*
-        `,
-        footer: "PEACE-HUB © 2023 | All Rights Reserved"
+⚙️ *Technical Specifications*
+┌─────────────────────
+│ ✓ WhatsApp API Integration
+│ ✓ Encrypted Commands
+│ ✓ Multi-Device Support
+└─────────────────────
+
+*"Engineered for seamless communication"*
+
+╭─────────────────╮
+ © PEACE-HUB 2025 │ 
+╰─────────────────╯
+`,
     };
     client.sendMessage(m.chat, creatorInfo, { quoted: m });
     break;
@@ -2917,7 +2924,7 @@ const imageurl = `https://some-random-api.com/canvas/misc/tweet?displayname=${en
 
 
 
-await client.sendMessage(m.chat, { image: { url: imageurl}, caption: `𝗖𝗼𝗻𝘃𝗲𝗿𝘁𝗲𝗱 𝗯𝘆 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`}, { quoted: m}) 
+await client.sendMessage(m.chat, { image: { url: imageurl}, caption: `ᴄᴏɴᴠᴇʀᴛᴇᴅ ʙʏ ᴘᴇᴀᴄᴇ ʜᴜʙ`}, { quoted: m}) 
 
 	}
 	 break;
