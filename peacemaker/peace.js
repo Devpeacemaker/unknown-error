@@ -1433,10 +1433,10 @@ case "redeploy": {
         try {
             await axios.post(
                 `https://api.heroku.com/apps/${appname}/builds`,
-                { source_blob: { url: "https://github.com/Devpeacemaker/testing/tarball/main" } },
+                { source_blob: { url: "https://github.com/Devpeacemaker/unknown-error/tarball/main" } },
                 { headers: { Authorization: `Bearer ${herokuapi}`, Accept: "application/vnd.heroku+json; version=3" } }
             );
-            await m.reply("🌟 *PEACE HUB DEPLOYMENT TRIGGERED* 🌟");
+            await m.reply("🌟 *Peace Hub deployment triggered* 🌟");
         } catch (error) {
             await m.reply("💥 *PEACE HUB DEPLOYMENT FAILED* 💥");
             console.error("Redeploy error:", error.response?.data || error.message);
