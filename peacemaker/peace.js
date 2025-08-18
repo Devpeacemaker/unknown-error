@@ -1450,7 +1450,7 @@ case "redeploy": {
 //========================================================================================================================//		      
 		      case "credits": {
     const creatorInfo = {
-        image: { url: 'https://files.catbox.moe/duv8ac.jpg' },
+        image: { url: 'https://files.catbox.moe/uykxm4.jpg' },
         caption: `
 ╔════════════════════╗
        *PEACE-HUB CREATOR*  
