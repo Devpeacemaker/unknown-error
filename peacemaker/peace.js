@@ -605,7 +605,7 @@ let cap =`━━ *PEACE HUB* ━━
  *Time* : ${getCurrentTimeInNairobi()}
  *Ram* : ${ram()}
 
-*DOWNLOAD*
+*DOWNLOAD MENU*
 • Video
 • Video2
 • Play
@@ -624,7 +624,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Ytmp3
 • Ytmp4
 
-*CONVERT*
+*CONVERT MENU*
 • Sticker
 • Smeme
 • Photo
@@ -638,7 +638,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Tweet
 • Quotely
 
-*SETTINGS*
+*SETTINGS MENU*
 • Antidelete
 • Antiedit
 • Anticall
@@ -657,7 +657,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Welcomegoodbye
 • Wapresence
 
-*FOOTBALL*
+*FOOTBALL MENU*
 • Epl
 • Laliga
 • Serie-A
@@ -665,7 +665,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Ligue-1
 • Fixtures
 
-*AI*
+*AI MENU*
 • Ai
 • Ai2
 • Vision
@@ -678,7 +678,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Gpt3
 • Gpt4
 
-*GROUP*
+*GROUP MENU*
 • Approve
 • Reject
 • Promote
@@ -707,7 +707,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Mute
 • Unmute
 
-*CODING*
+*CODING MENU*
 • Carbon
 • Compile-C
 • Compile-C++
@@ -717,7 +717,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Encrypte
 • Eval
 
-*GENERAL*
+*GENERAL MENU*
 • Owner
 • Script
 • Menu
@@ -734,7 +734,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Mail
 • Inbox
 
-*OWNER*
+*OWNER MENU*
 • Restart
 • Admin
 • Cast
@@ -754,7 +754,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Save
 • Blocklist
 
-*LOGO*
+*LOGO MENU*
 • Hacker
 • Hacker2
 • Graffiti
@@ -769,7 +769,7 @@ let cap =`━━ *PEACE HUB* ━━
 • 1917
 • Typography
 
-*TEXTMAKER*
+*TEXTMAKER MENU*
 • Purple
 • Neon
 • Noel
@@ -784,7 +784,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Silver
 • Light
 
- *UTILITIES*
+ *UTILITIES MENU*
 • Weather
 • Github
 • Gitclone
@@ -794,7 +794,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Trt
 • Calc
 
-*RANDOM*
+*RANDOM MENU*
 • Fact
 • Funfact
 • Catfact
@@ -808,7 +808,7 @@ let cap =`━━ *PEACE HUB* ━━
 • Quotes
 • Pickupline
 
-*OTHER*
+*OTHER MENU*
 • Bible
 • Quran
 • Pair
