@@ -4405,7 +4405,7 @@ case 'repo': {
   const currentTime = `${hours}:${minutes}`;
 
   const caption = `
-🔷 *ᴘᴇᴀᴄᴇ‑ʜᴜʙ ɢɪᴛʜᴜʙ ʀᴇᴘᴏ*  
+🔷 *ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ ɢɪᴛʜᴜʙ ʀᴇᴘᴏ*  
 ${data.description || '_No description provided_'}
 
 🟣 *ᴅᴇᴘʟᴏʏ ʜᴇʀᴇ:*  
