@@ -1,5 +1,5 @@
 { 
-   "name": "PEACE-HUB", 
+   "name": "PEACE-CORE", 
    "version": "3.0.0", 
    "description": "WhatsApp Multi Device Bot", 
    "main": "index.js", 
@@ -84,10 +84,10 @@
    }, 
    "repository": { 
      "type": "git", 
-     "url": "git+https://github.com/Devpeacemaker/PEACE-HUB.git" 
+     "url": "git+https://github.com/Devpeacemaker/PEACE-CORE.git" 
    }, 
    "bugs": { 
-     "url": "https://github.com/Devpeacemaker/PEACE-HUB/issues" 
+     "url": "https://github.com/Devpeacemaker/PEACE-CORE/issues" 
    }, 
-   "homepage": "https://github.com/Devpeacemaker/PEACE-HUB#readme" 
+   "homepage": "https://github.com/Devpeacemaker/PEACE-CORE#readme" 
    }
