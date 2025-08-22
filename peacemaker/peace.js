@@ -706,6 +706,8 @@ let cap =`━━ *PEACE CORE* ━━
 • Revoke
 • Mute
 • Unmute
+• Kickall
+• Kickall2
 
 *CODING MENU*
 • Carbon
@@ -749,8 +751,6 @@ let cap =`━━ *PEACE CORE* ━━
 • Fullpp
 • Block
 • Unblock
-• Kill
-• Kill2
 • Save
 • Blocklist
 
