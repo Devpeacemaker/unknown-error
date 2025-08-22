@@ -5044,14 +5044,14 @@ case "speed": {
     const start = performance.now();
 
     // Send initial message
-    let { key } = await client.sendMessage(m.chat, { text: "🔶Peacehub speed" });
+    let { key } = await client.sendMessage(m.chat, { text: "🔶PeaceCore Speed" });
 
     const end = performance.now();
     const Rspeed = end - start;
     const formattedSpeed = formatSpeed(Rspeed);
 
     // Edit so speed is next to text
-    await client.sendMessage(m.chat, { text: `🔶Peacehub speed ${formattedSpeed}`, edit: key });
+    await client.sendMessage(m.chat, { text: `🔶PeaceCore Speed ${formattedSpeed}`, edit: key });
 }
 break;
 
