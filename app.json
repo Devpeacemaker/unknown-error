@@ -1,6 +1,6 @@
 {
-  "name": "PEACE HUB",
-  "description": "A whatsapp JavaScript bot made by Emmanuel",
+  "name": "PEACE CORE",
+  "description": "A simple yet complicated WhatsApp bot, Devpeacemaker",
   "keywords": [
     "bot",
     "whatsapp",
@@ -14,15 +14,14 @@
     "baileys-md",
     "md-bot"
   ],
-  "website": "https://github.com/Devpeacemaker/PEACE-HUB#readme",
-  "repository": "https://github.com/Devpeacemaker/PEACE-HUB.git",
+  "website": "https://github.com/Devpeacemaker/PEACE-CORE*#readme",
+  "repository": "https://github.com/Devpeacemaker/PEACE-CORE.git",
   "logo": "https://files.catbox.moe/yusei5.jpg",
   "success_url": "/",
   "env": {
     "DEV": {
-      "description": "Bot owner numbers (cannot remove default owner)",
-      "required": true,
-      "value": "254752818245"
+      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254752818245,923208206484",
+      "required": true
     },
     "HEROKU_API": {
       "description": "Put a Heroku API key here, will be required to update vars in your DM",
