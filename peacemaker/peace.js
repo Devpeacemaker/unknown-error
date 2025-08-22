@@ -217,7 +217,7 @@ async function handleMessageRevocation(client, revocationMessage, antideleteMode
     const deletedDate = localNow.toLocaleDateString();
 
     // Base notification text
-    let notificationText = `🚨 *ᴘᴇᴀᴄᴇ ʜᴜʙ ᴀɴᴛɪᴅᴇʟᴇᴛᴇ* 🚨\n\n` +
+    let notificationText = `🚨 *ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ ᴀɴᴛɪᴅᴇʟᴇᴛᴇ* 🚨\n\n` +
       `👤 ᴅᴇʟᴇᴛᴇᴅ ʙʏ: ${deletedByFormatted}\n` +
       `✉️ sᴇɴᴛ ʙʏ: ${sentByFormatted}\n` +
       `📅 ᴅᴀᴛᴇ: ${deletedDate}\n` +
@@ -595,7 +595,7 @@ if (antilinkall === 'on' && body.includes('https://') && !Owner && isBotAdmin &&
             });
             
                 
-let cap =`━━ *PEACE HUB* ━━
+let cap =`━━ *PEACE CORE* ━━
  *Owner* : Peacemaker
  *Prefix* : [ ${prefix} ]
  *Mode* : ${mode}
@@ -1429,9 +1429,9 @@ case "redeploy": {
                 { source_blob: { url: "https://github.com/Devpeacemaker/unknown-error/tarball/main" } },
                 { headers: { Authorization: `Bearer ${herokuapi}`, Accept: "application/vnd.heroku+json; version=3" } }
             );
-            await m.reply("🌟 *Peace Hub deployment triggered* 🌟");
+            await m.reply("🌟 *Peace Core deployment triggered* 🌟");
         } catch (error) {
-            await m.reply("💥 *PEACE HUB DEPLOYMENT FAILED* 💥");
+            await m.reply("💥 *PEACE CORE DEPLOYMENT FAILED* 💥");
             console.error("Redeploy error:", error.response?.data || error.message);
         }
     }
@@ -1445,7 +1445,7 @@ case "redeploy": {
     const creatorInfo = {
         text: `
 ╭─────────────────╮
-   *PEACE-HUB OFFICIAL*  
+   *PEACE-CORE OFFICIAL*  
 ╰─────────────────╯
 
 🔐 *Verified Developer Credentials*
@@ -1453,7 +1453,7 @@ case "redeploy": {
 🛠️ *Core Development*
 ┌─────────────────────
 │ ✦ Founder: Peacemaker (Kenya)
-│ ✦ GitHub: Https://github.com/Devpeacemaker/PEACE-HUB 
+│ ✦ GitHub: Https://github.com/Devpeacemaker/PEACE-CORE 
 │ ✦ Version: Peace-Hub v3.0
 └─────────────────────
 
@@ -1467,7 +1467,7 @@ case "redeploy": {
 *"Engineered for seamless communication"*
 
 ╭─────────────────╮
- © PEACE-HUB 2025 │ 
+ © PEACE-CORE 2025 │ 
 ╰─────────────────╯
 `,
     };
@@ -4393,7 +4393,7 @@ break;
 case 'sc':
 case 'script':
 case 'repo': {
-  const res = await fetch('https://api.github.com/repos/Devpeacemaker/PEACE-HUB');
+  const res = await fetch('https://api.github.com/repos/Devpeacemaker/PEACE-CORE');
   const data = await res.json();
 
   // Adjust time to Kenya timezone (UTC+3)
@@ -4409,7 +4409,7 @@ case 'repo': {
 ${data.description || '_No description provided_'}
 
 🟣 *ᴅᴇᴘʟᴏʏ ʜᴇʀᴇ:*  
-*https://github.com/Devpeacemaker/PEACE-HUB*
+*https://github.com/Devpeacemaker/PEACE-CORE*
 
 🔶  *Stars:* ${data.stargazers_count}  
 🔶  *Forks:* ${data.forks_count}
