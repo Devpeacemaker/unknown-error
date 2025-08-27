@@ -27,11 +27,6 @@
       "description": "Put a Heroku API key here, will be required to update vars in your DM",
       "required": true
     },
-    "BAD_WORD": {
-      "description": "List words separated with commas that will be considered bad. Example: fuck, pussy, hoe",
-      "value": "fuck,pussy,slut,bitch,cock,stupid",
-      "required": false
-    },
     "CODE": {
       "description": "Country code without +, used for antiforeign feature (e.g., 254)",
       "value": "254",
