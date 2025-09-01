@@ -14,7 +14,7 @@ const defaultSettings = {
   antibot: 'off',
   anticall: 'on',
   antiforeign: 'off',
-  badword: 'on',
+  badword: 'off',
   gptdm: 'off',
   welcomegoodbye: 'off',
   autoread: 'off',
