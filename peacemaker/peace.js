@@ -1542,7 +1542,7 @@ try {
     let link = search.all[0].url;
 
 const apis = [
-      `https://xploader-api.vercel.app/ytmp3?url=${link}`,
+      `https://casper-tech-apis.vercel.app/api/downloader/yt-audio?url=${link}`,
       `https://apis.davidcyriltech.my.id/youtube/mp3?url=${link}`,
       `https://api.ryzendesu.vip/api/downloader/ytmp3?url=${link}`,
       `https://api.dreaded.site/api/ytdl/audio?url=${link}`
