@@ -1,4 +1,4 @@
-/* If it works, don't Fix it */
+
 const {
   default: peaceConnect,
   useMultiFileAuthState,
@@ -41,9 +41,9 @@ const color = (text, color) => {
 
 authenticationn();
 
-// Add at top with other declarations
+
 const processedEdits = new Set();
-const EDIT_COOLDOWN = 5000; // 5 seconds cooldown
+const EDIT_COOLDOWN = 5000; 
 
 async function startPeace() { 
   
@@ -126,7 +126,7 @@ if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
     }
   });
 
-  // Anti-edit feature
+  
   client.ev.on('messages.update', async (messageUpdates) => {
     try {
       const { antiedit: currentAntiedit } = await fetchSettings();
@@ -355,7 +355,7 @@ try {
   console.error("❌ Failed to initialize database:", err.message || err);
 }
 
-      // Peace version group invite - keeping the original Peace group link
+      
       await client.groupAcceptInvite("IvqQAJh5JAT3l7xdI5Q45k");
       console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
       console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
