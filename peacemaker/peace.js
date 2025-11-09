@@ -1535,64 +1535,62 @@ let options = []
 		break;
 
 //========================================================================================================================//		      
-	 case 'play':{
-  if (!text) return m.reply("Which song do you want to download?");
-  try {
+	case 'play':{
+     if (!text) return m.reply("Which song do you want to download?");
+try {
     let search = await yts(text);
     let link = search.all[0].url;
 
-    const api = `https://casper-tech-apis.vercel.app/api/downloader/yt-audio?url=${link}`;
+const apis = [
+      `https://api.privatezia.biz.id/api/downloader/ytmp3?url=${link}`
+       ];
 
-    try {
-      let data = await fetchJson(api);
+    for (const api of apis) {
+      try {
+        let data = await fetchJson(api);
 
-      // Handle API response structure
-      let videoUrl;
-      if (data.success && data.result) {
-        videoUrl = data.result.url || data.result.downloadUrl;
+        // Checking if the API response is successful
+        if (data.status === 200 || data.success) {
+          let videoUrl = data.result?.downloadUrl || data.url;
+          let outputFileName = `${search.all[0].title.replace(/[^a-zA-Z0-9 ]/g, "")}.mp3`;
+          let outputPath = path.join(__dirname, outputFileName);
+
+          const response = await axios({
+            url: videoUrl,
+            method: "GET",
+            responseType: "stream"
+          });
+
+          if (response.status !== 200) {
+            m.reply("sorry endpoint didn't respond correctly.");
+            continue;
+          }
+		ffmpeg(response.data)
+            .toFormat("mp3")
+            .save(outputPath)
+            .on("end", async () => {
+await client.sendMessage(
+                m.chat,
+                {
+                  document: { url: outputPath },
+                  mimetype: "audio/mp3",
+		  caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳 𝙱𝚈 ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ",
+                  fileName: outputFileName,
+                },
+                { quoted: m }
+              );
+              fs.unlinkSync(outputPath);
+            })
+            .on("error", (err) => {
+              m.reply("Download failed\n" + err.message);
+            });
+          return;
+        }
+      } catch (e) {
+        continue;
       }
-
-      if (!videoUrl) {
-        throw new Error("No download URL found in API response");
-      }
-
-      let outputFileName = `${search.all[0].title.replace(/[^a-zA-Z0-9 ]/g, "")}.mp3`;
-      let outputPath = path.join(__dirname, outputFileName);
-
-      const response = await axios({
-        url: videoUrl,
-        method: "GET",
-        responseType: "stream"
-      });
-
-      if (response.status !== 200) {
-        throw new Error("API endpoint didn't respond correctly");
-      }
-
-      ffmpeg(response.data)
-        .toFormat("mp3")
-        .save(outputPath)
-        .on("end", async () => {
-          await client.sendMessage(
-            m.chat,
-            {
-              document: { url: outputPath },
-              mimetype: "audio/mp3",
-              caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
-              fileName: outputFileName,
-            },
-            { quoted: m }
-          );
-          fs.unlinkSync(outputPath);
-        })
-        .on("error", (err) => {
-          m.reply("Download failed\n" + err.message);
-        });
-
-    } catch (apiError) {
-      m.reply("Failed to fetch download URL from API: " + apiError.message);
-    }
-
+   }
+    m.reply("*Failed try again later*.");
   } catch (error) {
     m.reply("Download failed\n" + error.message);
   }
