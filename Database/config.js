@@ -9,10 +9,9 @@ const usePostgres = process.env.DATABASE_URL &&
 
 let db;
 let pool;
-let Database;
 
 if (usePostgres) {
-  
+ 
   const { Pool } = require('pg');
   pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -21,10 +20,9 @@ if (usePostgres) {
   console.log("🔗 Using PostgreSQL database");
 } else {
 
-  Database = require('better-sqlite3');
+  const sqlite3 = require('sqlite3').verbose();
   const dbPath = path.join(__dirname, 'database.sqlite');
-  db = new Database(dbPath);
-  db.pragma('journal_mode = WAL');
+  db = new sqlite3.Database(dbPath);
   console.log("💾 Using SQLite database");
 }
 
@@ -49,12 +47,12 @@ const defaultSettings = {
   antiedit: 'private' 
 };
 
-// ================= DATABASE INITIALIZATION =================
+// ==================================
 async function initializeDatabase() {
   if (usePostgres) {
     return await initializePostgres();
   } else {
-    return initializeSQLite();
+    return await initializeSQLite();
   }
 }
 
@@ -109,65 +107,89 @@ async function initializePostgres() {
 }
 
 function initializeSQLite() {
-  console.log("💾 Initializing SQLite database...");
+  return new Promise((resolve, reject) => {
+    console.log("💾 Initializing SQLite database...");
 
-  try {
     // Enable foreign keys
-    db.pragma('foreign_keys = ON');
+    db.run('PRAGMA foreign_keys = ON');
 
     // 🔹 Bot settings
-    db.prepare(`
+    db.run(`
       CREATE TABLE IF NOT EXISTS bot_settings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         key TEXT UNIQUE NOT NULL,
         value TEXT NOT NULL
       )
-    `).run();
-
-    // 🔹 Sudo owners
-    db.prepare(`
-      CREATE TABLE IF NOT EXISTS sudo_owners (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        number TEXT UNIQUE NOT NULL
-      )
-    `).run();
-
-    // 🔹 Badwords
-    db.prepare(`
-      CREATE TABLE IF NOT EXISTS badwords (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        word TEXT UNIQUE NOT NULL
-      )
-    `).run();
-
-    // Insert default settings if not exist
-    const insertStmt = db.prepare(`
-      INSERT OR IGNORE INTO bot_settings (key, value) 
-      VALUES (?, ?)
-    `);
-
-    const transaction = db.transaction((settings) => {
-      for (const [key, value] of Object.entries(settings)) {
-        insertStmt.run(key, value);
+    `, (err) => {
+      if (err) {
+        console.error("❌ Failed to create bot_settings table:", err);
+        reject(err);
+        return;
       }
+
+      // 🔹 Sudo owners
+      db.run(`
+        CREATE TABLE IF NOT EXISTS sudo_owners (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          number TEXT UNIQUE NOT NULL
+        )
+      `, (err) => {
+        if (err) {
+          console.error("❌ Failed to create sudo_owners table:", err);
+          reject(err);
+          return;
+        }
+
+        // 🔹 Badwords
+        db.run(`
+          CREATE TABLE IF NOT EXISTS badwords (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            word TEXT UNIQUE NOT NULL
+          )
+        `, (err) => {
+          if (err) {
+            console.error("❌ Failed to create badwords table:", err);
+            reject(err);
+            return;
+          }
+
+          // Insert default settings if not exist
+          const insertStmt = db.prepare(`
+            INSERT OR IGNORE INTO bot_settings (key, value) 
+            VALUES (?, ?)
+          `);
+
+       
+          db.serialize(() => {
+            db.run('BEGIN TRANSACTION');
+            
+            for (const [key, value] of Object.entries(defaultSettings)) {
+              insertStmt.run(key, value);
+            }
+            
+            insertStmt.finalize();
+            db.run('COMMIT', (err) => {
+              if (err) {
+                console.error("❌ Failed to insert default settings:", err);
+                reject(err);
+              } else {
+                console.log("✅ SQLite database initialized.");
+                resolve(true);
+              }
+            });
+          });
+        });
+      });
     });
-
-    transaction(defaultSettings);
-
-    console.log("✅ SQLite database initialized.");
-    return true;
-  } catch (err) {
-    console.error("❌ SQLite initialization error:", err);
-    return false;
-  }
+  });
 }
 
-// ==================================
+// ================= SETTINGS FUNCTIONS =================
 async function getSettings() {
   if (usePostgres) {
     return await getSettingsPostgres();
   } else {
-    return getSettingsSQLite();
+    return await getSettingsSQLite();
   }
 }
 
@@ -194,31 +216,41 @@ async function getSettingsPostgres() {
 }
 
 function getSettingsSQLite() {
-  try {
-    const stmt = db.prepare(`
-      SELECT key, value FROM bot_settings 
-      WHERE key IN (${Object.keys(defaultSettings).map(() => '?').join(',')})
-    `);
-    
-    const rows = stmt.all(...Object.keys(defaultSettings));
-    const settings = { ...defaultSettings };
-    
-    for (const row of rows) {
-      settings[row.key] = row.value;
+  return new Promise((resolve, reject) => {
+    try {
+      const keys = Object.keys(defaultSettings);
+      const placeholders = keys.map(() => '?').join(',');
+      
+      db.all(
+        `SELECT key, value FROM bot_settings WHERE key IN (${placeholders})`,
+        keys,
+        (err, rows) => {
+          if (err) {
+            console.error("❌ Failed to fetch settings from SQLite:", err);
+            resolve(defaultSettings);
+            return;
+          }
+          
+          const settings = { ...defaultSettings };
+          for (const row of rows) {
+            settings[row.key] = row.value;
+          }
+          
+          resolve(settings);
+        }
+      );
+    } catch (err) {
+      console.error("❌ Error in getSettingsSQLite:", err);
+      resolve(defaultSettings);
     }
-    
-    return settings;
-  } catch (err) {
-    console.error("❌ Failed to fetch settings from SQLite:", err);
-    return defaultSettings;
-  }
+  });
 }
 
 async function updateSetting(key, value) {
   if (usePostgres) {
     return await updateSettingPostgres(key, value);
   } else {
-    return updateSettingSQLite(key, value);
+    return await updateSettingSQLite(key, value);
   }
 }
 
@@ -243,24 +275,48 @@ async function updateSettingPostgres(key, value) {
 }
 
 function updateSettingSQLite(key, value) {
-  try {
-    const validKeys = Object.keys(defaultSettings);
-    if (!validKeys.includes(key)) throw new Error(`Invalid setting key: ${key}`);
+  return new Promise((resolve, reject) => {
+    try {
+      const validKeys = Object.keys(defaultSettings);
+      if (!validKeys.includes(key)) {
+        reject(new Error(`Invalid setting key: ${key}`));
+        return;
+      }
 
-    const stmt = db.prepare(`UPDATE bot_settings SET value = ? WHERE key = ?`);
-    const result = stmt.run(value, key);
-    
-    if (result.changes === 0) {
-      // Insert if doesn't exist
-      const insertStmt = db.prepare(`INSERT OR IGNORE INTO bot_settings (key, value) VALUES (?, ?)`);
-      insertStmt.run(key, value);
+      db.run(
+        `UPDATE bot_settings SET value = ? WHERE key = ?`,
+        [value, key],
+        function(err) {
+          if (err) {
+            console.error("❌ Failed to update setting in SQLite:", err);
+            resolve(false);
+            return;
+          }
+          
+          if (this.changes === 0) {
+            // Insert if doesn't exist
+            db.run(
+              `INSERT OR IGNORE INTO bot_settings (key, value) VALUES (?, ?)`,
+              [key, value],
+              (err) => {
+                if (err) {
+                  console.error("❌ Failed to insert setting in SQLite:", err);
+                  resolve(false);
+                } else {
+                  resolve(true);
+                }
+              }
+            );
+          } else {
+            resolve(true);
+          }
+        }
+      );
+    } catch (err) {
+      console.error("❌ Error in updateSettingSQLite:", err);
+      resolve(false);
     }
-    
-    return true;
-  } catch (err) {
-    console.error("❌ Failed to update setting in SQLite:", err.message || err);
-    return false;
-  }
+  });
 }
 
 // ================= SUDO OWNER FUNCTIONS =================
@@ -268,7 +324,7 @@ async function addSudoOwner(number) {
   if (usePostgres) {
     return await addSudoOwnerPostgres(number);
   } else {
-    return addSudoOwnerSQLite(number);
+    return await addSudoOwnerSQLite(number);
   }
 }
 
@@ -289,21 +345,27 @@ async function addSudoOwnerPostgres(number) {
 }
 
 function addSudoOwnerSQLite(number) {
-  try {
-    const stmt = db.prepare(`INSERT OR IGNORE INTO sudo_owners (number) VALUES (?)`);
-    stmt.run(number);
-    return true;
-  } catch (err) {
-    console.error("❌ Failed to add sudo owner to SQLite:", err);
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    db.run(
+      `INSERT OR IGNORE INTO sudo_owners (number) VALUES (?)`,
+      [number],
+      (err) => {
+        if (err) {
+          console.error("❌ Failed to add sudo owner to SQLite:", err);
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      }
+    );
+  });
 }
 
 async function removeSudoOwner(number) {
   if (usePostgres) {
     return await removeSudoOwnerPostgres(number);
   } else {
-    return removeSudoOwnerSQLite(number);
+    return await removeSudoOwnerSQLite(number);
   }
 }
 
@@ -321,21 +383,27 @@ async function removeSudoOwnerPostgres(number) {
 }
 
 function removeSudoOwnerSQLite(number) {
-  try {
-    const stmt = db.prepare(`DELETE FROM sudo_owners WHERE number = ?`);
-    stmt.run(number);
-    return true;
-  } catch (err) {
-    console.error("❌ Failed to remove sudo owner from SQLite:", err);
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    db.run(
+      `DELETE FROM sudo_owners WHERE number = ?`,
+      [number],
+      (err) => {
+        if (err) {
+          console.error("❌ Failed to remove sudo owner from SQLite:", err);
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      }
+    );
+  });
 }
 
 async function getSudoOwners() {
   if (usePostgres) {
     return await getSudoOwnersPostgres();
   } else {
-    return getSudoOwnersSQLite();
+    return await getSudoOwnersSQLite();
   }
 }
 
@@ -353,21 +421,27 @@ async function getSudoOwnersPostgres() {
 }
 
 function getSudoOwnersSQLite() {
-  try {
-    const stmt = db.prepare(`SELECT number FROM sudo_owners`);
-    const rows = stmt.all();
-    return rows.map(r => r.number);
-  } catch (err) {
-    console.error("❌ Failed to fetch sudo owners from SQLite:", err);
-    return [];
-  }
+  return new Promise((resolve, reject) => {
+    db.all(
+      `SELECT number FROM sudo_owners`,
+      [],
+      (err, rows) => {
+        if (err) {
+          console.error("❌ Failed to fetch sudo owners from SQLite:", err);
+          resolve([]);
+        } else {
+          resolve(rows.map(r => r.number));
+        }
+      }
+    );
+  });
 }
 
 async function isSudoOwner(number) {
   if (usePostgres) {
     return await isSudoOwnerPostgres(number);
   } else {
-    return isSudoOwnerSQLite(number);
+    return await isSudoOwnerSQLite(number);
   }
 }
 
@@ -388,14 +462,20 @@ async function isSudoOwnerPostgres(number) {
 }
 
 function isSudoOwnerSQLite(number) {
-  try {
-    const stmt = db.prepare(`SELECT 1 FROM sudo_owners WHERE number = ?`);
-    const row = stmt.get(number);
-    return !!row;
-  } catch (err) {
-    console.error("❌ Failed to check sudo owner in SQLite:", err);
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    db.get(
+      `SELECT 1 FROM sudo_owners WHERE number = ?`,
+      [number],
+      (err, row) => {
+        if (err) {
+          console.error("❌ Failed to check sudo owner in SQLite:", err);
+          resolve(false);
+        } else {
+          resolve(!!row);
+        }
+      }
+    );
+  });
 }
 
 // ================= BADWORD FUNCTIONS =================
@@ -403,7 +483,7 @@ async function addBadword(word) {
   if (usePostgres) {
     return await addBadwordPostgres(word);
   } else {
-    return addBadwordSQLite(word);
+    return await addBadwordSQLite(word);
   }
 }
 
@@ -424,21 +504,27 @@ async function addBadwordPostgres(word) {
 }
 
 function addBadwordSQLite(word) {
-  try {
-    const stmt = db.prepare(`INSERT OR IGNORE INTO badwords (word) VALUES (?)`);
-    stmt.run(word.toLowerCase());
-    return true;
-  } catch (err) {
-    console.error("❌ Failed to add badword to SQLite:", err);
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    db.run(
+      `INSERT OR IGNORE INTO badwords (word) VALUES (?)`,
+      [word.toLowerCase()],
+      (err) => {
+        if (err) {
+          console.error("❌ Failed to add badword to SQLite:", err);
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      }
+    );
+  });
 }
 
 async function removeBadword(word) {
   if (usePostgres) {
     return await removeBadwordPostgres(word);
   } else {
-    return removeBadwordSQLite(word);
+    return await removeBadwordSQLite(word);
   }
 }
 
@@ -456,21 +542,27 @@ async function removeBadwordPostgres(word) {
 }
 
 function removeBadwordSQLite(word) {
-  try {
-    const stmt = db.prepare(`DELETE FROM badwords WHERE word = ?`);
-    stmt.run(word.toLowerCase());
-    return true;
-  } catch (err) {
-    console.error("❌ Failed to remove badword from SQLite:", err);
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    db.run(
+      `DELETE FROM badwords WHERE word = ?`,
+      [word.toLowerCase()],
+      (err) => {
+        if (err) {
+          console.error("❌ Failed to remove badword from SQLite:", err);
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      }
+    );
+  });
 }
 
 async function getBadwords() {
   if (usePostgres) {
     return await getBadwordsPostgres();
   } else {
-    return getBadwordsSQLite();
+    return await getBadwordsSQLite();
   }
 }
 
@@ -488,39 +580,120 @@ async function getBadwordsPostgres() {
 }
 
 function getBadwordsSQLite() {
-  try {
-    const stmt = db.prepare(`SELECT word FROM badwords`);
-    const rows = stmt.all();
-    return rows.map(r => r.word);
-  } catch (err) {
-    console.error("❌ Failed to fetch badwords from SQLite:", err);
-    return [];
-  }
+  return new Promise((resolve, reject) => {
+    db.all(
+      `SELECT word FROM badwords`,
+      [],
+      (err, rows) => {
+        if (err) {
+          console.error("❌ Failed to fetch badwords from SQLite:", err);
+          resolve([]);
+        } else {
+          resolve(rows.map(r => r.word));
+        }
+      }
+    );
+  });
 }
 
-// ================= =================
+// ================= DATABASE BACKUP (SQLite only) =================
 function backupSQLiteDatabase() {
-  if (!usePostgres && db) {
-    try {
-      const backupPath = path.join(__dirname, `database_backup_${Date.now()}.sqlite`);
-      fs.copyFileSync(path.join(__dirname, 'database.sqlite'), backupPath);
-      console.log(`✅ SQLite database backed up to: ${backupPath}`);
-      return backupPath;
-    } catch (err) {
-      console.error("❌ Failed to backup SQLite database:", err);
-      return null;
+  return new Promise((resolve, reject) => {
+    if (!usePostgres && db) {
+      try {
+        const backupPath = path.join(__dirname, `database_backup_${Date.now()}.sqlite`);
+        fs.copyFileSync(path.join(__dirname, 'database.sqlite'), backupPath);
+        console.log(`✅ SQLite database backed up to: ${backupPath}`);
+        resolve(backupPath);
+      } catch (err) {
+        console.error("❌ Failed to backup SQLite database:", err);
+        resolve(null);
+      }
+    } else {
+      resolve(null);
     }
-  }
+  });
 }
 
-// ================= ================
+// ================= CLOSE CONNECTION =================
 async function closeDatabase() {
-  if (usePostgres && pool) {
-    await pool.end();
-    console.log("🔗 PostgreSQL connection closed");
-  } else if (db) {
-    db.close();
-    console.log("💾 SQLite connection closed");
+  return new Promise((resolve, reject) => {
+    if (usePostgres && pool) {
+      pool.end()
+        .then(() => {
+          console.log("🔗 PostgreSQL connection closed");
+          resolve();
+        })
+        .catch(err => {
+          console.error("❌ Error closing PostgreSQL connection:", err);
+          resolve();
+        });
+    } else if (db) {
+      db.close((err) => {
+        if (err) {
+          console.error("❌ Error closing SQLite connection:", err);
+        } else {
+          console.log("💾 SQLite connection closed");
+        }
+        resolve();
+      });
+    } else {
+      resolve();
+    }
+  });
+}
+
+// ================= ADDITIONAL UTILITY FUNCTIONS =================
+async function getDatabaseStats() {
+  if (usePostgres) {
+    const client = await pool.connect();
+    try {
+      const settingsCount = await client.query('SELECT COUNT(*) FROM bot_settings');
+      const sudoCount = await client.query('SELECT COUNT(*) FROM sudo_owners');
+      const badwordsCount = await client.query('SELECT COUNT(*) FROM badwords');
+      
+      return {
+        type: 'PostgreSQL',
+        settings: parseInt(settingsCount.rows[0].count),
+        sudo_owners: parseInt(sudoCount.rows[0].count),
+        badwords: parseInt(badwordsCount.rows[0].count)
+      };
+    } catch (err) {
+      console.error("❌ Failed to get PostgreSQL stats:", err);
+      return { type: 'PostgreSQL', error: err.message };
+    } finally {
+      client.release();
+    }
+  } else {
+    return new Promise((resolve, reject) => {
+      const stats = { type: 'SQLite' };
+      
+      db.get('SELECT COUNT(*) as count FROM bot_settings', (err, row) => {
+        if (err) {
+          stats.settings_error = err.message;
+        } else {
+          stats.settings = row.count;
+        }
+        
+        db.get('SELECT COUNT(*) as count FROM sudo_owners', (err, row) => {
+          if (err) {
+            stats.sudo_owners_error = err.message;
+          } else {
+            stats.sudo_owners = row.count;
+          }
+          
+          db.get('SELECT COUNT(*) as count FROM badwords', (err, row) => {
+            if (err) {
+              stats.badwords_error = err.message;
+            } else {
+              stats.badwords = row.count;
+            }
+            
+            resolve(stats);
+          });
+        });
+      });
+    });
   }
 }
 
@@ -537,6 +710,7 @@ module.exports = {
   getBadwords,
   backupSQLiteDatabase,
   closeDatabase,
-
+  getDatabaseStats,
+ 
   getDatabaseType: () => usePostgres ? 'postgresql' : 'sqlite'
 };
