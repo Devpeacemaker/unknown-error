@@ -20,7 +20,7 @@
   "success_url": "/",
   "env": {
     "DEV": {
-      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254752818245,923208206484",
+      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254752818245,254769876178",
       "required": true
     },
     "HEROKU_API": {
