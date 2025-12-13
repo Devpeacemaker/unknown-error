@@ -687,10 +687,11 @@ let cap =`━━ *PEACE CORE* ━━
 • Autobio
 • Mode
 • Setprefix
-• Welcomegoodbye
+• Welcome
+• Goodbye
 • Autotyping
 • Alwaysonline
-• Autorecording
+• Autorecording 
 • Wapresence
 
 *FOOTBALL MENU*
