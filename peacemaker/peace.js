@@ -1235,17 +1235,31 @@ case "antitag": {
 }
 break;	 
 	
-case "welcomegoodbye": {
-	if(!Owner) throw NotOwner;
-  const settings = await getSettings();
-  const current = settings.welcomegoodbye;
-  if (!text) return reply(`🕳 Welcomegoodbye is currently *${current.toUpperCase()}*`);
-  if (!["on", "off"].includes(text)) return reply("Usage: welcomegoodbye on/off");
-  if (text === current) return reply(`✅ Welcomegoodbye is already *${text.toUpperCase()}*`);
-  await updateSetting("welcomegoodbye", text);
-  reply(`✅ Welcomegoodbye has been turned *${text.toUpperCase()}*`);
+
+case "welcome": {
+    if(!Owner) throw NotOwner;
+    const settings = await getSettings();
+    const current = settings.welcome || 'on'; 
+    if (!text) return reply(`🎉 Welcome messages are currently *${current.toUpperCase()}*\n\nUsage: welcome on/off`);
+    if (!["on", "off"].includes(text.toLowerCase())) return reply("❌ Usage: welcome on/off\n\nTurn welcome messages on or off when new members join.");
+    if (text.toLowerCase() === current) return reply(`ℹ️ Welcome messages are already *${text.toUpperCase()}*`);
+    await updateSetting("welcome", text.toLowerCase());
+    reply(`✅ Welcome messages have been turned *${text.toUpperCase()}*\n\n${text === 'on' ? 'New members will receive welcome messages!' : 'Welcome messages are now disabled.'}`);
 }
-break;	 
+break;
+
+
+case "goodbye": {
+    if(!Owner) throw NotOwner;
+    const settings = await getSettings();
+    const current = settings.goodbye || 'on'; 
+    if (!text) return reply(`👋 Goodbye messages are currently *${current.toUpperCase()}*\n\nUsage: goodbye on/off`);
+    if (!["on", "off"].includes(text.toLowerCase())) return reply("❌ Usage: goodbye on/off\n\nTurn goodbye messages on or off when members leave.");
+    if (text.toLowerCase() === current) return reply(`ℹ️ Goodbye messages are already *${text.toUpperCase()}*`);
+    await updateSetting("goodbye", text.toLowerCase());
+    reply(`✅ Goodbye messages have been turned *${text.toUpperCase()}*\n\n${text === 'on' ? 'Members will receive farewell messages!' : 'Goodbye messages are now disabled.'}`);
+}
+break;
 		      
 //=========================================================================================================================//		      
 case "advice":
