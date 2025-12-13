@@ -556,7 +556,6 @@ if (
     if (antilink === 'on' && body.includes('chat.whatsapp.com') && !Owner && isBotAdmin && !isAdmin && m.isGroup) { 
     kid = m.sender; 
     
-    
     client.sendMessage(m.chat, { 
         delete: { 
             remoteJid: m.chat, 
@@ -565,12 +564,10 @@ if (
             participant: kid 
         } 
     }).then(() => {
-        
         client.groupParticipantsUpdate(m.chat, [kid], 'remove');
         
-        
         client.sendMessage(m.chat, {
-            text: `*🔗 Anti-Link System Activated!*\n\nHey @${kid.split("@")[0]}! ✨\n\nOopsie-daisy! 🚫 You tried to share a WhatsApp group link!\n\n*📛 Rule Violation:* Group Links are strictly prohibited here!\n*⚡ Action Taken:* Yeeted from the group!\n\n_If this was a mistake, contact the group admin._\n\n*💡 Pro Tip:* Read the rules next time! 📜`,
+            text: `⚠️ *PEACE CORE WARNING:*\n@${kid.split("@")[0]}, WhatsApp links not allowed here.\nRemoved from group.`,
             mentions: [kid]
         }, { quoted: m });
     });
@@ -581,7 +578,6 @@ if (
 if (antilinkall === 'on' && body.includes('https://') && !Owner && isBotAdmin && !isAdmin && m.isGroup) { 
     ki = m.sender; 
     
-    
     client.sendMessage(m.chat, { 
         delete: { 
             remoteJid: m.chat, 
@@ -590,12 +586,10 @@ if (antilinkall === 'on' && body.includes('https://') && !Owner && isBotAdmin &&
             participant: ki
         } 
     }).then(() => {
-        
         client.groupParticipantsUpdate(m.chat, [ki], 'remove');
         
-        
         client.sendMessage(m.chat, {
-            text: `*🌐 Universal Link Detector Activated!*\n\nYo @${ki.split("@")[0]}! 👋\n\nAha! 🕵️‍♂️ Caught red-handed sharing a link!\n\n*⚠️ Violation Detected:* External links are a big NO-NO!\n*🚀 Consequence:* Successfully launched out of the group!\n\n_Sorry, not sorry! Rules are rules! 🤷‍♂️_\n\n*Remember:* This isn't a link-sharing party! 🎉`,
+            text: `⚠️ *PEACE CORE WARNING:*\n@${ki.split("@")[0]}, external links prohibited.\nRemoved from group.`,
             mentions: [ki]
         }, { quoted: m });
     });
@@ -1670,164 +1664,39 @@ let options = []
 		break;
 
 //========================================================================================================================//		      
-	case 'play': {
+	
+                case 'play': {
     if (!text) return m.reply("Which song do you want to download?");
-    
     try {
         let search = await yts(text);
-        if (!search.all || search.all.length === 0) {
-            return m.reply("No songs found with that name.");
-        }
+        let video = search.videos[0] || search.all[0];
+        if (!video) return m.reply("No video found!");
         
-        let link = search.all[0].url;
-        let videoTitle = search.all[0].title;
-        let cleanTitle = videoTitle.replace(/[^a-zA-Z0-9 ]/g, "").trim() || "audio_download";
-        let outputFileName = `${cleanTitle}.mp3`;
-        let outputPath = path.join(__dirname, outputFileName);
-
-        // Encode the URL properly
-        const apiUrl = `https://api.privatezia.biz.id/api/downloader/ytmp3?url=${encodeURIComponent(link)}`;
+        const apiUrl = `https://api.privatezia.biz.id/api/downloader/ytmp3?url=${encodeURIComponent(video.url)}`;
         
-        console.log("Fetching from API:", apiUrl); // Debug log
+        let data = await fetchJson(apiUrl);
         
-        try {
-            let data = await fetchJson(apiUrl);
+        if (data.status === 200 && data.result && data.result.downloadUrl) {
+            let audioUrl = data.result.downloadUrl;
+            let fileName = `${video.title.replace(/[^\w\s]/gi, '')}.mp3`;
             
-            // Debug the API response
-            console.log("API Response:", JSON.stringify(data, null, 2));
-            
-            // Check API response structure
-            if (!data || (data.status !== 200 && !data.success)) {
-                return m.reply("API returned an error. Please try again later.");
-            }
-            
-            // Get the download URL from different possible response structures
-            let videoUrl = data.result?.downloadUrl || 
-                          data.result?.url || 
-                          data.url || 
-                          data.downloadUrl;
-            
-            if (!videoUrl) {
-                console.error("No download URL found in API response");
-                return m.reply("Could not get download link. Please try another song.");
-            }
-            
-            console.log("Download URL:", videoUrl); // Debug log
-            
-            // Download the file
-            const response = await axios({
-                url: videoUrl,
-                method: "GET",
-                responseType: "stream",
-                timeout: 30000, // 30 second timeout
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                }
-            });
-            
-            if (response.status !== 200) {
-                return m.reply(`Download failed with status: ${response.status}`);
-            }
-            
-            // Create write stream for the file
-            const writer = fs.createWriteStream(outputPath);
-            response.data.pipe(writer);
-            
-            writer.on('finish', async () => {
-                try {
-                    // Send the audio file
-                    await client.sendMessage(
-                        m.chat,
-                        {
-                            document: { url: `file://${outputPath}` },
-                            mimetype: "audio/mpeg",
-                            caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳 𝙱𝚈 ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ",
-                            fileName: outputFileName,
-                        },
-                        { quoted: m }
-                    );
-                    
-                    // Clean up the file
-                    setTimeout(() => {
-                        if (fs.existsSync(outputPath)) {
-                            fs.unlinkSync(outputPath);
-                        }
-                    }, 5000);
-                    
-                } catch (sendError) {
-                    m.reply("Failed to send the audio file.");
-                    console.error("Send error:", sendError);
-                    
-                    // Clean up on error
-                    if (fs.existsSync(outputPath)) {
-                        fs.unlinkSync(outputPath);
-                    }
-                }
-            });
-            
-            writer.on('error', (err) => {
-                m.reply("Failed to save the audio file.");
-                console.error("Write error:", err);
-                
-                if (fs.existsSync(outputPath)) {
-                    fs.unlinkSync(outputPath);
-                }
-            });
-            
-        } catch (apiError) {
-            console.error("API Error:", apiError);
-            
-            // Try alternative API if the main one fails
-            const altApiUrl = `https://api.privatezia.biz.id/api/downloader/ytmp3?url=${encodeURIComponent(link)}&quality=128`;
-            try {
-                m.reply("Trying alternative method...");
-                
-                let altData = await fetchJson(altApiUrl);
-                if (altData && (altData.status === 200 || altData.success)) {
-                    let videoUrl = altData.result?.downloadUrl || altData.url;
-                    
-                    const response = await axios({
-                        url: videoUrl,
-                        method: "GET",
-                        responseType: "stream",
-                        timeout: 30000
-                    });
-                    
-                    const writer = fs.createWriteStream(outputPath);
-                    response.data.pipe(writer);
-                    
-                    writer.on('finish', async () => {
-                        await client.sendMessage(
-                            m.chat,
-                            {
-                                document: { url: `file://${outputPath}` },
-                                mimetype: "audio/mpeg",
-                                caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳 𝙱𝚈 ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ",
-                                fileName: outputFileName,
-                            },
-                            { quoted: m }
-                        );
-                        
-                        setTimeout(() => {
-                            if (fs.existsSync(outputPath)) {
-                                fs.unlinkSync(outputPath);
-                            }
-                        }, 5000);
-                    });
-                    
-                } else {
-                    m.reply("*Failed to download. Please try again later.*");
-                }
-                
-            } catch (altError) {
-                console.error("Alternative API error:", altError);
-                m.reply("*Download failed. Please try another song or try again later.*");
-            }
+            await client.sendMessage(
+                m.chat,
+                {
+                    audio: { url: audioUrl },
+                    mimetype: 'audio/mp4',
+                    fileName: fileName,
+                    caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳 𝙱𝚈 ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ"
+                },
+                { quoted: m }
+            );
+        } else {
+            m.reply("Failed to get audio. API error: " + (data.message || "Unknown"));
         }
         
     } catch (error) {
-        console.error("Overall error:", error);
-        m.reply("An error occurred: " + error.message);
+        console.error(error);
+        m.reply("Error: " + error.message);
     }
 }
 break;
