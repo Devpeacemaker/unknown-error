@@ -692,7 +692,7 @@ let cap =`━━ *PEACE CORE* ━━
 • Autoread
 • Autobio
 • Mode
-• Prefix
+• Setprefix
 • Welcomegoodbye
 • Autotyping
 • Alwaysonline
@@ -997,7 +997,8 @@ case "mode": {
   reply(`✅ Mode changed to *${text.toUpperCase()}*`);
 }
 break;
-
+			
+case "setprefix":
 case "prefix": {
 if(!Owner) throw NotOwner;
   const newPrefix = args[0];
