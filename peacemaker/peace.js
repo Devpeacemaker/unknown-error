@@ -1017,7 +1017,7 @@ if (newPrefix === 'none') {
       await updateSetting('prefix', newPrefix);
       await m.reply(`✅ Prefix has been updated to: ${newPrefix}`);
     } else {
-      await m.reply(`👤 Prefix is currently: ${settings.prefix || 'No prefix set.'}\n\nUse _${settings.prefix || '.'}prefix none to remove the prefix.`);
+      await m.reply(`👤 Prefix is currently: ${settings.prefix || 'No prefix set.'}\n\nUse _${settings.prefix || '.'}setprefix none to remove the prefix.`);
     }
   }
 break;
