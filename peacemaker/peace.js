@@ -1665,39 +1665,49 @@ let options = []
 
 //========================================================================================================================//		      
 	
-                case 'play': {
-    if (!text) return m.reply("Which song do you want to download?");
-    try {
-        let search = await yts(text);
-        let video = search.videos[0] || search.all[0];
-        if (!video) return m.reply("No video found!");
-        
-        const apiUrl = `https://api.privatezia.biz.id/api/downloader/ytmp3?url=${encodeURIComponent(video.url)}`;
-        
-        let data = await fetchJson(apiUrl);
-        
-        if (data.status === 200 && data.result && data.result.downloadUrl) {
-            let audioUrl = data.result.downloadUrl;
-            let fileName = `${video.title.replace(/[^\w\s]/gi, '')}.mp3`;
-            
-            await client.sendMessage(
-                m.chat,
-                {
-                    audio: { url: audioUrl },
-                    mimetype: 'audio/mp4',
-                    fileName: fileName,
-                    caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳 𝙱𝚈 ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ"
-                },
-                { quoted: m }
-            );
-        } else {
-            m.reply("Failed to get audio. API error: " + (data.message || "Unknown"));
-        }
-        
-    } catch (error) {
-        console.error(error);
-        m.reply("Error: " + error.message);
+case "play": {		      
+ if (!text) {
+      return client.sendMessage(from, { text: 'Please provide a song name.' }, { quoted: m });
     }
+
+try {
+     const search = await yts(text);
+     const video = search.videos[0];
+
+        if (!video) {
+          return client.sendMessage(from, {
+            text: 'No results found for your query.'
+          }, { quoted: m });
+        }
+	
+m.reply("_Wait a moment..._");
+	
+        const safeTitle = video.title.replace(/[\\/:*?"<>|]/g, '');
+        const fileName = `${safeTitle}.mp3`;
+        const apiURL = `${BASE_URL}/dipto/ytDl3?link=${encodeURIComponent(video.videoId)}&format=mp3`;
+
+        const response = await axios.get(apiURL);
+        const data = response.data;
+
+        if (!data.downloadLink) {
+          return client.sendMessage(from, {
+            text: 'Failed to retrieve the MP3 download link.'
+          }, { quoted: m });
+	} 
+	
+	
+await client.sendMessage(from, {
+          document: { url: data.downloadLink },
+          mimetype: 'audio/mpeg',
+          fileName
+        }, { quoted: m });
+
+      } catch (err) {
+        console.error('[PLAY] Error:', err);
+        await client.sendMessage(from, {
+          text: 'An error occurred while processing your request.'
+        }, { quoted: m });
+}
 }
 break;
 
