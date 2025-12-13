@@ -4,7 +4,9 @@ async function fetchSettings() {
   const data = await getSettings();
 
   return {
-    wapresence: data.wapresence,
+    autotyping: data.autotyping, 
+    alwaysonline: data.alwaysonline, 
+    autorecording: data.autorecording, 
     autoread: data.autoread,
     mode: data.mode,
     prefix: data.prefix,
@@ -21,7 +23,7 @@ async function fetchSettings() {
     badword: data.badword,
     gptdm: data.gptdm, 
     anticall: data.anticall, 
-    antiedit: data.antiedit
+    antiedit: data.antiedit,
   };
 }
 
