@@ -352,16 +352,19 @@ async function handleMessageRevocation(client, revocationMessage, antideleteMode
     let argsLog = budy.length > 30 ? `${q.substring(0, 30)}...` : budy;
 	  
 //========================================================================================================================//
-const Grace = mek.key.remoteJid;
-const settings = await getSettings();
-if (settings.alwaysonline === 'on') {
-    client.sendPresenceUpdate('available', Grace);
-} else if (settings.autotyping === 'on') {
-    client.sendPresenceUpdate('composing', Grace);
-} else if (settings.autorecording === 'on') {
-    client.sendPresenceUpdate('recording', Grace);
-} else {
-    client.sendPresenceUpdate('unavailable', Grace);
+async function updatePresence(client) {
+    const settings = await getSettings();
+    const Grace = mek.key.remoteJid; 
+    
+    if (settings.alwaysonline === 'on') {
+        client.sendPresenceUpdate('available', Grace);
+    } else if (settings.autotyping === 'on') {
+        client.sendPresenceUpdate('composing', Grace);
+    } else if (settings.autorecording === 'on') {
+        client.sendPresenceUpdate('recording', Grace);
+    } else {
+        client.sendPresenceUpdate('unavailable', Grace);
+    }
 }
 //========================================================================================================================//    
 if (cmd && mode === 'private' && !itsMe && !isPrivileged && m.sender !== dev) {
