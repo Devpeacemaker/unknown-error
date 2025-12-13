@@ -12,7 +12,7 @@ const herokuapi = process.env.HEROKU_API || '';
 const botname = process.env.BOTNAME || 'ᴘᴇᴀᴄᴇ ᴄᴏʀᴇ';
 const author = process.env.STICKER_AUTHOR || 'ᴄᴏʀᴇ';
 const packname = process.env.STICKER_PACKNAME || 'ᴘᴇᴀᴄᴇ';
-'
+
 const dev = process.env.DEV || '254752818245';
 const owner = dev.split(",");
 const mycode = process.env.CODE || '254';
