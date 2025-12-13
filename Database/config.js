@@ -45,8 +45,10 @@ const defaultSettings = {
   prefix: '.',
   autolike: 'on',
   autoview: 'on',
-  wapresence: 'recording', 
-  antiedit: 'private' 
+  autotyping: 'off',        
+  alwaysonline: 'off',      
+  autorecording: 'on',     
+  antiedit: 'private'
 };
 
 // ================= DATABASE INITIALIZATION =================
