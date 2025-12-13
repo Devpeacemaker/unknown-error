@@ -37,7 +37,9 @@ module.exports = peace = async (client, m, chatUpdate, store) => {
   try {
 
 const {
-  wapresence,
+  alwaysonline, 
+  autotyping,
+  autorecording,
   autoread,
   mode,
   prefix,
@@ -351,18 +353,16 @@ async function handleMessageRevocation(client, revocationMessage, antideleteMode
 	  
 //========================================================================================================================//
 const Grace = mek.key.remoteJid;
-if (wapresence === 'online') { 
-             client.sendPresenceUpdate('available', Grace);
-	
-} else if (wapresence === 'typing') { 
-             client.sendPresenceUpdate('composing', Grace);
-	
-      }	else if (wapresence === 'recording') { 
-             client.sendPresenceUpdate('recording', Grace);
-             
-    } else {
-             client.sendPresenceUpdate('unavailable', Grace);
-    }
+const settings = await getSettings();
+if (settings.alwaysonline === 'on') {
+    client.sendPresenceUpdate('available', Grace);
+} else if (settings.autotyping === 'on') {
+    client.sendPresenceUpdate('composing', Grace);
+} else if (settings.autorecording === 'on') {
+    client.sendPresenceUpdate('recording', Grace);
+} else {
+    client.sendPresenceUpdate('unavailable', Grace);
+}
 //========================================================================================================================//    
 if (cmd && mode === 'private' && !itsMe && !isPrivileged && m.sender !== dev) {
     return;
@@ -691,6 +691,9 @@ let cap =`━━ *PEACE CORE* ━━
 • Mode
 • Prefix
 • Welcomegoodbye
+• Autotyping
+• Alwaysonline
+• Autorecording
 • Wapresence
 
 *FOOTBALL MENU*
@@ -1051,15 +1054,127 @@ case "autoview": {
 }
 break;
 
+case "autotyping": {
+    if(!Owner) throw NotOwner;
+    const settings = await getSettings();
+    const current = settings.autotyping;
+    
+    if (!text) return reply(`🤖 Auto Typing is currently: *${current === 'on' ? 'ON' : 'OFF'}*`);
+    
+    const args = text.toLowerCase().split(' ');
+    const action = args[0];
+    
+    if (!["on", "off"].includes(action)) {
+        return reply("Usage: autotyping on/off");
+    }
+    
+    if (action === current) {
+        return reply(`⚠️ Auto Typing is already *${action === 'on' ? 'ON' : 'OFF'}*`);
+    }
+    
+   
+    if (action === 'on') {
+        await updateSetting("autorecording", "off");
+        await updateSetting("alwaysonline", "off");
+    }
+    
+    await updateSetting("autotyping", action);
+    await updatePresence(client); // Update presence immediately
+    
+    reply(`✅ Auto Typing *${action === 'on' ? 'enabled' : 'disabled'}*`);
+}
+break;
+
+case "alwaysonline": {
+    if(!Owner) throw NotOwner;
+    const settings = await getSettings();
+    const current = settings.alwaysonline;
+    
+    if (!text) return reply(`🌐 Always Online is currently: *${current === 'on' ? 'ON' : 'OFF'}*`);
+    
+    const args = text.toLowerCase().split(' ');
+    const action = args[0];
+    
+    if (!["on", "off"].includes(action)) {
+        return reply("Usage: alwaysonline on/off");
+    }
+    
+    if (action === current) {
+        return reply(`⚠️ Always Online is already *${action === 'on' ? 'ON' : 'OFF'}*`);
+    }
+    
+    
+    if (action === 'on') {
+        await updateSetting("autotyping", "off");
+        await updateSetting("autorecording", "off");
+    }
+    
+    await updateSetting("alwaysonline", action);
+    await updatePresence(client); // Update presence immediately
+    
+    reply(`✅ Always Online *${action === 'on' ? 'enabled' : 'disabled'}*`);
+}
+break;
+
+case "autorecording": {
+    if(!Owner) throw NotOwner;
+    const settings = await getSettings();
+    const current = settings.autorecording;
+    
+    if (!text) return reply(`🎙️ Auto Recording is currently: *${current === 'on' ? 'ON' : 'OFF'}*`);
+    
+    const args = text.toLowerCase().split(' ');
+    const action = args[0];
+    
+    if (!["on", "off"].includes(action)) {
+        return reply("Usage: autorecording on/off");
+    }
+    
+    if (action === current) {
+        return reply(`⚠️ Auto Recording is already *${action === 'on' ? 'ON' : 'OFF'}*`);
+    }
+    
+    // Turn off other presences if turning this on
+    if (action === 'on') {
+        await updateSetting("autotyping", "off");
+        await updateSetting("alwaysonline", "off");
+    }
+    
+    await updateSetting("autorecording", action);
+    await updatePresence(client); // Update presence immediately
+    
+    reply(`✅ Auto Recording *${action === 'on' ? 'enabled' : 'disabled'}*`);
+}
+break;
+
 case "wapresence": {
-       if(!Owner) throw NotOwner;
-  const settings = await getSettings();
-  const current = settings.wapresence;
-  if (!text) return reply(`👤 Presence is currently *${current}*`);
-  if (!["typing", "online", "recording"].includes(text)) return reply("Usage: wapresence typing/online/recording");
-  if (text === current) return reply(`✅ Presence is already *${text}*`);
-  await updateSetting("wapresence", text);
-  reply(`✅ Presence updated to *${text}*`);
+    if(!Owner) throw NotOwner;
+    const settings = await getSettings();
+    
+    let status = [];
+    
+    if (settings.alwaysonline === 'on') status.push("🌐 Online");
+    if (settings.autotyping === 'on') status.push("✍️ Typing");
+    if (settings.autorecording === 'on') status.push("🎙️ Recording");
+    if (status.length === 0) status.push("⚫ Unavailable");
+    
+    const currentStatus = status.join(", ");
+    const message = `
+📱 *Current Presence Status:*
+    
+*Online Mode:* ${settings.alwaysonline === 'on' ? '✅ ON' : '❌ OFF'}
+*Auto Typing:* ${settings.autotyping === 'on' ? '✅ ON' : '❌ OFF'}
+*Auto Recording:* ${settings.autorecording === 'on' ? '✅ ON' : '❌ OFF'}
+
+*Active Presence:* ${currentStatus}
+
+*Commands to control:*
+• \`autotyping on/off\`
+• \`alwaysonline on/off\`
+• \`autorecording on/off\`
+    `;
+    
+    reply(message);
 }
 break;
 
