@@ -551,36 +551,52 @@ if (
 }
 //========================================================================================================================//	  
     if (antilink === 'on' && body.includes('chat.whatsapp.com') && !Owner && isBotAdmin && !isAdmin && m.isGroup) { 
-  
- kid = m.sender; 
-  
- client.sendMessage(m.chat, { 
-  
-                delete: { 
-                   remoteJid: m.chat, 
-                   fromMe: false, 
-                   id: m.key.id, 
-                   participant: kid 
-                } 
-             }).then(() => client.groupParticipantsUpdate(m.chat, [kid], 'remove')); 
- client.sendMessage(m.chat, {text:`𝗛𝗲𝘆 @${kid.split("@")[0]}👋\n\n𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗚𝗿𝗼𝘂𝗽 𝗟𝗶𝗻𝗸𝘀 𝗶𝘀 𝗣𝗿𝗼𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘁𝗵𝗶𝘀 𝗚𝗿𝗼𝘂𝗽 !`, contextInfo:{mentionedJid:[kid]}}, {quoted:m}); 
-       }   
+    kid = m.sender; 
+    
+    
+    client.sendMessage(m.chat, { 
+        delete: { 
+            remoteJid: m.chat, 
+            fromMe: false, 
+            id: m.key.id, 
+            participant: kid 
+        } 
+    }).then(() => {
+        
+        client.groupParticipantsUpdate(m.chat, [kid], 'remove');
+        
+        
+        client.sendMessage(m.chat, {
+            text: `*🔗 Anti-Link System Activated!*\n\nHey @${kid.split("@")[0]}! ✨\n\nOopsie-daisy! 🚫 You tried to share a WhatsApp group link!\n\n*📛 Rule Violation:* Group Links are strictly prohibited here!\n*⚡ Action Taken:* Yeeted from the group!\n\n_If this was a mistake, contact the group admin._\n\n*💡 Pro Tip:* Read the rules next time! 📜`,
+            mentions: [kid]
+        }, { quoted: m });
+    });
+}
+
 //========================================================================================================================//
+
 if (antilinkall === 'on' && body.includes('https://') && !Owner && isBotAdmin && !isAdmin && m.isGroup) { 
-  
- ki = m.sender; 
-  
- client.sendMessage(m.chat, { 
-  
-                delete: { 
-                   remoteJid: m.chat, 
-                   fromMe: false, 
-                   id: m.key.id, 
-                   participant: ki
-                } 
-             }).then(() => client.groupParticipantsUpdate(m.chat, [ki], 'remove')); 
- client.sendMessage(m.chat, {text:`𝗛𝗲𝘆 @${ki.split("@")[0]}👋\n\n𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗟𝗶𝗻𝗸𝘀 𝗶𝘀 𝗣𝗿𝗼𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘁𝗵𝗶𝘀 𝗚𝗿𝗼𝘂𝗽 !`, contextInfo:{mentionedJid:[ki]}}, {quoted:m}); 
-       }   
+    ki = m.sender; 
+    
+    
+    client.sendMessage(m.chat, { 
+        delete: { 
+            remoteJid: m.chat, 
+            fromMe: false, 
+            id: m.key.id, 
+            participant: ki
+        } 
+    }).then(() => {
+        
+        client.groupParticipantsUpdate(m.chat, [ki], 'remove');
+        
+        
+        client.sendMessage(m.chat, {
+            text: `*🌐 Universal Link Detector Activated!*\n\nYo @${ki.split("@")[0]}! 👋\n\nAha! 🕵️‍♂️ Caught red-handed sharing a link!\n\n*⚠️ Violation Detected:* External links are a big NO-NO!\n*🚀 Consequence:* Successfully launched out of the group!\n\n_Sorry, not sorry! Rules are rules! 🤷‍♂️_\n\n*Remember:* This isn't a link-sharing party! 🎉`,
+            mentions: [ki]
+        }, { quoted: m });
+    });
+}
   
   //========================================================================================================================//
   //========================================================================================================================//
