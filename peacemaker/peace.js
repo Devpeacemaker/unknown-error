@@ -238,13 +238,18 @@ async function handleMessageRevocation(client, revocationMessage, antideleteMode
 
    
 let targetJid;
+
 if (antideleteMode === "private") {
   
-  const deployerNumber = process.env.DEPLOYER_NUMBER || '254752818245'; 
-  targetJid = deployerNumber.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
+  targetJid = sock.user.id;
+  
 } else if (antideleteMode === "chat") {
+  
   targetJid = remoteJid;
-} else return;
+
+} else {
+  return;
+}
 
     // Helper to send notifications
     const sendNotification = async (mediaType, content = "") => {
