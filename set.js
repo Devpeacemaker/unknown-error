@@ -1,3 +1,5 @@
+const fs = require('fs');
+if (fs.existsSync('.env')) require('dotenv').config({ path: __dirname + '/.env' });
 
 const sessionName = 'session';
 const session = process.env.SESSION || '';
@@ -20,7 +22,7 @@ const botAdmin = process.env.BOT_ADMIN_MSG || '🧃 ʏᴏᴜ ɴᴇᴇᴅ ᴀɴ �
 const NotOwner = process.env.NOT_OWNER_MSG || '👮ᴄᴏᴍᴍᴀɴᴅ ᴍᴇᴀɴᴛ ꜰᴏʀ ᴛʜᴇ ᴏᴡɴᴇʀ!';
 const mycode = process.env.CODE || '254';
 const port = process.env.PORT || 8080;
-const databaseUrl = process.env.DATABASE_URL || '';
+const databaseUrl = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_lSc0PpxgeYn6@ep-rapid-forest-a4hm0939-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
 
 module.exports = {
   session,
