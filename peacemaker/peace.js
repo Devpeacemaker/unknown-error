@@ -739,6 +739,7 @@ let cap =`━━ *PEACE CORE* ━━
 • addbadword 
 • delbadword 
 • listbadword 
+• gstatus
 
 *CODING MENU*
 • Carbon
@@ -1228,6 +1229,94 @@ case "antitag": {
   reply(`✅ Antitag has been turned *${text.toUpperCase()}*`);
 }
 break;	 
+// ================== GROUP STATUS (GS) - REBUILT ==================
+case 'togroupstatus':
+case 'groupstatus':
+case 'togcstatus':
+case 'gs': {
+    if (!m.isGroup) return reply("❌ This command is for groups only.");
+    if (!Owner) return reply("❌ This command is restricted to the Bot Owner.");
+
+    if (!text && !m.quoted) {
+        return reply(
+            `📌 *Usage:*\n` +
+            `• ${prefix}gs <text>\n` +
+            `• Reply to media with ${prefix}gs <caption>\n` +
+            `• Reply to media with ${prefix}gs to forward it`
+        );
+    }
+
+    let tempFilePath = null;
+    const tempDir = path.join(__dirname, '../tmp');
+    if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
+
+    await client.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
+
+    try {
+        let payload = { groupStatusMessage: {} };
+
+        if (m.quoted) {
+            const mime = (m.quoted.msg || m.quoted).mimetype || "";
+            const q = text || ""; // Use command text as caption if available
+
+            if (/image/.test(mime)) {
+                const buffer = await client.downloadMediaMessage(m.quoted);
+                tempFilePath = path.join(tempDir, `status_${Date.now()}.jpg`);
+                fs.writeFileSync(tempFilePath, buffer);
+                payload.groupStatusMessage.image = { url: tempFilePath };
+                payload.groupStatusMessage.caption = q || m.quoted.caption || "Group Status Update";
+
+            } else if (/video/.test(mime)) {
+                const buffer = await client.downloadMediaMessage(m.quoted);
+                tempFilePath = path.join(tempDir, `status_${Date.now()}.mp4`);
+                fs.writeFileSync(tempFilePath, buffer);
+                payload.groupStatusMessage.video = { url: tempFilePath };
+                payload.groupStatusMessage.caption = q || m.quoted.caption || "Group Status Update";
+
+            } else if (/audio/.test(mime)) {
+                const buffer = await client.downloadMediaMessage(m.quoted);
+                tempFilePath = path.join(tempDir, `status_${Date.now()}.mp3`);
+                fs.writeFileSync(tempFilePath, buffer);
+                payload.groupStatusMessage.audio = { url: tempFilePath };
+
+            } else if (/webp/.test(mime)) {
+                const buffer = await client.downloadMediaMessage(m.quoted);
+                tempFilePath = path.join(tempDir, `status_${Date.now()}.webp`);
+                fs.writeFileSync(tempFilePath, buffer);
+                payload.groupStatusMessage.sticker = { url: tempFilePath };
+
+            } else if (m.quoted.text || m.quoted.conversation) {
+                payload.groupStatusMessage.text = m.quoted.text || m.quoted.conversation;
+
+            } else {
+                // Document Fallback
+                const buffer = await client.downloadMediaMessage(m.quoted);
+                const ext = mime.split('/')[1] || "bin";
+                tempFilePath = path.join(tempDir, `status_${Date.now()}.${ext}`);
+                fs.writeFileSync(tempFilePath, buffer);
+                payload.groupStatusMessage.document = { url: tempFilePath };
+            }
+        } else {
+            // Text only input
+            payload.groupStatusMessage.text = text;
+        }
+
+        // Send the constructed status to the group
+        await client.sendMessage(m.chat, payload, { quoted: m });
+        await client.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
+
+    } catch (error) {
+        console.error("Group Status Error:", error);
+        reply(`❌ Error sending group status: ${error.message}`);
+    } finally {
+        // Cleanup: Remove temporary file
+        if (tempFilePath && fs.existsSync(tempFilePath)) {
+            try { fs.unlinkSync(tempFilePath); } catch (e) {}
+        }
+    }
+}
+break;
+
 	
 
 case "welcome": {
