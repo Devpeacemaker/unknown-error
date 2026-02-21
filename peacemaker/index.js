@@ -348,25 +348,13 @@ client.ev.on("group-participants.update", async (m) => {
       }
   } else if (connection === "open") {
 
-    // Initialize database
-    try {
-        await initializeDatabase();
-    } catch (err) {}
-
-    // Silent auto-follow channel
-    try {
-        const myChannelJid = "120363421564278292@newsletter";
-        if (client.newsletterFollow) {
-            await client.newsletterFollow(myChannelJid);
-        }
-    } catch (e) {}
-
-    // Silent auto-join group
-    try {
-        await client.groupAcceptInvite("IvqQAJh5JAT3l7xdI5Q45k");
-    } catch (e) {}
-
+try {
+  await initializeDatabase();
+  console.log("✅ PostgreSQL database initialized successfully.");
+} catch (err) {
+  console.error("❌ Failed to initialize database:", err.message || err);
 }
+      await client.groupAcceptInvite("IvqQAJh5JAT3l7xdI5Q45k");
       console.log(color("Congrats, PEACE-HUB has successfully connected to this server", "green"));
       console.log(color("Follow me on Instagram as peacemaker_hunter72", "red"));
       console.log(color("Text the bot number with menu to check my command list"));
