@@ -20,7 +20,7 @@ const Events = async (client, Nick) => {
                 dpuser = "https://files.catbox.moe/xmlidu.jpg";
             }
 
-            if (Nick.peacemaker === "add") {
+            if (Nick.action === "add") {
                 if (settings.welcome === 'on') {
                     let userName = num;
                     const welcomeMessages = [
@@ -43,7 +43,7 @@ const Events = async (client, Nick) => {
                         mentions: [num],
                     });
                 }
-            } else if (Nick.peacemaker === "remove") {
+            } else if (Nick.action === "remove") {
                 if (settings.goodbye === 'on') {
                     let userName2 = num;
                     const goodbyeMessages = [
