@@ -146,15 +146,10 @@ try {
         }
       }
 
-      
-// Mode Check for Commands
-      const isMe = mek.key.fromMe;
-      if (mode === 'private' && !isMe) return;
-      
+if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
       let m = smsg(client, mek, store);
       const peace = require("../peacemaker/peace");
       peace(client, m, chatUpdate, store);
-      
     } catch (err) {
       console.log(err);
     }
