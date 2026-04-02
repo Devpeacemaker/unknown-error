@@ -8,6 +8,7 @@ const {
   jidDecode,
   proto,
   getContentType,
+  jidNormalizedUser 
 } = require("@whiskeysockets/baileys");
 
 const pino = require("pino");
@@ -96,25 +97,62 @@ try {
 
  store.bind(client.ev);
   
-  client.ev.on("messages.upsert", async (chatUpdate) => {
+client.ev.on("messages.upsert", async (chatUpdate) => {
     try {
       let mek = chatUpdate.messages[0];
       if (!mek.message) return;
-      mek.message = Object.keys(mek.message)[0] === "ephemeralMessage" ? mek.message.ephemeralMessage.message : mek.message;
-
       
- if (autoview === 'on' && mek.key && mek.key.remoteJid === "status@broadcast") {
-        client.readMessages([mek.key]);
-      }
+      const ms = mek; // Alias to match your logic
+      const clienttech = jidNormalizedUser(client.user.id);
+      const fromJid = ms.key.participant || ms.key.remoteJid;
+
+      ms.message = getContentType(ms.message) === 'ephemeralMessage'
+        ? ms.message.ephemeralMessage.message
+        : ms.message;
+
+      // ========== AUTO VIEW & LIKE STATUS (YOUR EXACT LOGIC) ==========
+      if (ms.key.remoteJid === "status@broadcast") {
+        try {
+          // Auto View Status
+          if (autoview === "on") {
+            const participantToUse = ms.key.participantPn || ms.key.participant;
+            const readKey = {
+              remoteJid: ms.key.remoteJid,
+              id: ms.key.id,
+              fromMe: ms.key.fromMe,
+              participant: participantToUse
+            };
             
- if (autoview === 'on' && autolike === 'on' && mek.key && mek.key.remoteJid === "status@broadcast") {
-        const nickk = await client.decodeJid(client.user.id);
-        const emojis = ['❤️', '💚', '💜'];
-        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-        await client.sendMessage(mek.key.remoteJid, { react: { text: randomEmoji, key: mek.key, } }, { statusJidList: [mek.key.participant, nickk] });
-        await sleep(messageDelay);
-   console.log('Reaction sent successfully✅️');
+            await client.readMessages([readKey]);
+            console.log(chalk.cyan(`👁️ Viewed: ${participantToUse}`));
           }
+
+          // Auto Like Status
+          if (autolike === "on" && ms.key.participant && !ms.key.fromMe) {
+            const participantToUse = ms.key.participantPn || ms.key.participant;
+            const reactionKey = {
+              remoteJid: ms.key.remoteJid,
+              id: ms.key.id,
+              fromMe: ms.key.fromMe,
+              participant: participantToUse
+            };
+            
+            const emojis = ['💛', '💜', '💚'];
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            await client.sendMessage(
+              ms.key.remoteJid,
+              { react: { key: reactionKey, text: randomEmoji } },
+              { statusJidList: [participantToUse, clienttech] }
+            );
+            console.log(chalk.green(`✅ Liked: ${participantToUse}`));
+          }
+          return; // Stop here for statuses
+        } catch (error) {
+          console.error("Error handling status broadcast:", error);
+        }
+      }
+      
 
       
 if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
