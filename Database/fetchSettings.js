@@ -4,9 +4,7 @@ async function fetchSettings() {
   const data = await getSettings();
 
   return {
-    autotyping: data.autotyping, 
-    alwaysonline: data.alwaysonline, 
-    autorecording: data.autorecording, 
+     wapresence: data.wapresence, 
     autoread: data.autoread,
     mode: data.mode,
     prefix: data.prefix,
