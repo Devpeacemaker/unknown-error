@@ -5,6 +5,7 @@ async function fetchSettings() {
 
   return {
      wapresence: data.wapresence, 
+    antisticker: data.antisticker,
     autoread: data.autoread,
     mode: data.mode,
     prefix: data.prefix,
