@@ -12,8 +12,8 @@ try {
 // ================= DEFAULT BOT SETTINGS =================
 const defaultSettings = {
   antilink: 'on',
+  antisticker: 'off', 
   antilinkall: 'off',
- autobioText: 'KING M 𝚁𝙴𝙿𝚁𝙴𝚂𝙴𝙽𝚃𝚂 SHARP📌',
   autobio: 'on',
   antidelete: 'on',
   antitag: 'on',
@@ -31,8 +31,6 @@ antistatusmention: 'off',
   autoview: 'on',
   wapresence: 'recording',
   antiedit: 'private',
-    antisticker: 'off',
-    menuTitle: "KING MD VIP",
     antigroupmention: 'off'
 };
 
