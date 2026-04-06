@@ -1845,7 +1845,7 @@ try {
     await client.sendMessage(m.chat, {
       document: { url: downloadResult.downloadUrl },
       mimetype: "audio/mp3",
-      caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
+      caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴",
       fileName: `${result.title.replace(/[^a-zA-Z0-9 ]/g, "")}.mp3`,
       }, { quoted: m });
  
@@ -1948,7 +1948,7 @@ const cheerio = require('cheerio');
       image: {
         url: _0x29a9n6e5.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴-𝙲𝙾𝚁𝙴`
     });
   } catch (_0x180d0734) {
     m.reply(_0x180d0734);
@@ -1969,7 +1969,7 @@ const cheerio = require('cheerio');
       image: {
         url: _0x295.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴-𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴-𝙲𝙾𝚁𝙴`
     });
   } catch (_0x180d) {
     m.reply(_0x180d);
@@ -1990,7 +1990,7 @@ const cheerio = require('cheerio');
       image: {
         url: _029a96e5.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0180d034) {
     m.reply(_0180d034);
@@ -2011,7 +2011,7 @@ const cheerio = require('cheerio');
       image: {
         url: _0x29a96em5.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0x18d034) {
     m.reply(_0x18d034);
@@ -2033,7 +2033,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunte.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2057,7 +2057,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunterr.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2081,7 +2081,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunteer.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2104,7 +2104,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunteqr.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2127,7 +2127,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a96e5.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0x180d034) {
     m.reply(_0x180d034);
@@ -2148,7 +2148,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x2996e.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0x180d3) {
     m.reply(_0x180d3);
@@ -2169,7 +2169,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x9a96e.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0x80d03) {
     m.reply(_0x80d03);
@@ -2190,7 +2190,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a996e.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0x180d063) {
     m.reply(_0x180d063);
@@ -2211,7 +2211,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a96e.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0x180d03) {
     m.reply(_0x180d03);
@@ -2232,7 +2232,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x29a96.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     });
   } catch (_0x180d0) {
     m.reply(_0x180d0);
@@ -2253,7 +2253,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x14192dl.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2276,7 +2276,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x14192.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2299,7 +2299,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x14192d.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2322,7 +2322,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x4086bb.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2345,7 +2345,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x4959e5.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2368,7 +2368,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x26f3ed.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2391,7 +2391,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x357389.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2414,7 +2414,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: _0x57ef84.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2436,7 +2436,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: nick.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2460,7 +2460,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunter.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2484,7 +2484,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: tumba.image
       },
-      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`
+      caption: `𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`
     }, {
       quoted: m
     });
@@ -2554,7 +2554,7 @@ break;
         const fact = response.data.text;
 
         const funFact = `
- *PEACE-HUB RANDOM FUNFACT* 
+ *PEACE-CORE RANDOM FUNFACT* 
 
 ${fact}
 
@@ -3837,7 +3837,7 @@ case "faker": {
       if (_0x2f8982.length == 0) {
         return m.reply("𝙽𝚘 𝚏𝚊𝚔𝚎 𝙰𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚍𝚎𝚝𝚎𝚌𝚝𝚎𝚍.");
       }
-      let _0x2d7d67 = `𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝚑𝚊𝚜 𝚍𝚎𝚝𝚎𝚌𝚝𝚎𝚍 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐 ${_0x2f8982.length} 𝙵𝚊𝚔𝚎 𝚊𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚒𝚗 𝚝𝚑𝚒𝚜 𝚐𝚛𝚘𝚞𝚙:- \n`;
+      let _0x2d7d67 = `𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴 𝚑𝚊𝚜 𝚍𝚎𝚝𝚎𝚌𝚝𝚎𝚍 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐 ${_0x2f8982.length} 𝙵𝚊𝚔𝚎 𝚊𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚒𝚗 𝚝𝚑𝚒𝚜 𝚐𝚛𝚘𝚞𝚙:- \n`;
       for (let _0x28761c of _0x2f8982) {
         _0x2d7d67 += `🚮 @${_0x28761c.split("@")[0]}\n`;
       }
@@ -3851,7 +3851,7 @@ case "faker": {
     } else if (args[0] == "-x") {
       setTimeout(() => {
         client.sendMessage(m.chat, {
-          text: `𝙽𝚘𝚠 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱 𝚠𝚒𝚕𝚕 𝚛𝚎𝚖𝚘𝚟𝚎 ${_0x2f8982.length} 𝙵𝚊𝚔𝚎 𝙰𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚏𝚛𝚘𝚖 𝚝𝚑𝚒𝚜 𝚐𝚛𝚘𝚞𝚙.\n\n𝙶𝚘𝚘𝚍𝚋𝚢𝚎👋 𝙵𝚊𝚔𝚎 𝚙𝚎𝚘𝚙𝚕𝚎.`
+          text: `𝙽𝚘𝚠 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴 𝚠𝚒𝚕𝚕 𝚛𝚎𝚖𝚘𝚟𝚎 ${_0x2f8982.length} 𝙵𝚊𝚔𝚎 𝙰𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚏𝚛𝚘𝚖 𝚝𝚑𝚒𝚜 𝚐𝚛𝚘𝚞𝚙.\n\n𝙶𝚘𝚘𝚍𝚋𝚢𝚎👋 𝙵𝚊𝚔𝚎 𝚙𝚎𝚘𝚙𝚕𝚎.`
         }, {
           quoted: m
         });
@@ -4116,7 +4116,7 @@ await client.sendMessage(m.chat, {
       await client.sendMessage(m.chat, {
         video: { url: videoUrl },
         mimetype: "video/mp4",
-        caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱"
+        caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴"
       },{ quoted: m });
     }
   } catch (error) {
@@ -4150,7 +4150,7 @@ try {
 
         await client.sendMessage(m.chat, {
               video: { url: video_hd },
-              caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱"
+              caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴"
             }, { quoted: m });
 
         } catch (error) {
@@ -4191,7 +4191,7 @@ await client.sendMessage(m.chat, {
             m.chat,
             {
                 video: { url: fbvid },
-                caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
+                caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴",
                 gifPlayback: false,
             },
             { quoted: m }
@@ -4234,7 +4234,7 @@ await client.sendMessage(m.chat, {
 
       await client.sendMessage(m.chat, {
         video: { url: videoUrl },
-        caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱",
+        caption: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴",
         gifPlayback: false
       }, { quoted: m });
 
@@ -4269,7 +4269,7 @@ try {
         }
 
         const media = response.data.BK9;
-        const capp = `𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙷𝚄𝙱`;
+        const capp = `𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝙳  𝙱𝚈 𝙿𝙴𝙰𝙲𝙴 𝙲𝙾𝚁𝙴`;
 
 if (media.length > 0) {
             const videoUrl = media.find(item => item.url.includes('.mp4'))?.url;
